@@ -746,7 +746,7 @@ public class compras extends javax.swing.JInternalFrame {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
             setMaximizable(true);
-            setTitle("Compras");
+            setTitle("Ingresos");
             setToolTipText("");
             addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
                 public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {

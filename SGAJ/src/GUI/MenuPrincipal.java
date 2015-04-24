@@ -457,6 +457,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
+        getAccessibleContext().setAccessibleName("Sistema Gestion de Almacenes");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 

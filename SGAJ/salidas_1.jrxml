@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte Salidas" pageWidth="612" pageHeight="792" columnWidth="471" leftMargin="85" rightMargin="56" topMargin="56" bottomMargin="56" isSummaryWithPageHeaderAndFooter="true" uuid="63bd8c49-ecdd-4aa6-b068-419047286556">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="50"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idsalida" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     producto.`nombre`,
+     producto.`codigo`,
+     detallesalida.`devolucion`,
+     detallesalida.`cantidad`,
+     salida.`fecha`,
+     salida.`idsalida`,
+     salida.`salida`,
+     salida.`total`,
+     producto.`precioventa`,
+     usuario.`nombreusuario`,
+     clientes.`nombrecliente` AS clientes_nombres,
+     clientes.`nit` AS clientes_dependencia,
+     clientes.`direccion` AS clientes_cargo,
+     lote.`precio` AS lote_precio,
+lote.`idlote` AS lote_idlote
+FROM
+     `producto` producto INNER JOIN `lote` lote ON producto.`idproducto` = lote.`producto_idProducto`
+     INNER JOIN `detallesalida` detallesalida ON lote.`idlote` = detallesalida.`lote_idlote`
+     INNER JOIN `salida` salida ON detallesalida.`salida_idsalida` = salida.`idsalida`
+     INNER JOIN `usuario` usuario ON salida.`usuario_idusuario` = usuario.`idusuario`
+     INNER JOIN `clientes` clientes ON salida.`clientes_idclientes` = clientes.`idclientes`
+WHERE
+     salida.idsalida = $P{idsalida}]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devolucion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idsalida" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="salida" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="precioventa" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombreusuario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="clientes_nombres" class="java.lang.String"/>
+	<field name="clientes_dependencia" class="java.lang.String"/>
+	<field name="clientes_cargo" class="java.lang.String"/>
+	<field name="lote_precio" class="java.lang.Float"/>
+	<field name="lote_idlote" class="java.lang.Integer"/>
+	<sortField name="idsalida"/>
+	<variable name="sumaT" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[new Double( ($F{cantidad}.doubleValue() )*$F{lote_precio}.doubleValue() )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="269" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="3" y="30" width="468" height="33"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Distribucion Ruano]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement uuid="8d42a821-6ee7-4dcf-831c-5d5bc790fb97" x="346" y="188" width="126" height="78"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="fc1aed88-05a1-4d7b-8fb1-869b66692661" x="351" y="193" width="47" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="3ed72265-1257-4166-9878-73e5bbd20464" x="398" y="193" width="61" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cb3372ed-9f1e-4876-812f-d0e11451ee72" x="351" y="217" width="69" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[factura]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement uuid="fd4ced77-a359-4098-a02b-458e5cf35296" x="420" y="217" width="39" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{salida}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="119" y="63" width="252" height="37"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[carretera a tulate, frente al campo de futbol, centro 2 la maquina san andres villa seca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f1b60987-0157-40bd-9335-f932a88854cc" x="349" y="240" width="54" height="20"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="19d0094b-816b-4cee-a17e-92927389602d" x="403" y="240" width="58" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{nombreusuario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4f63f11d-64fa-4fb7-910c-6f440d7294b0" x="2" y="194" width="111" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3bc5a25c-93e8-4536-9e52-dab4a709c5ed" x="2" y="217" width="111" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fa11e009-811e-4a7d-b2e4-827383927669" x="2" y="242" width="111" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="d3f41e45-cecf-413a-a637-27e6651c0665" x="119" y="212" width="220" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="d3f41e45-cecf-413a-a637-27e6651c0665" x="119" y="234" width="220" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="d3f41e45-cecf-413a-a637-27e6651c0665" x="118" y="259" width="220" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="40c3a83d-1812-42d2-b910-a06dd75ce6ce" x="118" y="194" width="225" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{clientes_dependencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2dca2240-3f5b-46e5-8697-fa519991c6f2" x="119" y="216" width="224" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{clientes_nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="50594e55-573c-409e-89c2-1bdbd014990b" x="119" y="241" width="224" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{clientes_cargo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a30ee8e5-7a87-4321-8dfa-d9f6c648b2a1" x="0" y="139" width="471" height="42"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None">
+					<font fontName="Calisto MT" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Venta]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement uuid="2160759b-f1aa-4a28-9032-8ade9e014fe6" mode="Transparent" x="157" y="140" width="157" height="42"/>
+				<graphicElement>
+					<pen lineWidth="4.75" lineStyle="Double"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e45b3498-0f8c-4220-9ec5-e7adc90d1bc8" x="79" y="2" width="198" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cb3372ed-9f1e-4876-812f-d0e11451ee72" x="275" y="4" width="63" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cb3372ed-9f1e-4876-812f-d0e11451ee72" x="1" y="2" width="78" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<rectangle radius="4">
+				<reportElement uuid="8d42a821-6ee7-4dcf-831c-5d5bc790fb97" mode="Transparent" x="0" y="3" width="472" height="18"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="cb3372ed-9f1e-4876-812f-d0e11451ee72" x="411" y="2" width="60" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Lote]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f067be2f-2b23-480b-a8d3-ef468e74f65e" x="338" y="5" width="73" height="16"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Devolución]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement uuid="fd4ced77-a359-4098-a02b-458e5cf35296" x="275" y="3" width="63" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="297778fd-bf32-4f28-bd0d-6af96c6abfc3" x="79" y="1" width="198" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fd4ced77-a359-4098-a02b-458e5cf35296" x="2" y="2" width="78" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="3">
+				<reportElement uuid="8d42a821-6ee7-4dcf-831c-5d5bc790fb97" mode="Transparent" x="0" y="0" width="472" height="19"/>
+			</rectangle>
+			<textField pattern="">
+				<reportElement uuid="fd4ced77-a359-4098-a02b-458e5cf35296" x="411" y="1" width="60" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{lote_idlote}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement uuid="fd4ced77-a359-4098-a02b-458e5cf35296" x="338" y="3" width="73" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{devolucion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="199" splitType="Stretch">
+			<rectangle radius="8">
+				<reportElement uuid="8d42a821-6ee7-4dcf-831c-5d5bc790fb97" mode="Transparent" x="0" y="1" width="472" height="25"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="6a19c860-12a5-47e6-b008-72f39edbfdbc" x="0" y="33" width="472" height="91"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="13cc0122-ec5b-44af-b323-5c1f8907a530" x="12" y="42" width="87" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observación:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="923404c1-79c5-4d96-a504-6503fcda3bf9" x="84" y="56" width="370" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="923404c1-79c5-4d96-a504-6503fcda3bf9" x="13" y="80" width="442" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="923404c1-79c5-4d96-a504-6503fcda3bf9" x="15" y="105" width="442" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="45a932b2-2257-40f6-809c-8acf30b909a0" x="26" y="178" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Firma del Solicitante]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="12826c34-1a9a-45fe-aab4-8c937e5fbbfb" x="2" y="175" width="150" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="12826c34-1a9a-45fe-aab4-8c937e5fbbfb" x="319" y="172" width="150" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="45a932b2-2257-40f6-809c-8acf30b909a0" x="320" y="175" width="150" height="16"/>
+				<textElement/>
+				<text><![CDATA[Firma encargado de Almacén]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="1d7d0cda-ebb4-4c56-8a03-09f66046562c" x="179" y="186" width="71" height="13"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="628e4a65-8a52-470e-b184-4c5ff3f52d39" x="251" y="186" width="40" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>
