@@ -5,9 +5,8 @@
 package GUI;
 
 import BD.Conectiondb;
-import BD.sqlp;
 import static GUI.MenuPrincipal.panel_center;
-import static GUI.compras.tabladetallecompra;
+import Modelos.AccesoUsuario;
 import excepciones.FormatoDecimal;
 import excepciones.VerificadorEntrada;
 import java.awt.Dimension;
@@ -32,7 +31,6 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -1151,8 +1149,8 @@ public class pagoclientes extends javax.swing.JInternalFrame {
                         ps.setString(1, getFecha());
                         ps.setString(2, Validar(montoabono.getText()));
                         ps.setString(3, dato);
-                        Login entrar = new Login();
-                        ps.setString(4, "" + entrar.idusu());
+                        //Login entrar = new Login();
+                        ps.setString(4, "" + AccesoUsuario.idusu());
                         ps.setString(5, observacionabono.getText());
                         ps.setString(6, (formapagoabono.getSelectedItem().toString()));
                         ps.setFloat(7, nsaldo);

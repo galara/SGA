@@ -9,13 +9,10 @@ package reporte;
 import BD.LeePropiedades;
 import static BD.LeePropiedades.archivoRecurso;
 import GUI.frmventas;
-import Modelos.MiModelo;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,7 +20,6 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableColumn;
 
 /**
  *

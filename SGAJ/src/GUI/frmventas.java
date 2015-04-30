@@ -11,16 +11,13 @@
 package GUI;
 
 import BD.BdConexion;
-import BD.Conectiondb;
-import BD.LeePropiedades;
 import BD.sqlprod;
-import GUI.Login;
 import static GUI.MenuPrincipal.panel_center;
+import Modelos.AccesoUsuario;
 import Modelos.MiModelo;
 import Modelos.Utilidades;
 import Modelos.codigoproductocombo;
 import Modelos.formadepago;
-import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import excepciones.FormatoDecimal;
 import java.applet.AudioClip;
@@ -31,34 +28,23 @@ import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import reporte.imprimiendo;
 
 /**
@@ -2209,9 +2195,9 @@ public class frmventas extends javax.swing.JInternalFrame {
 
                                                 }
                                                 fechainicial.setEnabled(false);
-                                                Login entrar = new Login();
+                                                //Login entrar = new Login();
 
-                                                sqlfac = "insert into salida" + "(fecha,fechapago,usuario_idusuario,tipopago_idtipopago,clientes_idClientes) values" + "('" + fecha + "','" + fechapago + "','" + entrar.idusu() + "','" + idTP + "','" + idcliente.getText() + "')";
+                                                sqlfac = "insert into salida" + "(fecha,fechapago,usuario_idusuario,tipopago_idtipopago,clientes_idClientes) values" + "('" + fecha + "','" + fechapago + "','" + AccesoUsuario.idusu() + "','" + idTP + "','" + idcliente.getText() + "')";
                                                 s.executeUpdate(sqlfac, Statement.RETURN_GENERATED_KEYS);
                                                 ResultSet rs4 = s.getGeneratedKeys();
                                                 if (rs4 != null && rs4.next()) {
@@ -3071,8 +3057,8 @@ public class frmventas extends javax.swing.JInternalFrame {
                         ps.setString(1, getFecha());
                         ps.setString(2, Validar(montoabono.getText()));
                         ps.setString(3, dato);
-                        Login entrar = new Login();
-                        ps.setString(4, "" + entrar.idusu());
+                        //Login entrar = new Login();
+                        ps.setString(4, "" + AccesoUsuario.idusu());
                         ps.setString(5, observacionabono.getText());
                         ps.setString(6, (formapagoabono.getSelectedItem().toString()));
                         ps.setFloat(7, nsaldo);

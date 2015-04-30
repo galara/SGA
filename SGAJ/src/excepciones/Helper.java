@@ -1,7 +1,5 @@
 package excepciones;
 
-import excepciones.FiltraEntrada;
-import excepciones.ExceptionValoresNoIgual;
 import java.awt.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,7 +14,7 @@ import javax.swing.text.DocumentFilter;
 
 /**
  *
- * @author El APRENDIZ www.elaprendiz.net63.net
+ * @author Glara
  */
 public class Helper {
     private static SimpleDateFormat formato;

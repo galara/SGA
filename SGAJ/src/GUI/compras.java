@@ -7,19 +7,15 @@ package GUI;
 import BD.Conectiondb;
 import BD.sqlprod;
 import static GUI.MenuPrincipal.panel_center;
+import Modelos.AccesoUsuario;
 import Modelos.formadepago;
 import Modelos.proveedor;
 import com.mysql.jdbc.Statement;
 import excepciones.FiltraEntrada;
 import excepciones.FormatoDecimal;
 import excepciones.Helper;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.HeadlessException;
-import java.awt.PrintJob;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -1431,9 +1427,9 @@ public class compras extends javax.swing.JInternalFrame {
                             fechapago2 = fechapago;
                         }
 
-                        Login entrar = new Login();
+                        //AccesoUsuario entrar = new AccesoUsuario();
 
-                        sql = "insert into compra" + "(numdoc,proveedor_idproveedor,idtipopago,status,fecha,fechapago,total,saldo,usuario_idusuario,nserie)values" + "('" + factura.getText() + "','" + idPr + "','" + idTP + "','" + sta + "','" + fecha + "','" + fechapago2 + "','" + totalcompra.getText() + "','" + saldo + "','" + entrar.idusu() + "','" + seriefactura.getText() + "')";
+                        sql = "insert into compra" + "(numdoc,proveedor_idproveedor,idtipopago,status,fecha,fechapago,total,saldo,usuario_idusuario,nserie)values" + "('" + factura.getText() + "','" + idPr + "','" + idTP + "','" + sta + "','" + fecha + "','" + fechapago2 + "','" + totalcompra.getText() + "','" + saldo + "','" + AccesoUsuario.idusu() + "','" + seriefactura.getText() + "')";
                         conn = Conectiondb.Enlace(conn);
                         // Se crea un Statement, para realizar la consulta
                         Statement s = (Statement) conn.createStatement();

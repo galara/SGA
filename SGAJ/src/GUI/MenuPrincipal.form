@@ -505,7 +505,7 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="GUI.Login entrar = new GUI.Login();&#xa;      usuarioactual.setText(entrar.usuario());"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="//GUI.Login entrar = new GUI.Login();&#xa;//      usuarioactual.setText(entrar.usuario());&#xa;usuarioactual.setText(AccesoUsuario.getUsuario());"/>
           </AuxValues>
         </Component>
       </SubComponents>

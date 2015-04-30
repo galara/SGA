@@ -6,7 +6,6 @@
 package Modelos;
 
 import BD.Conectiondb;
-import GUI.Login;
 import excepciones.Helper;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -190,7 +189,7 @@ public class CreditosVencidos {
                     }
                 } else if (existeinteres(fechainteres, idsalida) != true) {
                     try {
-                        Login entrar = new Login();//Usuario quien realiza el calculo de interes
+                        //Login entrar = new Login();//Usuario quien realiza el calculo de interes
                         float montointeres = CalculoInteres.interesSimple(saldo, tasa, 1);
                         nsaldointeres += (float) (Math.round((/*interesactual + */montointeres) * 100.0) / 100.0);
                         int n, n2;
@@ -207,7 +206,7 @@ public class CreditosVencidos {
                         ps.setFloat(6, /*interesactual*/ (nsaldointeres - montointeres));
                         ps.setFloat(7, nsaldointeres);
                         ps.setString(8, Helper.getFechaFormateada(fechactual.getTime(), Helper.ANIO_MES_DIA));
-                        ps.setString(9, "" + entrar.idusu());
+                        ps.setString(9, "" + AccesoUsuario.idusu());
 
                         n = ps.executeUpdate();
                         if (n > 0) {

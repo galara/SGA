@@ -8,33 +8,18 @@ package reporte;
 import BD.Conectiondb;
 import BD.LeePropiedades;
 import static BD.LeePropiedades.archivoRecurso;
-import GUI.Busproducto;
-import GUI.Login;
-import static GUI.Login.usu;
-import static GUI.MenuPrincipal.panel_center;
 import GUI.frmventas;
-import GUI.pagoproveedores;
-import Modelos.MiModelo;
 import Modelos.musuario;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableColumn;
-import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
-import static reporte.ventacontado.fecha11;
-import static reporte.ventacontado.fecha21;
-import static reporte.ventacontado.fecha31;
 
 /**
  *

@@ -4,26 +4,16 @@
  */
 package GUI;
 
-import BD.Conectiondb;
 import BD.LeePropiedades;
+import Modelos.AccesoUsuario;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import reporte.*;
 
 /**
@@ -130,8 +120,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Usuario :");
 
-        GUI.Login entrar = new GUI.Login();
-        usuarioactual.setText(entrar.usuario());
+        //GUI.Login entrar = new GUI.Login();
+        //      usuarioactual.setText(entrar.usuario());
+        usuarioactual.setText(AccesoUsuario.getUsuario());
         usuarioactual.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         usuarioactual.setForeground(new java.awt.Color(255, 255, 255));
         usuarioactual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -516,9 +507,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             // Se crea un Statement, para realizar la consulta
             com.mysql.jdbc.Statement s = (com.mysql.jdbc.Statement) conexion.createStatement();
 
-            Login entrar = new Login();
+            //Login entrar = new Login();
 
-            String sql = "select estado,menu from perfilusu where idusuario='" + entrar.idusu() + "' ";
+            String sql = "select estado,menu from perfilusu where idusuario='" + AccesoUsuario.idusu() + "' ";
 
             // Se realiza la consulta. Los resultados se guardan en el 
             // ResultSet rs
@@ -840,7 +831,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 new MenuPrincipal().setVisible(true);
 
             }
-        });
+        }
+        
+        
+        );
+        // new MenuPrincipal().setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercade;

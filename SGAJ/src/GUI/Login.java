@@ -523,17 +523,17 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
 
-    public static String usuario() {
-        return usu;
-    }
+//    public static String usuario() {
+//        return usu;
+//    }
 
     public static String pass() {
         return contra;
     }
 
-    public static int idusu() {
-        return idusu;
-    }
+//    public static int idusu() {
+//        return idusu;
+//    }
 
     public static String estado() {
         return estado;

@@ -6,7 +6,6 @@ package GUI;
 
 import BD.Conectiondb;
 import BD.sqlprod;
-import static GUI.MenuPrincipal.panel_center;
 import Modelos.categorias;
 import Modelos.marca;
 import Modelos.unidad;

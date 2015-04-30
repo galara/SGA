@@ -9,7 +9,7 @@ import javax.swing.text.JTextComponent;
 
 /**
  *
- * @author El APRENDIZ www.elaprendiz.net63.net
+ * @author Glara
  */
 public class VerificadorEntrada extends InputVerifier{
     

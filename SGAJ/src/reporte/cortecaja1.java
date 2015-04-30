@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author otto
+ * @author Glara
  */
 public class cortecaja1 extends javax.swing.JInternalFrame {
 

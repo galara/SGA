@@ -1,30 +1,10 @@
 package Modelos;
 
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JTextFieldDateEditor;
-import elaprendiz.gui.comboBox.ComboBoxRectIcon;
-import java.awt.Color;
-import static java.awt.Color.WHITE;
 import java.awt.Component;
-import java.util.Calendar;
-import java.util.Date;
-import javax.swing.AbstractButton;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JToggleButton;
-import javax.swing.JViewport;
-import javax.swing.SpinnerDateModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import javax.swing.text.JTextComponent;
 
 /**
  *

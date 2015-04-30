@@ -6,7 +6,7 @@ import java.util.Locale;
 
 /**
  *
- * @author elaprendiz <http://www.elaprendiz.net63.net>
+ * @author Glara
  */
 public class FormatoDecimal extends DecimalFormat{
     

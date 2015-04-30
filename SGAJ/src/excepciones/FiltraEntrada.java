@@ -7,7 +7,7 @@ import javax.swing.text.DocumentFilter;
 
 /**
  *
- * @author El APRENDIZ www.elaprendiz.net63.net
+ * @author Glara
  */
 public class FiltraEntrada extends DocumentFilter{
 

@@ -5,19 +5,12 @@
 package GUI;
 
 import BD.Conectiondb;
-import BD.LeePropiedades;
-import BD.sqlp;
 import static GUI.MenuPrincipal.panel_center;
-import static GUI.compras.tabladetallecompra;
-import excepciones.FormatoDecimal;
+import Modelos.AccesoUsuario;
 import excepciones.VerificadorEntrada;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,8 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -35,7 +26,6 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -498,7 +488,7 @@ public class Devolucionproveedores extends javax.swing.JInternalFrame {
                             s.executeUpdate("UPDATE compra SET total='" + total2 + "', saldo='" + saldo2 + "', status='" + estado2 + "' WHERE idcompra =" + model.getValueAt(p, 7));
                             s.executeUpdate("UPDATE lote SET cantidad='" + sumaL + "', stock='" + sumalote + "', devolucion='" + devolucion + "', estado='" + estado1 + "' WHERE idlote =" + model.getValueAt(p, 6));
                             //{"Id", "Codigo", "Descripción", "Cantidad", "Precio", "Subtotal", "idlote", "idcompra", "Devolucion"};
-                            Login entrar = new Login();
+                            //Login entrar = new Login();
                             PreparedStatement ps1 = conn.prepareCall("insert into devoluciones (idproducto,cantidad,precio,subtotal,idlote,idcompra,devolucion,fecha,entradasalida,idusuario) values (?,?,?,?,?,?,?,?,?,?)");
                             ps1.setString(1, (String) model.getValueAt(p, 0));
                             ps1.setString(2, (String) "" + cantidad);
@@ -509,7 +499,7 @@ public class Devolucionproveedores extends javax.swing.JInternalFrame {
                             ps1.setString(7, (String) model.getValueAt(p, 8));
                             ps1.setString(8, (String) getFecha3());
                             ps1.setString(9, (String) "PROVEEDOR");
-                            ps1.setString(10, (String) "" + entrar.idusu());
+                            ps1.setString(10, (String) "" + AccesoUsuario.idusu());
                             int n2 = ps1.executeUpdate();
 
                             if (nmonto < 0) {
@@ -518,7 +508,7 @@ public class Devolucionproveedores extends javax.swing.JInternalFrame {
                                 ps.setString(2, "" + nmonto);
                                 ps.setString(3, (String) model.getValueAt(p, 7));
                                 //Login entrar = new Login();
-                                ps.setString(4, "" + entrar.idusu());
+                                ps.setString(4, "" + AccesoUsuario.idusu());
                                 ps.setString(5, "Por Devolución de productos al proveedor ");
                                 int n = ps.executeUpdate();
                             }
