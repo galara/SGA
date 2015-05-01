@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import static GUI.MenuPrincipal.panel_center;
 import Modelos.AccesoUsuario;
 import excepciones.FormatoDecimal;
@@ -250,17 +250,17 @@ public class pagoclientes extends javax.swing.JInternalFrame {
         try {
             int fila = tablacomprasporpagar.getSelectedRow();
             String Dato = (String) tablacomprasporpagar.getValueAt(fila, 1).toString();
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "select xcobrarclientes.idxcobrarclientes,xcobrarclientes.fecha,xcobrarclientes.monto,salida.idsalida,salida.salida,usuario.nombreusuario from xcobrarclientes INNER JOIN salida on salida.idsalida=xcobrarclientes.salida_idsalida INNER JOIN usuario on usuario.idusuario=xcobrarclientes.usuario_idusuario where xcobrarclientes.salida_idsalida=" + Dato + " group by xcobrarclientes.idxcobrarclientes order by xcobrarclientes.idxcobrarclientes asc";
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             ResultSet rs = sent.executeQuery(sql);// especifica la consulta y la ejecuta
 
             if (rs.next()) {//verifica si esta vacio, pero desplaza el puntero al siguiente elemento
                 rs.beforeFirst();//regresa el puntero al primer registro
-                conn.close();
+                //conn.close();
                 return true;
             } else {
-                conn.close();
+                //conn.close();
                 return false;
             }
         } catch (SQLException e) {
@@ -272,7 +272,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
 
     public void Llenar(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             removejtable2();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             String sql = "select * from salida where clientes_idclientes=" + Dato + " and estado='T'";
@@ -296,7 +296,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
 
                 model2.addRow(fila);
             }
-            conn.close();
+            //conn.close();
             tablacomprasporpagar.setModel(model2);
             formatotabla2();
             sumartotal();
@@ -313,7 +313,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
 
     private void MostrarTodo(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "SELECT producto.idproducto,producto.codigo,producto.nombre,detallesalida.cantidad,detallesalida.precio,detallesalida.lote_idlote FROM  producto INNER JOIN lote ON producto.idproducto = lote.producto_idproducto INNER JOIN detallesalida ON lote.idlote = detallesalida.lote_idlote where detallesalida.salida_idsalida=" + Dato + " order by detallesalida.iddetallesalida asc";
             removejtable();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
@@ -377,7 +377,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
 
             tabladetallecompra.setModel(model);
             //formatotabla();
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this, "El dato no fue encontrado");
             System.out.print(e.getMessage());
@@ -505,7 +505,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
                     System.exit(3);
                 }
 
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 Map parametro = new HashMap();
                 parametro.put("idsalida", idabono);
                 JasperPrint impresor = JasperFillManager.fillReport(masterReport, parametro, conn);
@@ -513,8 +513,8 @@ public class pagoclientes extends javax.swing.JInternalFrame {
                 jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
                 jviewer.setTitle("Comprobante de Abono");
                 jviewer.setVisible(true);
-                conn.close();
-            } catch (SQLException | JRException e) {
+                //conn.close();
+            } catch (JRException e) {
                 JOptionPane.showMessageDialog(null, "Error " + e.toString());
             }
         } else {
@@ -1124,7 +1124,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
                 if (resp == 0) {
                     try {
                         abono.setVisible(false);
-                        conn = Conectiondb.Enlace(conn);
+                        conn = BdConexion.getConexion();
                         //PreparedStatement nos permite crear instrucciones SQL compiladas, que se ejecutan con más efi ciencia que los objetos Statement
                         //también pueden especifi car parámetros,lo cual las hace más fl exibles que las instrucciones Statement
                         int idabono = 0;
@@ -1215,7 +1215,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
 //                            Desabilitar();
 //                            Limpiar();
 //                        }
-                        conn.close();
+                        //conn.close();
                         if (n > 0 & n2 > 0) {
                             dcFecha.setDate(Calendar.getInstance().getTime());
                             montoabono.setValue(null);
@@ -1329,7 +1329,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
                             if (C <= interes) {
 
                                 interes = (float) (Math.round((interes - C) * 100.0) / 100.0);
-                                conn = Conectiondb.Enlace(conn);
+                                conn = BdConexion.getConexion();
                                 PreparedStatement ps2 = conn.prepareStatement(abono);
                                 ps2.setFloat(1, interes);
                                 ps2.setString(2, "" + id);
@@ -1356,7 +1356,7 @@ public class pagoclientes extends javax.swing.JInternalFrame {
                                     n2 = ps1.executeUpdate();
                                 }
 
-                                conn.close();
+                                //conn.close();
                                 Llenar(idcliente);
                                 MostrarTodo(ida);
                                 tablacomprasporpagar.setRowSelectionInterval(filas, filas);

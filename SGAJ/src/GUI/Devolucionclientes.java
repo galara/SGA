@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import static GUI.MenuPrincipal.panel_center;
 import Modelos.AccesoUsuario;
 import excepciones.VerificadorEntrada;
@@ -240,17 +240,17 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
         try {
             int fila = tablacomprasporpagar.getSelectedRow();
             String Dato = (String) tablacomprasporpagar.getValueAt(fila, 1).toString();
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "select xcobrarclientes.idxcobrarclientes,xcobrarclientes.fecha,xcobrarclientes.monto,salida.idsalida,salida.salida,usuario.nombreusuario from xcobrarclientes INNER JOIN salida on salida.idsalida=xcobrarclientes.salida_idsalida INNER JOIN usuario on usuario.idusuario=xcobrarclientes.usuario_idusuario where xcobrarclientes.salida_idsalida=" + Dato + " group by xcobrarclientes.idxcobrarclientes order by xcobrarclientes.idxcobrarclientes asc";
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             ResultSet rs = sent.executeQuery(sql);// especifica la consulta y la ejecuta
 
             if (rs.next()) {//verifica si esta vacio, pero desplaza el puntero al siguiente elemento
                 rs.beforeFirst();//regresa el puntero al primer registro
-                conn.close();
+                //conn.close();
                 return true;
             } else {
-                conn.close();
+                //conn.close();
                 return false;
             }
         
@@ -265,7 +265,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
         try {
             int fila = tablacomprasporpagar.getSelectedRow();
             String Dato = (String) tablacomprasporpagar.getValueAt(fila, 1).toString();
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "select devoluciones.cantidad,devoluciones.precio,devoluciones.idcompra,devoluciones.entradasalida from devoluciones INNER JOIN producto on producto.idproducto=devoluciones.idproducto INNER JOIN salida on salida.idsalida=devoluciones.idcompra INNER JOIN usuario on usuario.idusuario=devoluciones.idusuario where devoluciones.idcompra=" + Dato + " and devoluciones.entradasalida='CLIENTE' order by devoluciones.fecha asc";
             //String sql = "select xcobrarclientes.idxcobrarclientes,xcobrarclientes.fecha,xcobrarclientes.monto,salida.idsalida,salida.salida,usuario.nombreusuario from xcobrarclientes INNER JOIN salida on salida.idsalida=xcobrarclientes.salida_idsalida INNER JOIN usuario on usuario.idusuario=xcobrarclientes.usuario_idusuario where xcobrarclientes.salida_idsalida=" + Dato + " group by xcobrarclientes.idxcobrarclientes order by xcobrarclientes.idxcobrarclientes asc";
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
@@ -273,10 +273,10 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
 
             if (rs.next()) {//verifica si esta vacio, pero desplaza el puntero al siguiente elemento
                 rs.beforeFirst();//regresa el puntero al primer registro
-                conn.close();
+                //conn.close();
                 return true;
             } else {
-                conn.close();
+                //conn.close();
                 return false;
             }
         } catch (SQLException e) {
@@ -288,7 +288,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
 
     public void Llenar(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             removejtable2();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             String fech1 = getFecha();
@@ -325,7 +325,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
                 JOptionPane.showInternalMessageDialog(this, "No se encontraron datos con las condiciones ingresadas \n"
                         + "         Verifique los datos e intente denuevo          ");
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en BD " + e.toString());
             this.dispose();
@@ -334,7 +334,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
 
     private void MostrarTodo(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             //String sql = "select producto_idproducto,producto.codigo, producto.nombre,lote.cantidad,lote.precio,lote.cantidad*lote.precio,lote.idlote,lote.compra_idcompra,lote.devolucion  from lote INNER JOIN producto on producto.idproducto=lote.producto_idproducto where lote.compra_idcompra=" + Dato + " order by idlote asc";
             String sql = "SELECT producto.idproducto,producto.codigo,producto.nombre,detallesalida.cantidad,detallesalida.precio,detallesalida.lote_idlote,detallesalida.iddetallesalida,detallesalida.salida_idsalida,detallesalida.devolucion FROM  producto INNER JOIN lote ON producto.idproducto = lote.producto_idproducto INNER JOIN detallesalida ON lote.idlote = detallesalida.lote_idlote where detallesalida.salida_idsalida=" + Dato + " order by detallesalida.iddetallesalida asc";
             removejtable();
@@ -372,7 +372,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showInternalMessageDialog(this, "El dato no fue encontrado");
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this, "El dato no fue encontrado");
             System.out.print(e.getMessage());
@@ -400,7 +400,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
             if (value > 0) {
                 try {
                     // Se crea un Statement, para realizar la consulta
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     Statement s = (Statement) conn.createStatement();
                     int p = tabladetallecompra.getSelectedRow(); float cantidad = 0;
 
@@ -547,7 +547,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
                     }
                     Llenar(idproveedor);
                     MostrarTodo(idcompraseleccionada);
-                    conn.close();
+                    //conn.close();
                     JOptionPane.showMessageDialog(null, "Devolución operada exitosamente");
 
                 } catch (SQLException ex) {
@@ -674,7 +674,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
                     System.exit(3);
                 }
 
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 Map parametro = new HashMap();
                 parametro.put("idsalida", idabono);
                 parametro.put("defecha", fech1);
@@ -684,8 +684,8 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
                 jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
                 jviewer.setTitle("Estado de Cuenta Cliente");
                 jviewer.setVisible(true);
-                conn.close();
-            } catch (SQLException | JRException e) {
+                //conn.close();
+            } catch (JRException e) {
                 JOptionPane.showMessageDialog(null, "Error " + e.toString());
             }
         } else {

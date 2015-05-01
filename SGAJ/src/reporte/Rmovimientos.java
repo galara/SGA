@@ -1,5 +1,6 @@
 package reporte;
 
+import BD.BdConexion;
 import BD.Conectiondb;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -110,7 +111,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
 
     private void saldototal(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sqls = "select sum(saldo) from salida where clientes_idclientes='" + Dato + "' and salida.estado='T'";
             Statement ss = (Statement) conn.createStatement();
             float nsaldototall = 0;
@@ -125,7 +126,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                 saldototalc = Float.parseFloat(""+nsaldototall);
                 //System.out.print(saldototalc);
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -133,7 +134,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
 
     private void saldoabono(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sqls = "select sum(monto) from xcobrarclientes where xcobrarclientes.salida_idsalida='" + Dato + "'";
             Statement ss = (Statement) conn.createStatement();
             float nsaldototall = 0;
@@ -147,7 +148,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                 }
                 abonos = Float.parseFloat("" + nsaldototall);
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException | NumberFormatException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -176,6 +177,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(192, 219, 213));
         setTitle("REPORTE DE SALIDAS");
+        setOpaque(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jcMousePanel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
@@ -187,6 +189,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        TablaCliente.setAutoCreateRowSorter(true);
         TablaCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -220,11 +223,12 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
         jPanel3.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 120, -1));
 
         jPanel1.setBackground(new java.awt.Color(192, 219, 213));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Detalle de Salida seleccionado:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 20));
 
@@ -282,13 +286,13 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                 btnVerActionPerformed(evt);
             }
         });
-        jPanel1.add(fechaini, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 182, -1));
+        jPanel1.add(fechaini, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 200, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("Al:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
 
         fechafin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fechafin.setName(""); // NOI18N
@@ -297,17 +301,15 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                 btnVerActionPerformed(evt);
             }
         });
-        jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 182, -1));
+        jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 200, -1));
 
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 860, 520));
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 840, 520));
 
         javax.swing.GroupLayout jcMousePanel2Layout = new javax.swing.GroupLayout(jcMousePanel2);
         jcMousePanel2.setLayout(jcMousePanel2Layout);
         jcMousePanel2Layout.setHorizontalGroup(
             jcMousePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jcMousePanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 880, Short.MAX_VALUE)
         );
         jcMousePanel2Layout.setVerticalGroup(
             jcMousePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,7 +333,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
             String fecha1, fecha2;
             fecha1 = getFecha();
             fecha2 = getFecha2();
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             rs = Conectiondb.EnlSalidas(rs, fecha1, fecha2);
             String datos[] = new String[8];
             f = dtm.getRowCount();
@@ -351,7 +353,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                 idcl =  (String) rs.getString(8);
                 dtm.addRow(datos);
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en BD" + e.toString());
         }
@@ -388,7 +390,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                         System.exit(3);
                     }
 
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     Map parametro = new HashMap();
                     String id;
                     id = (dtm.getValueAt(TablaCliente.getSelectedRow(), 0).toString());
@@ -415,9 +417,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                     jviewer.setVisible(true);
 
                     cargandor.setVisible(false);
-                    conn.close();
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error en BD" + e.toString());
+                    //conn.close();
                 } catch (JRException ex) {
                     Logger.getLogger(Rmovimientos.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -440,7 +440,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
         try {
             //setSize(700,600);
             int f, i;
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             rs2 = Conectiondb.EnlDSalidas(rs2, id);
             saldototal(idcl);
             System.out.print(cl+"\n");
@@ -463,7 +463,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                 //datos[6]=(String)rs.getString(7);
                 salida.addRow(datos);
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en BD" + e.toString());
         }

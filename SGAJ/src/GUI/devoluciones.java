@@ -4,9 +4,10 @@
  */
 package GUI;
 
+import BD.BdConexion;
 import Modelos.buscacliente;
 import Modelos.MiModelo;
-import BD.LeePropiedades;
+//import BD.LeePropiedades;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
@@ -29,14 +30,15 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 public class devoluciones extends javax.swing.JInternalFrame {
 
     private final JTextField editorcomp;
-    private String archivoRecurso = "controlador-bd";
+    //private String archivoRecurso = "controlador-bd";
+    java.sql.Connection conn;//getConnection intentara establecer una conexión.
 
     /**
      * Creates new form devoluciones
      */
     public devoluciones() {
         initComponents();
-        
+
         editorcomp = (JTextField) clientebusca.getEditor().getEditorComponent();
         final DefaultComboBoxModel value2;
         value2 = new DefaultComboBoxModel();
@@ -48,11 +50,12 @@ public class devoluciones extends javax.swing.JInternalFrame {
                 //JOptionPane.showMessageDialog(null, key);
                 if (key == java.awt.event.KeyEvent.VK_ENTER) {
                     try {
-                        DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-                        LeePropiedades.archivoRecurso = archivoRecurso;
-                        Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+                        //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+                        //LeePropiedades.archivoRecurso = archivoRecurso;
+                        //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
                         // Se crea un Statement, para realizar la consulta
-                        Statement s = (Statement) conexion.createStatement();
+                        conn = BdConexion.getConexion();
+                        Statement s = (Statement) conn.createStatement();
                         ResultSet rs = s.executeQuery("select idClientes,nombre from clientes where Nombre like '%" + editorcomp.getText() + "%'");
 
                         clientebusca.removeAllItems();
@@ -61,7 +64,7 @@ public class devoluciones extends javax.swing.JInternalFrame {
                             value2.addElement(new buscacliente(rs.getString("Nombre"), rs.getInt("idClientes")));
                             //value2.addElement(ControladorBD.getString("NombreCliente"));
                         }
-                        conexion.close();
+                        //conexion.close();
                         clientebusca.hidePopup();
                         clientebusca.showPopup();
 
@@ -287,11 +290,12 @@ public class devoluciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_clientebuscaActionPerformed
     public void devuelve() {
         try {
-            DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-            LeePropiedades.archivoRecurso = archivoRecurso;
-            Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+            //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+            //LeePropiedades.archivoRecurso = archivoRecurso;
+            //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+            conn = BdConexion.getConexion();
             // Se crea un Statement, para realizar la consulta
-            Statement s = (Statement) conexion.createStatement();
+            Statement s = (Statement) conn.createStatement();
             int p = tablabusquedacliente.getSelectedRow(), cantidad = 0;
             String Cant = JOptionPane.showInputDialog(null, "Cantidad de devolucion");
             cantidad = Integer.parseInt(Cant);
@@ -322,14 +326,14 @@ public class devoluciones extends javax.swing.JInternalFrame {
                 cant1 = rs.getInt("devolucion");
 
             }
-            if (cantidad <= ((cant22+cant1)-cant1)) {
+            if (cantidad <= ((cant22 + cant1) - cant1)) {
 
                 //int cant1 = cantidad;
                 int SumaP = cant + cantidad;
                 int sumaL = cant2 + cantidad;
                 int devolucion = cant1 + cantidad;
                 String estado1 = "T", fecha = "";
-                
+
                 s.executeUpdate("UPDATE producto SET cantidad='" + SumaP + "' WHERE idProducto =" + temp.getValueAt(p, 2));
                 s.executeUpdate("UPDATE detallesalida SET devolucion='" + devolucion + "' WHERE iddetallesalida =" + temp.getValueAt(p, 0));
                 s.executeUpdate("UPDATE lote SET cantidad='" + sumaL + "', estado='" + estado1 + "' WHERE idlote =" + temp.getValueAt(p, 1));
@@ -341,7 +345,7 @@ public class devoluciones extends javax.swing.JInternalFrame {
                 // JOptionPane.showMessageDialog(null, "elimina "+h);
                 temp.removeRow(h - 1);
             }
-            conexion.close();
+            //conexion.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(devoluciones.class.getName()).log(Level.SEVERE, null, ex);
@@ -376,11 +380,12 @@ public class devoluciones extends javax.swing.JInternalFrame {
             idPr = cl.getID();
             idcli.setText(idPr + "");
             try {
-                DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-                LeePropiedades.archivoRecurso = archivoRecurso;
-                Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+                //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+                //LeePropiedades.archivoRecurso = archivoRecurso;
+                //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+                conn = BdConexion.getConexion();
                 // Se crea un Statement, para realizar la consulta
-                Statement s = (Statement) conexion.createStatement();
+                Statement s = (Statement) conn.createStatement();
                 int suma = 0;
 
                 MiModelo modelo = new MiModelo();
@@ -426,7 +431,7 @@ public class devoluciones extends javax.swing.JInternalFrame {
 
                     modelo.addRow(fila);
                 }
-                conexion.close();
+                //conexion.close();
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Error en BD " + ex.toString());

@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
@@ -117,7 +117,7 @@ public class detalleabonoclientes extends javax.swing.JInternalFrame {
     public void MostrarTodo(String Dato) {
         try {
 
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "";
             sql = "select xcobrarclientes.idxcobrarclientes,xcobrarclientes.fecha,xcobrarclientes.monto,xcobrarclientes.observacion,xcobrarclientes.tipopago,salida.idsalida,salida.salida,usuario.nombreusuario from xcobrarclientes INNER JOIN salida on salida.idsalida=xcobrarclientes.salida_idsalida INNER JOIN usuario on usuario.idusuario=xcobrarclientes.usuario_idusuario where xcobrarclientes.salida_idsalida=" + Dato + " order by xcobrarclientes.idxcobrarclientes asc";
             removejtable();
@@ -148,7 +148,7 @@ public class detalleabonoclientes extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showInternalMessageDialog(this, " No se encontraron abonos ");
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this, "Ocurrio un error al cargar los datos ");
             System.out.print(e.getMessage());
@@ -177,7 +177,7 @@ public class detalleabonoclientes extends javax.swing.JInternalFrame {
                     System.exit(3);
                 }
 
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 Map parametro = new HashMap();
                 parametro.put("idsalida", idabono);
                 JasperPrint impresor = JasperFillManager.fillReport(masterReport, parametro, conn);
@@ -185,8 +185,8 @@ public class detalleabonoclientes extends javax.swing.JInternalFrame {
                 jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
                 jviewer.setTitle("Comprobante de Abono");
                 jviewer.setVisible(true);
-                conn.close();
-            } catch (SQLException | JRException e) {
+                //conn.close();
+            } catch (JRException e) {
                 JOptionPane.showMessageDialog(null, "Error " + e.toString());
             }
         } else {

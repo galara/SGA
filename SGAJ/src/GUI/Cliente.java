@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BD.BdConexion;
 import BD.Conectiondb;
 import BD.sqlc;
 import static GUI.MenuPrincipal.panel_center;
@@ -160,7 +161,8 @@ public class Cliente extends javax.swing.JInternalFrame {
 
     private boolean existedeudor() {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
+            //conn = BdConexion.getConexion();
             int fila = clientes.getSelectedRow();
             String idp = (String) clientes.getValueAt(fila, 0);
             String sql;
@@ -232,7 +234,7 @@ public class Cliente extends javax.swing.JInternalFrame {
 
     private void Llenar() {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             removejtable();
             //model = new DefaultTableModel(null, titulos);//objeto TableModel para proporcionar los datos del objeto ResultSet al objeto JTable
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
@@ -259,7 +261,7 @@ public class Cliente extends javax.swing.JInternalFrame {
             this.bntModificar.setEnabled(false);
             this.bntEliminar.setEnabled(false);
             this.bntNuevo.setEnabled(true);
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this, "Error al cargar los datos", "Error ", JOptionPane.ERROR_MESSAGE);
             //this.dispose();
@@ -268,7 +270,7 @@ public class Cliente extends javax.swing.JInternalFrame {
 
     private void MostrarTodo(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "";
             if (this.rbNit.isSelected()) {
                 sql = sqlc.BUSCANIT + "'" + Dato + "'";
@@ -311,7 +313,7 @@ public class Cliente extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showInternalMessageDialog(this, "El dato no fue encontrado");
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this, "Error al cargar los datos", "Error ", JOptionPane.ERROR_MESSAGE);
             System.out.print(e.getMessage());
@@ -323,7 +325,7 @@ public class Cliente extends javax.swing.JInternalFrame {
         int fila = clientes.getSelectedRow();
         if (clientes.getValueAt(fila, 0) != null) {
             try {
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 Habilitar();
                 String sql = sqlc.LLENAR + sqlc.WHERE + sqlc.ID + sqlc.IGUAL + clientes.getValueAt(fila, 0);
                 sent = conn.createStatement();
@@ -348,7 +350,7 @@ public class Cliente extends javax.swing.JInternalFrame {
                 this.bntModificar.setEnabled(true);
                 this.bntEliminar.setEnabled(true);
                 this.bntNuevo.setEnabled(false);
-                conn.close();
+                //conn.close();
             } catch (SQLException e) {
                 JOptionPane.showInternalMessageDialog(this, "Error al cargar los datos", "Error ", JOptionPane.ERROR_MESSAGE);
                 System.out.print(e.getMessage());
@@ -789,7 +791,7 @@ public class Cliente extends javax.swing.JInternalFrame {
             resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea Grabar el Registro?", "Pregunta", 0);
             if (resp == 0) {
                 try {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     //PreparedStatement nos permite crear instrucciones SQL compiladas, que se ejecutan con más efi ciencia que los objetos Statement
                     //también pueden especifi car parámetros,lo cual las hace más fl exibles que las instrucciones Statement
                     String ni=nit.getText();
@@ -828,7 +830,7 @@ public class Cliente extends javax.swing.JInternalFrame {
                         txtDato.requestFocus();
                         JOptionPane.showInternalMessageDialog(this, "Datos guardados correctamente");
                     }
-                    conn.close();
+                    //conn.close();
                 } catch (SQLException e) {
                     if (e.getErrorCode() == 1062) {
                         JOptionPane.showInternalMessageDialog(this,
@@ -856,7 +858,7 @@ public class Cliente extends javax.swing.JInternalFrame {
             int fila = clientes.getSelectedRow();
             if (clientes.getValueAt(fila, 0) != null) {
                 try {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     Habilitar();
                     String sql = sqlc.LLENAR + sqlc.WHERE + sqlc.ID + sqlc.IGUAL + clientes.getValueAt(fila, 0);
                     sent = conn.createStatement();
@@ -881,7 +883,7 @@ public class Cliente extends javax.swing.JInternalFrame {
                     this.bntModificar.setEnabled(true);
                     this.bntEliminar.setEnabled(true);
                     this.bntNuevo.setEnabled(false);
-                    conn.close();
+                    //conn.close();
                 } catch (SQLException e) {
                     JOptionPane.showInternalMessageDialog(this, "Error al cargar los datos", "Error ", JOptionPane.ERROR_MESSAGE);
                     System.out.print(e.getMessage());
@@ -896,7 +898,7 @@ public class Cliente extends javax.swing.JInternalFrame {
         resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea Eliminar el Registro?", "Pregunta", 0);
         if (resp == 0) {
             try {
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 int fila = clientes.getSelectedRow();
                 String sql = sqlc.DELETEC + sqlc.WHERE + sqlc.ID + sqlc.IGUAL + clientes.getValueAt(fila, 0);
                 sent = conn.createStatement();//El programa utiliza al objeto Statement para enviar instrucciones de SQL a la base de datos.
@@ -910,7 +912,7 @@ public class Cliente extends javax.swing.JInternalFrame {
                     JOptionPane.showInternalMessageDialog(this, "Datos eliminados correctamente");
 
                 }
-                conn.close();
+                //conn.close();
             } catch (SQLException e) {
                 if (e.getErrorCode() == 1451) {
                     JOptionPane.showInternalMessageDialog(this,
@@ -933,7 +935,7 @@ public class Cliente extends javax.swing.JInternalFrame {
             resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea Modidicar el Registro?", "Pregunta", 0);
             if (resp == 0) {
                 try {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     int fila = clientes.getSelectedRow();
                     String dao = (String) clientes.getValueAt(fila, 0);
 
@@ -988,7 +990,7 @@ public class Cliente extends javax.swing.JInternalFrame {
                         txtDato.requestFocus();
                         JOptionPane.showInternalMessageDialog(this, "Datos modificados correctamente");
                     }
-                    conn.close();
+                    //conn.close();
                 } catch (SQLException e) {
                     if (e.getErrorCode() == 1062) {
                         JOptionPane.showInternalMessageDialog(this,

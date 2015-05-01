@@ -5,15 +5,15 @@
  */
 package reporte;
 
-import BD.LeePropiedades;
-import static BD.LeePropiedades.archivoRecurso;
+//import BD.LeePropiedades;
+//import static BD.LeePropiedades.archivoRecurso;
+import BD.BdConexion;
 import GUI.Busproducto;
 import static GUI.MenuPrincipal.panel_center;
 import GUI.frmventas;
-import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +23,8 @@ import java.util.logging.Logger;
  * @author Glara
  */
 public class cortecaja1 extends javax.swing.JInternalFrame {
+
+    java.sql.Connection conn;//getConnection intentara establecer una conexión.
 
     /**
      * Creates new form cortecaja
@@ -262,13 +264,14 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-            LeePropiedades.archivoRecurso = archivoRecurso;
-            Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
-            Connection conexion2 = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
-            // Se crea un Statement, para realizar la consulta
-            Statement s = (Statement) conexion.createStatement();
-            Statement s2 = (Statement) conexion2.createStatement();
+//            DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+//            LeePropiedades.archivoRecurso = archivoRecurso;
+//            Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+//            Connection conexion2 = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+            conn = BdConexion.getConexion();
+// Se crea un Statement, para realizar la consulta
+            Statement s = (Statement) conn.createStatement();
+            Statement s2 = (Statement) conn.createStatement();
             String fechai = "", fechaf = "";
             int años = Fincial.getCalendar().get(Calendar.YEAR);
             int dias = Fincial.getCalendar().get(Calendar.DAY_OF_MONTH);
@@ -312,35 +315,31 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
 
             }
             abonosefectivo.setText("" + suma6);
-            
-            
+
             sql = "select xcobrarclientes.monto,xcobrarclientes.fecha,salida.fecha from xcobrarclientes INNER JOIN salida ON xcobrarclientes.salida_idsalida = salida.idsalida  where salida.fecha BETWEEN '" + fechai + "' AND '" + fechaf + "' and xcobrarclientes.monto < 0";
-            ResultSet rs9= s.executeQuery(sql);
+            ResultSet rs9 = s.executeQuery(sql);
             float suma9 = 0;
             while (rs9.next()) {
                 suma9 = suma9 + rs9.getFloat("xcobrarclientes.monto");
             }
-            suma9=Math.abs(suma9);
-            
-            
-            
+            suma9 = Math.abs(suma9);
+
             sql = "select xcobrarclientes.monto,xcobrarclientes.fecha from xcobrarclientes where xcobrarclientes.fecha BETWEEN '" + fechai + "' AND '" + fechaf + "' and xcobrarclientes.monto < 0";
-            ResultSet rs7= s.executeQuery(sql);
+            ResultSet rs7 = s.executeQuery(sql);
             float suma7 = 0;
             while (rs7.next()) {
                 suma7 = suma7 + rs7.getFloat("xcobrarclientes.monto");
             }
-            suma7=Math.abs(suma7);
+            suma7 = Math.abs(suma7);
             devefectivo2.setText("" + suma7);
-            
+
             sql = "SELECT salida.tipopago_idtipopago,salida.fecha,devoluciones.subtotal,devoluciones.idcompra ,devoluciones.fecha ,devoluciones.entradasalida FROM devoluciones INNER JOIN salida ON devoluciones.idcompra = salida.idsalida  where salida.fecha BETWEEN '" + fechai + "' AND '" + fechaf + "' and devoluciones.entradasalida='" + cliente + "'" + " and salida.tipopago_idtipopago=1";
             ResultSet rs8 = s.executeQuery(sql);
             float suma8 = 0;
             while (rs8.next()) {
                 suma8 = suma8 + rs8.getFloat("devoluciones.subtotal");
             }
-            
-            
+
             sql = "SELECT salida.tipopago_idtipopago,devoluciones.subtotal,devoluciones.idcompra ,devoluciones.fecha ,devoluciones.entradasalida FROM devoluciones INNER JOIN salida ON devoluciones.idcompra = salida.idsalida  where devoluciones.fecha BETWEEN '" + fechai + "' AND '" + fechaf + "' and devoluciones.entradasalida='" + cliente + "'" + " and salida.tipopago_idtipopago=1";
             ResultSet rs2 = s.executeQuery(sql);
             float suma2 = 0;
@@ -349,12 +348,12 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
             while (rs2.next()) {
                 suma2 = suma2 + rs2.getFloat("devoluciones.subtotal");
             }
-            totalefectivo.setText("" + (suma + suma8 +suma9));
+            totalefectivo.setText("" + (suma + suma8 + suma9));
             devefectivo.setText("" + suma2);
-            efectivocaja.setText("" + ((suma + suma6 + suma8 + suma9) - (suma2+suma7)));
-            conexion.close();
+            efectivocaja.setText("" + ((suma + suma6 + suma8 + suma9) - (suma2 + suma7)));
+            //conexion.close();
 
-        } catch (Exception ex) {
+        } catch (NullPointerException | SQLException ex) {
 
             Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -365,12 +364,12 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Busproducto nuevasol = new Busproducto();
         if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 3) //solo uno en t
-                    {
+        {
             //fechai=formatof.format(fechai);
-            java.util.Date o=Fincial.getDate();
-                        panel_center.add(nuevasol);
-                        nuevasol.show();// ver interno
-                        nuevasol.fecha((java.util.Date) o);
+            java.util.Date o = Fincial.getDate();
+            panel_center.add(nuevasol);
+            nuevasol.show();// ver interno
+            nuevasol.fecha((java.util.Date) o);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
     public void reporte(String id, String ids, String id3) {

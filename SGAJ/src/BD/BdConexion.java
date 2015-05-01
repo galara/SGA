@@ -39,14 +39,14 @@ public class BdConexion {
             JOptionPane.showMessageDialog(null, "Fue imposible conectarse al servidor.", host, JOptionPane.ERROR_MESSAGE);
             //ex.printStackTrace(System.err);
         } catch (SQLException ex) {
-            System.out.println("No se pudo establecer la conexión");
-            JOptionPane.showMessageDialog(null, "no se pudo conectar con el servidor "
+            System.out.println("No se pudo establecer la conexión" + ex);
+            JOptionPane.showMessageDialog(null, "no se pudo conectar con el servidor : Error\n" + ex
                     + "jdbc:mysql://" + host + ":3306/" + dataBase, "Error de Conexión", JOptionPane.ERROR_MESSAGE);
             JOptionPane.showMessageDialog(null, "Fue imposible conectarse al servidor.", host, JOptionPane.ERROR_MESSAGE);
             //ex.printStackTrace(System.err);
             System.exit(0);
         } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "se esta pasando un objeto nulo", host, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "se esta pasando un objeto nulo ", host, JOptionPane.ERROR_MESSAGE);
             //System.out.println("se esta pasando un objeto nulo");
         }
 
@@ -72,6 +72,7 @@ public class BdConexion {
         try {
             rs = getStatement().executeQuery(sql);
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
             //ex.printStackTrace();
         }
 
@@ -85,6 +86,7 @@ public class BdConexion {
         try {
             st = cns.createStatement();
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
 
         return st;
@@ -99,6 +101,7 @@ public class BdConexion {
             try {
                 ps = cns.prepareStatement(sql);
             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
         } else if (ps != null) {
             try {
@@ -106,6 +109,7 @@ public class BdConexion {
                     ps = cns.prepareStatement(sql);
                 }
             } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
         }
         return ps;
@@ -146,7 +150,8 @@ public class BdConexion {
                 if (!rs.isClosed()) {
                     rs.close();
                 }
-            } catch (SQLException es) {
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
         }
     }
@@ -157,7 +162,8 @@ public class BdConexion {
                 if (!st.isClosed()) {
                     st.close();
                 }
-            } catch (SQLException es) {
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
         }
     }
@@ -168,7 +174,8 @@ public class BdConexion {
                 if (!ps.isClosed()) {
                     ps.close();
                 }
-            } catch (SQLException es) {
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
         }
     }
@@ -179,7 +186,8 @@ public class BdConexion {
                 if (!cns.isClosed()) {
                     cns.close();
                 }
-            } catch (SQLException es) {
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
         }
     }

@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import BD.sqlprod;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -24,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import reporte.ESproducto;
 
-
 /**
  *
  * @author 30234
@@ -39,12 +38,13 @@ public class Busproducto extends javax.swing.JInternalFrame {
     int estado = 0;
     java.sql.Connection conn;//getConnection intentara establecer una conexión.
     Statement sent;
-public static String id;
-public static java.util.Date fecha,fechafin;
+    public static String id;
+    public static java.util.Date fecha, fechafin;
+
     public Busproducto() {
         initComponents();
         formatotabla();
-        addEscapeKey(); 
+        addEscapeKey();
 
         tablaproductos.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -52,36 +52,43 @@ public static java.util.Date fecha,fechafin;
                 int key = arg0.getKeyCode();
                 if (key == java.awt.event.KeyEvent.VK_ENTER) {
                     int p = tablaproductos.getSelectedRow();
-                    
-                    reportefecha(Fincial.getDate(),Ffinal.getDate(),tablaproductos.getValueAt(p, 0).toString());
-                    
-            new ESproducto().setVisible(true);
-                   // JOptionPane.showMessageDialog(null,fecha);
+
+                    reportefecha(Fincial.getDate(), Ffinal.getDate(), tablaproductos.getValueAt(p, 0).toString());
+
+                    new ESproducto().setVisible(true);
+                    // JOptionPane.showMessageDialog(null,fecha);
                 }
             }
         });
         formatotabla();
     }
-public void reportefecha(java.util.Date fechas,java.util.Date fechaf, String ids) {
-     fecha=fechas;
-     id=ids;
-     fechafin=fechaf;
+
+    public void reportefecha(java.util.Date fechas, java.util.Date fechaf, String ids) {
+        fecha = fechas;
+        id = ids;
+        fechafin = fechaf;
     }
-public static String id(){
-    return id;
+
+    public static String id() {
+        return id;
     }
-public static java.util.Date fechaR(){
-    return fecha;
+
+    public static java.util.Date fechaR() {
+        return fecha;
     }
-public static java.util.Date fechaRFin(){
-    return fechafin;
+
+    public static java.util.Date fechaRFin() {
+        return fechafin;
     }
-public void fecha(java.util.Date g){
-fecha=g;
-}
+
+    public void fecha(java.util.Date g) {
+        fecha = g;
+    }
+
     private void addEscapeKey() {
         KeyStroke escape = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
         Action escapeAction = new AbstractAction() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
@@ -128,7 +135,8 @@ fecha=g;
     private void Llenar() {
         try {
             removejtable();
-            conn = Conectiondb.Enlace(conn);
+            //conn = BdConexion.getConexion();
+            conn = BdConexion.getConexion();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             ResultSet rs = sent.executeQuery(/*sql*/sqlprod.LLENAR + sqlprod.ORDER_BY);// especifica la consulta y la ejecuta
             String[] fila = new String[6];
@@ -152,7 +160,8 @@ fecha=g;
     private void MostrarTodo(String Dato) {
         try {
 
-            conn = Conectiondb.Enlace(conn);
+            //conn = BdConexion.getConexion();
+            conn = BdConexion.getConexion();
             String sql = "";
 
             if (rbcodigo.isSelected()) {
@@ -184,7 +193,7 @@ fecha=g;
                 }
                 tablaproductos.setModel(model);
                 formatotabla();
-                conn.close();
+                ////conn.close();
                 //JOptionPane.showInternalMessageDialog(this, "Se encontraron " + count + " registros");
 
             } else {
@@ -410,7 +419,7 @@ fecha=g;
         // TODO add your handling code here:
 //        if (!txtDato.getText().isEmpty()) {
 //            {
-                MostrarTodo(txtDato.getText());
+        MostrarTodo(txtDato.getText());
 //            }
 //        } else {
 //            JOptionPane.showInternalMessageDialog(this, "No hay dato que buscar  ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -437,5 +446,4 @@ fecha=g;
     private elaprendiz.gui.textField.TextField txtDato;
     // End of variables declaration//GEN-END:variables
 
-  
 }

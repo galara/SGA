@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
@@ -93,7 +93,7 @@ public class detalleabonoproveedor extends javax.swing.JInternalFrame {
     public void MostrarTodo(String Dato) {
         try {
 
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "";
             sql = "select xpagardetalle.idxpagardetalle,xpagardetalle.fecha,xpagardetalle.monto,xpagardetalle.observacion,compra.idcompra,compra.numdoc,usuario.nombreusuario from xpagardetalle INNER JOIN compra on compra.idcompra=xpagardetalle.compra_idcompra INNER JOIN usuario on usuario.idusuario=xpagardetalle.usuario_idusuario where xpagardetalle.compra_idcompra=" + Dato + " order by xpagardetalle.idxpagardetalle asc";
             removejtable();
@@ -122,7 +122,7 @@ public class detalleabonoproveedor extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showInternalMessageDialog(this, " No se encontraron abonos ");
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this, "No se encontraron abonos ");
             System.out.print(e.getMessage());

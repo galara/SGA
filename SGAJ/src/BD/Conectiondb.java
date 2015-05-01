@@ -1,29 +1,30 @@
 package BD;
 
 import java.sql.*;
-import javax.swing.*;
-import java.sql.Connection;
 
 public class Conectiondb {
 
-    static Connection conn = null;
+    //static Connection conn = null;
+    static java.sql.Connection conn;//getConnection intentara establecer una conexión.
     static Statement st = null;
     static ResultSet rs = null;
 
-    public static Connection Enlace(Connection conn) throws SQLException {
-        try {
-            LeePropiedades.archivoRecurso = "controlador-bd";
-            DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-            conn = DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return conn;
-    }
+//    public static Connection Enlace(Connection conn) throws SQLException {
+//        try {
+//            LeePropiedades.archivoRecurso = "controlador-bd";
+//            DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+//            conn = DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//        return conn;
+//    }
 
     public static Statement sta(Statement st) throws SQLException {
-        conn = Enlace(conn);
+        //conn = Enlace(conn);
+        conn = BdConexion.getConexion();
+        
         st = conn.createStatement();
         return st;
     }

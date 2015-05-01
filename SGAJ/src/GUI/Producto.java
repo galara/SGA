@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import BD.sqlprod;
 import Modelos.categorias;
 import Modelos.marca;
@@ -100,7 +100,7 @@ public class Producto extends javax.swing.JInternalFrame {
         marca.setModel(value3);
 
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             Statement s = (Statement) conn.createStatement();
             ResultSet rs = s.executeQuery(sqlprod.COMBOUNI);
 
@@ -111,13 +111,13 @@ public class Producto extends javax.swing.JInternalFrame {
                 value1.addElement(new unidad(rs.getString("Nombre"), "" + rs.getInt("idunidad")));
                 hashunidad.put(rs.getString("Nombre"), "" + conta);
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ocurio un Error al cargar los datos\n" + ex.toString());
         }
 
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             Statement s = (Statement) conn.createStatement();
             ResultSet rs = s.executeQuery(sqlprod.COMBOCAT);
 
@@ -128,13 +128,13 @@ public class Producto extends javax.swing.JInternalFrame {
                 value2.addElement(new categorias(rs.getString("Nombre"), "" + rs.getInt("idcategoria")));
                 hashcategoria.put(rs.getString("Nombre"), "" + conta);
             }
-            conn.close();
+            //conn.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ocurio un Error al cargar los datos\n" + ex.toString());
         }
 
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             Statement s = (Statement) conn.createStatement();
             ResultSet rs = s.executeQuery(sqlprod.COMBOMAR);
 
@@ -145,7 +145,7 @@ public class Producto extends javax.swing.JInternalFrame {
                 value3.addElement(new marca(rs.getString("Nombre"), "" + rs.getInt("idmarca")));
                 hashmarca.put(rs.getString("Nombre"), "" + conta);
             }
-            conn.close();
+            //conn.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Ocurio un Error al cargar los datos\n" + ex.toString());
         }
@@ -271,7 +271,7 @@ public class Producto extends javax.swing.JInternalFrame {
 
     private void Llenar() {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             removejtable();
             //model = new DefaultTableModel(null, titulos);//objeto TableModel para proporcionar los datos del objeto ResultSet al objeto JTable
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
@@ -300,7 +300,7 @@ public class Producto extends javax.swing.JInternalFrame {
             this.bntModificar.setEnabled(false);
             this.bntEliminar.setEnabled(false);
             this.bntNuevo.setEnabled(true);
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error en BD " + e.toString());
             this.dispose();
@@ -309,7 +309,7 @@ public class Producto extends javax.swing.JInternalFrame {
 
     private void MostrarTodo(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "";
 
             if (this.rbCodigo.isSelected()) {
@@ -362,7 +362,7 @@ public class Producto extends javax.swing.JInternalFrame {
             } else {
                 JOptionPane.showInternalMessageDialog(this, "El dato no fue encontrado");
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this, "El dato no fue encontrado");
             System.out.print(e.getMessage());
@@ -381,9 +381,9 @@ public class Producto extends javax.swing.JInternalFrame {
                 stock.setEnabled(false);
                 stock.setEditable(false);
 
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 Habilitar();
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 String sql = sqlprod.LLENAR + sqlprod.WHERE + sqlprod.ID + sqlprod.IGUAL + tproductos.getValueAt(fila, 0);
                 sent = conn.createStatement();
                 ResultSet rs = sent.executeQuery(sql);
@@ -427,7 +427,7 @@ public class Producto extends javax.swing.JInternalFrame {
                 categoria.setEditable(false);
                 unidad.setEditable(false);
                 marca.setEditable(false);
-                conn.close();
+                //conn.close();
             } catch (SQLException e) {
                 JOptionPane.showInternalMessageDialog(this, "Error al cargar los datos", "Error BD", JOptionPane.ERROR_MESSAGE);
                 System.out.print(e.getMessage());
@@ -440,17 +440,17 @@ public class Producto extends javax.swing.JInternalFrame {
         String d = codigo.getText();
         if (!d.equals("") || d != null || !d.isEmpty()) {
             try {
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 String sql = "select producto.codigo from producto where producto.codigo=" + "'" + d + "'";
                 sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
                 ResultSet rs = sent.executeQuery(sql);// especifica la consulta y la ejecuta
 
                 if (rs.next()) {//verifica si esta vacio, pero desplaza el puntero al siguiente elemento
                     rs.beforeFirst();//regresa el puntero al primer registro
-                    conn.close();
+                    //conn.close();
                     return true;
                 } else {
-                    conn.close();
+                    //conn.close();
                     return false;
                 }
             } catch (SQLException e) {
@@ -1054,7 +1054,7 @@ public class Producto extends javax.swing.JInternalFrame {
 
             if (resp == 0) {
                 try {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     categorias cat = (categorias) categoria.getSelectedItem();
                     String idcat = cat.getID();
                     unidad un = (unidad) unidad.getSelectedItem();
@@ -1121,7 +1121,7 @@ public class Producto extends javax.swing.JInternalFrame {
 
                         }
                     }
-                    conn.close();
+                    //conn.close();
                 } catch (SQLException e) {
                     if (e.getErrorCode() == 1062) {
                         JOptionPane.showInternalMessageDialog(this,
@@ -1153,9 +1153,9 @@ public class Producto extends javax.swing.JInternalFrame {
                     stock.setEnabled(false);
                     stock.setEditable(false);
 
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     Habilitar();
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     String sql = sqlprod.LLENAR + sqlprod.WHERE + sqlprod.ID + sqlprod.IGUAL + tproductos.getValueAt(fila, 0);
                     sent = conn.createStatement();
                     ResultSet rs = sent.executeQuery(sql);
@@ -1200,7 +1200,7 @@ public class Producto extends javax.swing.JInternalFrame {
                     unidad.setEditable(false);
                     marca.setEditable(false);
                     //tproductos.setRequestFocusEnabled(true);
-                    conn.close();
+                    //conn.close();
                 } catch (SQLException e) {
                     JOptionPane.showInternalMessageDialog(this, "Error al cargar los datos", "Error BD", JOptionPane.ERROR_MESSAGE);
                     System.out.print(e.getMessage());
@@ -1215,9 +1215,9 @@ public class Producto extends javax.swing.JInternalFrame {
         resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea Eliminar el Registro?", "Pregunta", 0);
         if (resp == 0) {
             try {
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 int fila = tproductos.getSelectedRow();
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 String sql = sqlprod.DELETEC + sqlprod.WHERE + sqlprod.ID + sqlprod.IGUAL + tproductos.getValueAt(fila, 0);
                 sent = conn.createStatement();//El programa utiliza al objeto Statement para enviar instrucciones de SQL a la base de datos.
                 int n = sent.executeUpdate(sql);
@@ -1229,7 +1229,7 @@ public class Producto extends javax.swing.JInternalFrame {
                     JOptionPane.showInternalMessageDialog(this, "Datos eliminados correctamente");
 
                 }
-                conn.close();
+                //conn.close();
             } catch (SQLException e) {
                 if (e.getErrorCode() == 1451) {
                     JOptionPane.showInternalMessageDialog(this,
@@ -1252,9 +1252,9 @@ public class Producto extends javax.swing.JInternalFrame {
             resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea Modidicar el Registro?", "Pregunta", 0);
             if (resp == 0) {
                 try {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     int fila = tproductos.getSelectedRow();
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     String dao = (String) tproductos.getValueAt(fila, 0);
 
                     categorias cat = (categorias) categoria.getSelectedItem();
@@ -1297,7 +1297,7 @@ public class Producto extends javax.swing.JInternalFrame {
                         txtDato.requestFocus();       
                         JOptionPane.showInternalMessageDialog(this, "Datos modificados correctamente");
                     }
-                    conn.close();
+                    //conn.close();
                 } catch (SQLException e) {
                     if (e.getErrorCode() == 1062) {
                         JOptionPane.showInternalMessageDialog(this,

@@ -52,7 +52,7 @@
               <Image iconType="3" name="/recursos/transacciones.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="79"/>
-            <Property name="text" type="java.lang.String" value="Movimiento"/>
+            <Property name="text" type="java.lang.String" value="Movimientos"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="jMenu3">
@@ -230,6 +230,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="m11">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/recursos/reportsalida.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Venta Contado"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -239,6 +242,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="m12">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/recursos/reportsalida.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Venta Credito"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -341,6 +347,9 @@
             </Menu>
             <MenuItem class="javax.swing.JMenuItem" name="m19">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/recursos/report.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Corte"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -350,6 +359,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="m20">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/recursos/comprometido.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Creditos Vencidos(Ventas)"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -359,6 +371,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="m21">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/recursos/comprometido.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Creditos Vencidos(Compras)"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -368,6 +383,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="m22">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/recursos/report.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Corte Usuario"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -403,7 +421,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>
-    <Property name="title" type="java.lang.String" value="Sistema de Ventas AGROFATIMA"/>
+    <Property name="title" type="java.lang.String" value="Sistema de Gestion de Almacenes"/>
   </Properties>
   <AccessibilityProperties>
     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Sistema Gestion de Almacenes"/>
@@ -434,13 +452,11 @@
     <Container class="javax.swing.JPanel" name="panel_south">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
+          <Color blue="ff" green="db" red="cc" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder>
-              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
-            </MatteColorBorder>
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
           </Border>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -464,10 +480,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="154" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                  <Component id="usuarioactual" min="-2" pref="209" max="-2" attributes="0"/>
-                  <EmptySpace pref="210" max="32767" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="usuarioactual" min="-2" pref="183" max="-2" attributes="0"/>
+                  <EmptySpace pref="346" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -485,10 +501,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Usuario :"/>
@@ -497,10 +510,7 @@
         <Component class="javax.swing.JLabel" name="usuarioactual">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>

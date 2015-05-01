@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import BD.sqlprod;
 import static GUI.MenuPrincipal.panel_center;
 import Modelos.AccesoUsuario;
@@ -46,7 +46,8 @@ import javax.swing.table.TableColumn;
 public class compras extends javax.swing.JInternalFrame {
 
     private String archivoRecurso = "controlador-bd";
-    DefaultTableModel model;     DefaultTableModel modelprecios;
+    DefaultTableModel model;
+    DefaultTableModel modelprecios;
     String[] titulos = {"Id", "Codigo", "Descripción", "Cantidad", "Precio", "Subtotal", "Selección"};
     String[] titulos2 = {"Codigo", "Descripción", "Precio Venta Actual", "Precio Compra Nuevo", "Precio Venta Sugerido"};
     java.sql.Connection conn;//getConnection intentara establecer una conexión.
@@ -115,17 +116,16 @@ public class compras extends javax.swing.JInternalFrame {
             }
         });
     }
-    
-    private void cerrarVentana() {
-            int nu = JOptionPane.showConfirmDialog(this, "¿Se peran los datos ,Desea Cerrar esta ventana?", "Cerrar ventana", JOptionPane.YES_NO_OPTION);
 
-            if (nu == JOptionPane.YES_OPTION || nu == 0) {
-                this.dispose();
+    private void cerrarVentana() {
+        int nu = JOptionPane.showConfirmDialog(this, "¿Se peran los datos ,Desea Cerrar esta ventana?", "Cerrar ventana", JOptionPane.YES_NO_OPTION);
+
+        if (nu == JOptionPane.YES_OPTION || nu == 0) {
+            this.dispose();
+        } else {
         }
-        else {
-             }
     }
-    
+
     private void addEscapeKey() {
         KeyStroke escape = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, false);
         Action escapeAction = new AbstractAction() {
@@ -147,6 +147,7 @@ public class compras extends javax.swing.JInternalFrame {
             model.removeRow(0);
         }
     }
+
     public void removejtable2() {
         while (tablapreciosnuevos.getRowCount() != 0) {
             model.removeRow(0);
@@ -246,7 +247,7 @@ public class compras extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     public void formatotabla2() {
         //TableCellRenderer clase que se encarga de dibujar los datos que hay en cada celda la cual podemos modificar
         //nos proporciona la posibilidad de cambiar su aspercto por uno personalizado y no el standar.
@@ -265,7 +266,7 @@ public class compras extends javax.swing.JInternalFrame {
 //                //column.setPreferredWidth(20); //Difine el ancho de la columna
 //                //tabladetallecompra.getColumnModel().getColumn(i).setCellRenderer(modelocentrar);
 //            } else
-            if (i == 0 ) {
+            if (i == 0) {
                 column.setPreferredWidth(25); //Difine el ancho de la columna
                 tablapreciosnuevos.getColumnModel().getColumn(i).setCellRenderer(modelocentrar);
             } else if (i == 1) {
@@ -276,7 +277,7 @@ public class compras extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     public void llenarcombo() {
         DefaultComboBoxModel value1, value2;
         value1 = new DefaultComboBoxModel();
@@ -285,7 +286,7 @@ public class compras extends javax.swing.JInternalFrame {
         formapago.setModel(value2);
 
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             // Se crea un Statement, para realizar la consulta
             Statement s = (Statement) conn.createStatement();
             String sql = "select idProveedor,nombre from proveedor where idproveedor!='1' and estado='T'";
@@ -301,7 +302,7 @@ public class compras extends javax.swing.JInternalFrame {
             }
 
             // Se cierra la conexión con la base de datos.
-            conn.close();
+            //conn.close();
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this,
                     "Cantidad no valida", "Error",
@@ -310,7 +311,7 @@ public class compras extends javax.swing.JInternalFrame {
         }
 
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             Statement s = (Statement) conn.createStatement();
             ResultSet rs = s.executeQuery(sqlprod.COMBOTP);
 
@@ -319,9 +320,9 @@ public class compras extends javax.swing.JInternalFrame {
                 //value2.addElement(new formadepago(rs.getString("descripcion"), "" + rs.getInt("idtipopago")));
                 value2.addElement(new formadepago(rs.getString("descripcion"), rs.getInt("dias"), "" + rs.getInt("idtipopago")));
             }
-            conn.close();
+            //conn.close();
         } catch (SQLException ex) {
-            JOptionPane.showInternalMessageDialog(null, "Ocurio un Error al cargar los datos\n" + ex.toString());
+            JOptionPane.showMessageDialog(null, "Ocurio un Error al cargar los datos\n" + ex.toString());
         }
     }
 
@@ -1309,7 +1310,7 @@ public class compras extends javax.swing.JInternalFrame {
                 if (ProveedorN.getSelectedIndex() <= 0 || formapago.getSelectedIndex() <= 0 || factura.getText().equals("")) {
                     JOptionPane.showInternalMessageDialog(this, "Selecciona Proveedor, Foprama de Pago y No.Documento", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     Statement s = (Statement) conn.createStatement();
                     String sql = "select producto.preciocompra,producto.codigo,producto.idProducto,producto.nombre from producto where codigo ='" + codigo.getText() + "'";
                     ResultSet rs = s.executeQuery(sql);
@@ -1326,7 +1327,7 @@ public class compras extends javax.swing.JInternalFrame {
                     }
 
                 }
-                conn.close();
+                //conn.close();
             } catch (HeadlessException | SQLException ex) {
 
                 Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
@@ -1391,138 +1392,163 @@ public class compras extends javax.swing.JInternalFrame {
             resp = JOptionPane.showConfirmDialog(null, "¿Desea Guardar el Ingreso con fecha = " + fecha + "?", "Pregunta", 0);
 
             if (resp == 0) {
-                fechaactual.setEditable(false);
                 try {
+                    fechaactual.setEditable(false);
 
-                    proveedor proveedor = (proveedor) ProveedorN.getSelectedItem();
-                    String idPr = proveedor.getID(), proveedores = proveedor.toString();
+                    Statement s = (Statement) conn.createStatement();
 
-                    formadepago formadepago = (formadepago) formapago.getSelectedItem();
-                    String idTP = formadepago.getID();
-                    int diaspago = formadepago.todia();
+                    try {
 
-                    String sql;
-                    int ultimoid = 0;
+                        proveedor proveedor = (proveedor) ProveedorN.getSelectedItem();
+                        String idPr = proveedor.getID(), proveedores = proveedor.toString();
 
-                    if ((ProveedorN.getSelectedIndex() <= 0) || factura.getText().equals("") || formapago.getSelectedIndex() <= 0) {
-                        JOptionPane.showInternalMessageDialog(this, "Seleccione Proveedor, Forma de pago y No.Documento", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        Calendar c1 = fechaactual.getCalendar();
-                        SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
-                       
-                        c1.add(Calendar.DATE, diaspago);
-                        String fechapago = (sdf.format(c1.getTime()));
-                        String fechapago2 = null;
+                        formadepago formadepago = (formadepago) formapago.getSelectedItem();
+                        String idTP = formadepago.getID();
+                        int diaspago = formadepago.todia();
+                        conn = BdConexion.getConexion();
+                        //Statement s = (Statement) conn.createStatement();
 
-                        char sta = 'T';
-                        String saldo = "";
-                        if (formapago.getSelectedItem().toString().equals("CONTADO")) {
-                            sta = 'F';
-                            saldo = "0";
-                            fechapago2 = getFecha();
-                        }
-                        if (!formapago.getSelectedItem().toString().equals("CONTADO")) {
-                            sta = 'T';
-                            saldo = (totalcompra.getText());
-                            fechapago2 = fechapago;
-                        }
+                        String sql;
+                        int ultimoid = 0;
 
-                        //AccesoUsuario entrar = new AccesoUsuario();
+                        if ((ProveedorN.getSelectedIndex() <= 0) || factura.getText().equals("") || formapago.getSelectedIndex() <= 0) {
+                            JOptionPane.showInternalMessageDialog(this, "Seleccione Proveedor, Forma de pago y No.Documento", "Error", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            Calendar c1 = fechaactual.getCalendar();
+                            SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
 
-                        sql = "insert into compra" + "(numdoc,proveedor_idproveedor,idtipopago,status,fecha,fechapago,total,saldo,usuario_idusuario,nserie)values" + "('" + factura.getText() + "','" + idPr + "','" + idTP + "','" + sta + "','" + fecha + "','" + fechapago2 + "','" + totalcompra.getText() + "','" + saldo + "','" + AccesoUsuario.idusu() + "','" + seriefactura.getText() + "')";
-                        conn = Conectiondb.Enlace(conn);
-                        // Se crea un Statement, para realizar la consulta
-                        Statement s = (Statement) conn.createStatement();
-                        //              s.executeUpdate(sql);
-                        s.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
-                        ResultSet rs = s.getGeneratedKeys();
-                        if (rs != null && rs.next()) {
-                            ultimoid = rs.getInt(1);
-                        }
-                        String sql2;
-                        float cant = 0, suma, actual, preciovent = 0;
-                        float ca = 0, nc, prom;
-                        //double prom2;
-                        String mensage = "";
-                        String[] reporteprod;//=new String[100];
-                        Object[] fila = new Object[5];
-                        boolean camprec=false;
-                        for (int i = 0; i < model.getRowCount(); i++) {
-                            if (model.getValueAt(i, 6).toString().equals("true")) {
+                            c1.add(Calendar.DATE, diaspago);
+                            String fechapago = (sdf.format(c1.getTime()));
+                            String fechapago2 = null;
 
-                                sql2 = "select cantidad,PrecioCompra,precioventa from  producto where idProducto='" + model.getValueAt(i, 0) + "'";
-                                ResultSet rss = s.executeQuery(sql2);
-                                while (rss.next()) {
-                                    // cantidad y precios actuales
-                                    cant = rss.getFloat("cantidad");
-                                    preciovent = rss.getFloat("Precioventa");
-                                }
-                                //cantidad y precios nuevos
-                                actual = Float.parseFloat(model.getValueAt(i, 3).toString());
-                                //nc = Float.parseFloat(model.getValueAt(i, 4).toString());
-                                suma = cant + actual;
-                                suma = (float) (Math.round((suma) * 100.0) / 100.0);
-                                //prom = ((cant * ca) + (actual * nc)) / suma;
-                                //prom2 = (Math.round(prom * 100.0) / 100.0);
-                                float precc;
-                                precc = Float.parseFloat(model.getValueAt(i, 4).toString());
-                                precc=(float) (Math.round(precc * 100.0) / 100.0);
-                                
-                                if (precc > preciovent) {
-                                    mensage = mensage + "El precio de compra del material codigo: " + model.getValueAt(i, 1).toString() + "  es mayor al precio de Venta\n";
-                                }
-                                if (precc >= (preciovent - (preciovent * 0.07)) & precc <= preciovent) {
-                                    mensage = mensage + "El precio de compra del material codigo: " + model.getValueAt(i, 1).toString() + "  es muy cercano al precio de Venta\n";
-                                }
-                                if ((precc+(precc * 0.10)) >= preciovent) {
-                                    camprec=true;
-                                    fila[0]=model.getValueAt(i, 1).toString();
-                                    fila[1]=model.getValueAt(i, 2).toString();
-                                    fila[2]=preciovent;
-                                    fila[3]=precc;
-                                    fila[4]=(precc+(precc * 0.10));
-                                     }
+                            char sta = 'T';
+                            String saldo = "";
+                            if (formapago.getSelectedItem().toString().equals("CONTADO")) {
+                                sta = 'F';
+                                saldo = "0";
+                                fechapago2 = getFecha();
+                            }
+                            if (!formapago.getSelectedItem().toString().equals("CONTADO")) {
+                                sta = 'T';
+                                saldo = (totalcompra.getText());
+                                fechapago2 = fechapago;
+                            }
 
-                                sql = "insert into lote" + "(cantidad,precio,fecha,producto_idProducto,compra_idcompra,stock,tipoentrada)values" + "('" + model.getValueAt(i, 3).toString() + "','" + model.getValueAt(i, 4).toString() + "','" + fecha + "','" + model.getValueAt(i, 0).toString() + "','" + ultimoid + "','" + model.getValueAt(i, 3).toString() + "','" + "COMPRA" + "')";
-                                s.executeUpdate(sql);
+                            //AccesoUsuario entrar = new AccesoUsuario();
+                            sql = "insert into compra" + "(numdoc,proveedor_idproveedor,idtipopago,status,fecha,fechapago,total,saldo,usuario_idusuario,nserie)values" + "('" + factura.getText() + "','" + idPr + "','" + idTP + "','" + sta + "','" + fecha + "','" + fechapago2 + "','" + totalcompra.getText() + "','" + saldo + "','" + AccesoUsuario.idusu() + "','" + seriefactura.getText() + "')";
+
+                            // Se crea un Statement, para realizar la consulta
+                            //Statement s = (Statement) conn.createStatement();
+                            //              s.executeUpdate(sql);
+                            conn.setAutoCommit(false);
+                            //s.executeUpdate("LOCK TABLES producto WRITE, lote WRITE, compra, WRITE;");
+
+                            s.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+                            ResultSet rs = s.getGeneratedKeys();
+                            if (rs != null && rs.next()) {
+                                ultimoid = rs.getInt(1);
+                            }
+                            String sql2;
+                            float cant = 0, suma, actual, preciovent = 0;
+                            float ca = 0, nc, prom;
+                            //double prom2;
+                            String mensage = "";
+                            String[] reporteprod;//=new String[100];
+                            Object[] fila = new Object[5];
+                            boolean camprec = false;
+                            for (int i = 0; i < model.getRowCount(); i++) {
+                                if (model.getValueAt(i, 6).toString().equals("true")) {
+
+                                    sql2 = "select cantidad,PrecioCompra,precioventa from  producto where idProducto='" + model.getValueAt(i, 0) + "'";
+                                    ResultSet rss = s.executeQuery(sql2);
+                                    while (rss.next()) {
+                                        // cantidad y precios actuales
+                                        cant = rss.getFloat("cantidad");
+                                        preciovent = rss.getFloat("Precioventa");
+                                    }
+                                    //cantidad y precios nuevos
+                                    actual = Float.parseFloat(model.getValueAt(i, 3).toString());
+                                    //nc = Float.parseFloat(model.getValueAt(i, 4).toString());
+                                    suma = cant + actual;
+                                    suma = (float) (Math.round((suma) * 100.0) / 100.0);
+                                    //prom = ((cant * ca) + (actual * nc)) / suma;
+                                    //prom2 = (Math.round(prom * 100.0) / 100.0);
+                                    float precc;
+                                    precc = Float.parseFloat(model.getValueAt(i, 4).toString());
+                                    precc = (float) (Math.round(precc * 100.0) / 100.0);
+
+                                    if (precc > preciovent) {
+                                        mensage = mensage + "El precio de compra del material codigo: " + model.getValueAt(i, 1).toString() + "  es mayor al precio de Venta\n";
+                                    }
+                                    if (precc >= (preciovent - (preciovent * 0.07)) & precc <= preciovent) {
+                                        mensage = mensage + "El precio de compra del material codigo: " + model.getValueAt(i, 1).toString() + "  es muy cercano al precio de Venta\n";
+                                    }
+                                    if ((precc + (precc * 0.10)) >= preciovent) {
+                                        camprec = true;
+                                        fila[0] = model.getValueAt(i, 1).toString();
+                                        fila[1] = model.getValueAt(i, 2).toString();
+                                        fila[2] = preciovent;
+                                        fila[3] = precc;
+                                        fila[4] = (precc + (precc * 0.10));
+                                    }
+
+                                    sql = "insert into lote" + "(cantidad,precio,fecha,producto_idProducto,compra_idcompra,stock,tipoentrada)values" + "('" + model.getValueAt(i, 3).toString() + "','" + model.getValueAt(i, 4).toString() + "','" + fecha + "','" + model.getValueAt(i, 0).toString() + "','" + ultimoid + "','" + model.getValueAt(i, 3).toString() + "','" + "COMPRA" + "')";
+                                    s.executeUpdate(sql);
 
 //                                sql = "insert into detallecompra" + "(cantidad,precio,compra_idcompra,producto_idProducto)values" + "('" + model.getValueAt(i, 3) + "','" + model.getValueAt(i, 4) + "','" + ultimoid + "','" + model.getValueAt(i, 0) + "')";
 //                                s.executeUpdate(sql);
-                                //sql2 = "UPDATE producto SET cantidad='" + suma + "',preciocompra='" + prom2 + "',precioventa='" + prom2 + "' WHERE idProducto =" + model.getValueAt(i, 0).toString();
-                                sql2 = "UPDATE producto SET cantidad='" + suma + "' WHERE idProducto =" + model.getValueAt(i, 0).toString();
-                                s.executeUpdate(sql2);
+                                    //sql2 = "UPDATE producto SET cantidad='" + suma + "',preciocompra='" + prom2 + "',precioventa='" + prom2 + "' WHERE idProducto =" + model.getValueAt(i, 0).toString();
+                                    sql2 = "UPDATE producto SET cantidad='" + suma + "' WHERE idProducto =" + model.getValueAt(i, 0).toString();
+                                    s.executeUpdate(sql2);
+                                }
+                                modelprecios.addRow(fila);
                             }
-                            modelprecios.addRow(fila);
+
+                            for (int h = model.getRowCount(); h > 0; h--) {
+                                model.removeRow(h - 1);
+                            }
+                            //conn.close();
+                            limpiar();
+                            desactivar();
+                            btnnuevo.setEnabled(true);
+                            btngrabar.setEnabled(false);
+                            btncancelarcompra.setEnabled(false);
+                            btnmodificar.setEnabled(false);
+                            bnteliminarfila.setEnabled(false);
+                            JOptionPane.showMessageDialog(null, "Compra Guardada correctamente");
+                            if (!mensage.isEmpty()) {
+                                JOptionPane.showMessageDialog(null, (mensage + " Considere cambiar los precios de Venta\n"));
+                            }
+                            if (camprec == true) {
+                                formatotabla2();
+                                preciosn.setVisible(true);
+                                preciosn.setSize(772, 346);
+                                preciosn.toFront();
+                            }
                         }
-                        
-                        for (int h = model.getRowCount(); h > 0; h--) {
-                            model.removeRow(h - 1);
+                        //s.executeUpdate("UNLOCK TABLES;");
+                        conn.commit();
+                        s.close();
+                        if (!conn.getAutoCommit()) {
+                            conn.setAutoCommit(true);
                         }
-                        conn.close();
-                        limpiar();
-                        desactivar();
-                        btnnuevo.setEnabled(true);
-                        btngrabar.setEnabled(false);
-                        btncancelarcompra.setEnabled(false);
-                        btnmodificar.setEnabled(false);
-                        bnteliminarfila.setEnabled(false);
-                        JOptionPane.showMessageDialog(null, "Compra Guardada correctamente");
-                        if (!mensage.isEmpty()) {
-                            JOptionPane.showMessageDialog(null, (mensage + " Considere cambiar los precios de Venta\n"));
-                        }
-                        if(camprec==true){
-                            formatotabla2();
-                            preciosn.setVisible(true);
-                            preciosn.setSize(772, 346);
-                            preciosn.toFront();
+                        //conn.close();
+                    } catch (HeadlessException | NumberFormatException | SQLException ex) {
+                        Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Error " + ex);
+                        //s.executeUpdate("UNLOCK TABLES;");
+                        conn.rollback();
+                        s.close();
+                        if (!conn.getAutoCommit()) {
+                            conn.setAutoCommit(true);
                         }
                     }
-                    conn.close();
-                } catch (HeadlessException | NumberFormatException | SQLException ex) {
+                }//fin de if fecha
+                catch (SQLException ex) {
                     Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(null, "Error " + ex);
                 }
-            }//fin de if fecha
+            }
         }
     }//GEN-LAST:event_btngrabarActionPerformed
 
@@ -1679,7 +1705,7 @@ public class compras extends javax.swing.JInternalFrame {
                     multi = (float) (Math.round((ncantidad * subtotal) * 100.0) / 100.0);
 
                     Object nuevo[] = {idP.getText(), txtcod.getText(), nombreproducto.getText(), ncantidad, subtotal, multi, new Boolean(true).toString()};
-                   model.addRow(nuevo);
+                    model.addRow(nuevo);
                     for (int i = 0; i < model.getRowCount(); i++) {
                         if (model.getValueAt(i, 6).toString().equals("true")) {
                             Actual = Float.parseFloat(model.getValueAt(i, 5).toString());

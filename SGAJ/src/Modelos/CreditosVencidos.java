@@ -5,7 +5,7 @@
  */
 package Modelos;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import excepciones.Helper;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -77,17 +77,17 @@ public class CreditosVencidos {
             Calendar dcFech = fechafin;
             String fecha = Helper.getFechaFormateada(dcFech.getTime(), Helper.ANIO_MES_DIA);
 
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "select fechaal from detalleinteres where detalleinteres.salida_idsalida='" + idsalida + "' and detalleinteres.fechaal='" + fecha + "'";
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             ResultSet rs = sent.executeQuery(sql);// especifica la consulta y la ejecuta
 
             if (rs.next()) {//verifica si esta vacio, pero desplaza el puntero al siguiente elemento
                 rs.beforeFirst();//regresa el puntero al primer registro
-                conn.close();
+                //conn.close();
                 return true;
             } else {
-                conn.close();
+                //conn.close();
                 return false;
             }
         } catch (SQLException e) {
@@ -121,7 +121,7 @@ public class CreditosVencidos {
      */
     public void listacreditos(String sql, Calendar fechaactual) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             ResultSet rs = sent.executeQuery(sql);// especifica la consulta y la ejecuta
             if (rs.next()) {
@@ -194,7 +194,7 @@ public class CreditosVencidos {
                         nsaldointeres += (float) (Math.round((/*interesactual + */montointeres) * 100.0) / 100.0);
                         int n, n2;
                         //System.out.print("Monto " + montointeres + "  fecha del " + (Helper.getFechaFormateada(fechadel.getTime(), Helper.ANIO_MES_DIA)) + "  fecha interes " + Helper.getFechaFormateada(fechainteres.getTime(), Helper.ANIO_MES_DIA) + "  id salida " + idsalida + "  id cliente " + idcliente + "  fecha actual " + Helper.getFechaFormateada(fechactual.getTime(), Helper.ANIO_MES_DIA) + "\n");
-                        conn = Conectiondb.Enlace(conn);
+                        conn = BdConexion.getConexion();
                         String sql = "insert into detalleinteres (salida_idsalida,fechadel,fechaal,montointeres,saldoactual,interesactual,nsaldointeres,fecharegistro,usuario_idusuario) values (?,?,?,?,?,?,?,?,?)";
 
                         PreparedStatement ps = conn.prepareStatement(sql/*,PreparedStatement.RETURN_GENERATED_KEYS*/);
@@ -229,7 +229,7 @@ public class CreditosVencidos {
                                 JOptionPane.showMessageDialog(null, "Ocurrio un error al Guardar");
                             }
                         }
-                        conn.close();
+                        //conn.close();
                     } catch (HeadlessException | SQLException e) {
                         estado = false;
                         JOptionPane.showMessageDialog(null, "Ocurrio un error : " + e);

@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import BD.sqlp;
 import static GUI.MenuPrincipal.panel_center;
 import Modelos.AccesoUsuario;
@@ -21,16 +21,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JComponent;
-import javax.swing.KeyStroke;
 
 /**
  *
@@ -241,17 +241,17 @@ public class pagoproveedores extends javax.swing.JInternalFrame {
         try {
             int fila = tablacomprasporpagar.getSelectedRow();
             String Dato = (String) tablacomprasporpagar.getValueAt(fila, 1).toString();
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "select xpagardetalle.idxpagardetalle,xpagardetalle.fecha,xpagardetalle.monto,compra.idcompra,compra.numdoc,usuario.nombreusuario from xpagardetalle INNER JOIN compra on compra.idcompra=xpagardetalle.compra_idcompra INNER JOIN usuario on usuario.idusuario=xpagardetalle.usuario_idusuario where xpagardetalle.compra_idcompra=" + Dato + " group by xpagardetalle.idxpagardetalle order by xpagardetalle.idxpagardetalle asc";
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             ResultSet rs = sent.executeQuery(sql);// especifica la consulta y la ejecuta
 
             if (rs.next()) {//verifica si esta vacio, pero desplaza el puntero al siguiente elemento
                 rs.beforeFirst();//regresa el puntero al primer registro
-                conn.close();
+                //conn.close();
                 return true;
             } else {
-                conn.close();
+                //conn.close();
                 return false;
             }
         } catch (SQLException e) {
@@ -263,7 +263,7 @@ public class pagoproveedores extends javax.swing.JInternalFrame {
 
     public void Llenar(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             removejtable2();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             String sql = "select * from compra where proveedor_idproveedor=" + Dato + " and status='T'";
@@ -282,7 +282,7 @@ public class pagoproveedores extends javax.swing.JInternalFrame {
                 model2.addRow(fila);
             }
             tablacomprasporpagar.setModel(model2);
-            conn.close();
+            //conn.close();
             formatotabla2();
 
             sumartotal();
@@ -298,7 +298,7 @@ public class pagoproveedores extends javax.swing.JInternalFrame {
 
     private void MostrarTodo(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "select producto_idproducto,producto.codigo, producto.nombre,lote.cantidad,lote.precio,lote.cantidad*lote.precio  from lote INNER JOIN producto on producto.idproducto=lote.producto_idproducto where lote.compra_idcompra=" + Dato + " order by idlote asc";
             removejtable();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
@@ -968,7 +968,7 @@ public class pagoproveedores extends javax.swing.JInternalFrame {
                 if (resp == 0) {
                     try {
                         abono.setVisible(false);
-                        conn = Conectiondb.Enlace(conn);
+                        conn = BdConexion.getConexion();
                         //PreparedStatement nos permite crear instrucciones SQL compiladas, que se ejecutan con más efi ciencia que los objetos Statement
                         //también pueden especifi car parámetros,lo cual las hace más fl exibles que las instrucciones Statement
                         int fila = tablacomprasporpagar.getSelectedRow();
@@ -1013,7 +1013,7 @@ public class pagoproveedores extends javax.swing.JInternalFrame {
 //                            Desabilitar();
 //                            Limpiar();
 //                        }
-                        conn.close();
+                        //conn.close();
                         if (n > 0 & n2 > 0) {
                             dcFecha.setDate(Calendar.getInstance().getTime());
                             montoabono.setValue(null);

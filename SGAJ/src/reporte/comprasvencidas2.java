@@ -4,7 +4,7 @@
  */
 package reporte;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -167,7 +167,7 @@ public void reporterunn(String repo, String repo1) {
                     System.exit(3);
                 }
 
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 Map parametro = new HashMap();
                 //parametro.put("idsalida", idabono);
                 parametro.put("defecha", fecha);
@@ -177,8 +177,8 @@ public void reporterunn(String repo, String repo1) {
                 jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
                 jviewer.setTitle("Compras Vencidas");
                 jviewer.setVisible(true);
-                conn.close();
-            } catch (SQLException | JRException e) {
+                //conn.close();
+            } catch (JRException e) {
                 JOptionPane.showMessageDialog(null, "Error " + e.toString());
             }
 

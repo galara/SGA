@@ -4,7 +4,8 @@
  */
 package reporte;
 
-import BD.LeePropiedades;
+//import BD.LeePropiedades;
+import BD.BdConexion;
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,8 +29,9 @@ public class hilos implements Runnable
 {
     String fecha,fecha2,fecha3;
     
-    private Connection conn;
-    private String archivoRecurso="controlador-bd";
+    //private Connection conn;
+    java.sql.Connection conn;//getConnection intentara establecer una conexión.
+    //private String archivoRecurso="controlador-bd";
     private boolean terminar = false;
        
    
@@ -39,66 +41,52 @@ fecha=GananciaVenta.fecha1();
 fecha2=GananciaVenta.fecha2();
 fecha3=GananciaVenta.fecha3();
 
-try
-{ 
-           LeePropiedades.archivoRecurso = archivoRecurso;
-           Class.forName(LeePropiedades.leeID("driver"));
-                conn = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"),LeePropiedades.leeID("usuario"),LeePropiedades.leeID("password"));
-                //isConected = true;
-
+conn = BdConexion.getConexion();
         try
         {
 
             String archivo="ganancia.jasper";
             System.out.println(".... "+archivo+" d . "+fecha);
-        //System.out.println("caragdo desdesss "+archivo);
-        if(archivo==null)
-        {
-
-        System.out.println("no hAT ARCHIVO "+archivo);
-        System.exit(2);
-        }
-        JasperReport masterReport=null;
-        try
-        {
-            //masterReport= (JasperReport) JRLoader.loadObject(matricula);
-              masterReport= (JasperReport) JRLoader.loadObject(archivo);
-
-        }
-        catch(JRException e)
-        {
-        System.out.println("error cargado el reporte maestro "+e.getMessage());
-        System.exit(3);
-        }
-        //
-        //JOptionPane.showMessageDialog(null, id);
-        Map parametro= new HashMap();
-        parametro.put("fecha1",fecha);
-        parametro.put("fecha2",fecha2);
-        //parametro.put("fecha3",fecha3);
-        
-        JasperPrint impresor= JasperFillManager.fillReport(masterReport, parametro,conn);
-        //JasperPrintManager.printReport(impresor, false);
-        JasperViewer jviewer= new JasperViewer(impresor,false);
-        jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
-        jviewer.setTitle("Reporte de Salidas");
-        jviewer.setVisible(true);
-        conn.close();
-        dispose();
-        
+            //System.out.println("caragdo desdesss "+archivo);
+            if(archivo==null)
+            {
+                
+                System.out.println("no hAT ARCHIVO "+archivo);
+                System.exit(2);
+            }
+            JasperReport masterReport=null;
+            try
+            {
+                //masterReport= (JasperReport) JRLoader.loadObject(matricula);
+                masterReport= (JasperReport) JRLoader.loadObject(archivo);
+                
+            }
+            catch(JRException e)
+            {
+                System.out.println("error cargado el reporte maestro "+e.getMessage());
+                System.exit(3);
+            }
+            //
+            //JOptionPane.showMessageDialog(null, id);
+            Map parametro= new HashMap();
+            parametro.put("fecha1",fecha);
+            parametro.put("fecha2",fecha2);
+            //parametro.put("fecha3",fecha3);
+            
+            JasperPrint impresor= JasperFillManager.fillReport(masterReport, parametro,conn);
+            //JasperPrintManager.printReport(impresor, false);
+            JasperViewer jviewer= new JasperViewer(impresor,false);
+            jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
+            jviewer.setTitle("Reporte de Salidas");
+            jviewer.setVisible(true);
+            //conn.close();
+            dispose();
+            
         }
         catch(Exception j)
         {
-          System.out.println("Mensajer de error "+j.getMessage());
+            System.out.println("Mensajer de error "+j.getMessage());
         }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Rganancia.class.getName()).log(Level.SEVERE, null, ex);
-            }
-catch(ClassNotFoundException ex)
-{
-                Logger.getLogger(Rganancia.class.getName()).log(Level.SEVERE, null, ex);
-}
 
 
         //System.out.println ("Esto se ejecuta en otro hilo");

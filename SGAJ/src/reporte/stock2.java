@@ -4,6 +4,7 @@
  */
 package reporte;
 
+import BD.BdConexion;
 import BD.Conectiondb;
 import com.mysql.jdbc.Connection;
 import net.sf.jasperreports.engine.JRException;
@@ -21,7 +22,8 @@ public class stock2 extends javax.swing.JFrame {
 
     public class hilos implements Runnable {
 
-        private Connection conn;
+        //private Connection conn;
+        java.sql.Connection conn;//getConnection intentara establecer una conexión.
         private String archivoRecurso = "controlador-bd";
         private boolean terminar = false;
 
@@ -47,14 +49,15 @@ public class stock2 extends javax.swing.JFrame {
                 }
                 //
                 //JOptionPane.showMessageDialog(null, id);
-                conn = (Connection) Conectiondb.Enlace(conn);
+                //conn = (Connection) Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 JasperPrint impresor = JasperFillManager.fillReport(masterReport, null, conn);
                 //JasperPrintManager.printReport(impresor, false);
                 JasperViewer jviewer = new JasperViewer(impresor, false);
                 jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
                 jviewer.setTitle("Inventario");
                 jviewer.setVisible(true);
-                conn.close();
+                //conn.close();
                 dispose();
                 
             } catch (Exception j) {

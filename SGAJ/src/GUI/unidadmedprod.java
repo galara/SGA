@@ -4,25 +4,25 @@
  */
 package GUI;
 
+import BD.BdConexion;
 import BD.sqlun;
-import javax.swing.table.DefaultTableModel;
-import BD.Conectiondb;
-import java.awt.Color;
-import java.sql.*;
-import java.util.Calendar;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumn;
 import excepciones.FiltraEntrada;
 import excepciones.Helper;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -171,7 +171,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
 
     private void Llenar() {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             removejtable();
             //model = new DefaultTableModel(null, titulos);//objeto TableModel para proporcionar los datos del objeto ResultSet al objeto JTable
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
@@ -192,7 +192,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
                 model.addRow(fila);
             }
             unidades.setModel(model);
-            conn.close();
+            //conn.close();
             formatotabla();
             this.bntGuardar.setEnabled(false);
             this.bntModificar.setEnabled(false);
@@ -207,7 +207,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
 
     private void MostrarTodo(String Dato) {
         try {
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             String sql = "";
             sql = sqlun.BUSCANOMBRE + Dato + sqlun.CUALQUIERA;
             removejtable();
@@ -232,7 +232,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
                     count = count + 1;
                 }
                 unidades.setModel(model);
-                conn.close();
+                //conn.close();
                 formatotabla();
                 this.bntGuardar.setEnabled(false);
                 this.bntModificar.setEnabled(false);
@@ -255,7 +255,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
         int fila = unidades.getSelectedRow();
         if (unidades.getValueAt(fila, 0) != null) {
             try {
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 Habilitar();
                 String sql = sqlun.LLENAR + sqlun.WHERE + sqlun.ID + sqlun.IGUAL + unidades.getValueAt(fila, 0);
                 sent = conn.createStatement();
@@ -271,7 +271,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
                     rbEstado.setSelected(false);
                     rbEstado.setBackground(Color.red);
                 }
-                conn.close();
+                //conn.close();
                 this.bntGuardar.setEnabled(false);
                 this.bntModificar.setEnabled(true);
                 this.bntEliminar.setEnabled(true);
@@ -606,7 +606,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
             resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea Grabar el Registro?", "Pregunta", 0);
             if (resp == 0) {
                 try {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     //PreparedStatement nos permite crear instrucciones SQL compiladas, que se ejecutan con más efi ciencia que los objetos Statement
                     //también pueden especifi car parámetros,lo cual las hace más fl exibles que las instrucciones Statement
                     PreparedStatement ps = conn.prepareCall(sqlun.NUEVOC);
@@ -614,7 +614,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
                     ps.setString(2, getFecha());
 
                     int n = ps.executeUpdate();
-                    conn.close();
+                    //conn.close();
                     if (n > 0) {
                         Llenar();
                         Desabilitar();
@@ -647,7 +647,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
             int fila = unidades.getSelectedRow();
             if (unidades.getValueAt(fila, 0) != null) {
                 try {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     Habilitar();
                     String sql = sqlun.LLENAR + sqlun.WHERE + sqlun.ID + sqlun.IGUAL + unidades.getValueAt(fila, 0);
                     sent = conn.createStatement();
@@ -663,7 +663,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
                         rbEstado.setSelected(false);
                         rbEstado.setBackground(Color.red);
                     }
-                    conn.close();
+                    //conn.close();
                     this.bntGuardar.setEnabled(false);
                     this.bntModificar.setEnabled(true);
                     this.bntEliminar.setEnabled(true);
@@ -683,12 +683,12 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
         resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea Eliminar el Registro?", "Pregunta", 0);
         if (resp == 0) {
             try {
-                conn = Conectiondb.Enlace(conn);
+                conn = BdConexion.getConexion();
                 int fila = unidades.getSelectedRow();
                 String sql = sqlun.DELETEC + sqlun.WHERE + sqlun.ID + sqlun.IGUAL + unidades.getValueAt(fila, 0);
                 sent = conn.createStatement();//El programa utiliza al objeto Statement para enviar instrucciones de SQL a la base de datos.
                 int n = sent.executeUpdate(sql);
-                conn.close();
+                //conn.close();
                 if (n > 0) {
                     Llenar();
                     Limpiar();
@@ -719,7 +719,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
             resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea Modidicar el Registro?", "Pregunta", 0);
             if (resp == 0) {
                 try {
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     int fila = unidades.getSelectedRow();
                     String dao = (String) unidades.getValueAt(fila, 0);
 
@@ -737,7 +737,7 @@ public class unidadmedprod extends javax.swing.JInternalFrame {
                     ps.setString(4, dao);
 
                     int n = ps.executeUpdate();
-                    conn.close();
+                    //conn.close();
                     if (n > 0) {
                         Limpiar();
                         Desabilitar();

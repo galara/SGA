@@ -4,7 +4,8 @@
  */
 package reporte;
 
-import BD.LeePropiedades;
+//import BD.LeePropiedades;
+import BD.BdConexion;
 import GUI.frmventas;
 import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
@@ -25,108 +26,82 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Otto
  */
 public class imprimiendo extends javax.swing.JFrame {
-public class hilos implements Runnable
-{
-    String id;
-    
-    private Connection conn;
-    private String archivoRecurso="controlador-bd";
-private boolean terminar = false;
-       
-   
-    public void run ()
-    {
-    id=  frmventas.idfac();
-        try
-        {
-            LeePropiedades.archivoRecurso = archivoRecurso;
-            Class.forName(LeePropiedades.leeID("driver"));
+
+    public class hilos implements Runnable {
+
+        String id;
+
+        //private Connection conn;
+        java.sql.Connection conn;//getConnection intentara establecer una conexión.
+        //private String archivoRecurso="controlador-bd";
+        private boolean terminar = false;
+
+        public void run() {
+            id = frmventas.idfac();
+            conn = BdConexion.getConexion();
             try {
-                conn = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"),LeePropiedades.leeID("usuario"),LeePropiedades.leeID("password"));
-            } catch (SQLException ex) {
-                Logger.getLogger(imprimiendo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try
-            {
-                
-                String archivo="credito.jasper";
-                System.out.println(".... "+archivo);
+
+                String archivo = "credito.jasper";
+                System.out.println(".... " + archivo);
                 //System.out.println("caragdo desdesss "+archivo);
-                if(archivo==null)
-                {
-                    
-                    System.out.println("no hAT ARCHIVO "+archivo);
+                if (archivo == null) {
+
+                    System.out.println("no hAT ARCHIVO " + archivo);
                     System.exit(2);
                 }
-                JasperReport masterReport=null;
-                try
-                {
+                JasperReport masterReport = null;
+                try {
                     //masterReport= (JasperReport) JRLoader.loadObject(matricula);
-                    masterReport= (JasperReport) JRLoader.loadObject(archivo);
-                    
-                }
-                catch(JRException e)
-                {
-                    System.out.println("error cargado el reporte maestro "+e.getMessage());
+                    masterReport = (JasperReport) JRLoader.loadObject(archivo);
+
+                } catch (JRException e) {
+                    System.out.println("error cargado el reporte maestro " + e.getMessage());
                     System.exit(3);
                 }
-               float abono,saldov,saldot;
-               abono=frmventas.montoabonado();
-               saldov=frmventas.saldoventa();
-               saldot=frmventas.saldototalc();
-               //
+                float abono, saldov, saldot;
+                abono = frmventas.montoabonado();
+                saldov = frmventas.saldoventa();
+                saldot = frmventas.saldototalc();
+            //
                 //JOptionPane.showMessageDialog(null, id);
-                Map parametro= new HashMap();
-                parametro.put("idsalida",Integer.parseInt(id));
-                parametro.put("abono",abono);
-                parametro.put("saldov",saldov);
-                parametro.put("saldot",saldot);
-                
-                System.out.println(""+id);
-                JasperPrint impresor= JasperFillManager.fillReport(masterReport, parametro,conn);
+                Map parametro = new HashMap();
+                parametro.put("idsalida", Integer.parseInt(id));
+                parametro.put("abono", abono);
+                parametro.put("saldov", saldov);
+                parametro.put("saldot", saldot);
+
+                System.out.println("" + id);
+                JasperPrint impresor = JasperFillManager.fillReport(masterReport, parametro, conn);
                 //JasperPrintManager.printReport(impresor, false);
-                JasperViewer jviewer= new JasperViewer(impresor,false);
+                JasperViewer jviewer = new JasperViewer(impresor, false);
                 jviewer.setTitle("Comprovante de Salida");
                 jviewer.setVisible(true);
-                conn.close();
+                //conn.close();
                 dispose();
-                //new DistribucionRuano().setTerminar(1);
+            //new DistribucionRuano().setTerminar(1);
                 //new cargandoD().descargando();
                 //new DistribucionRuano().existenciatotal();
+            } catch (Exception j) {
+                System.out.println("Mensajer de error " + j.getMessage());
             }
-            catch(Exception j)
-            {
-                System.out.println("Mensajer de error "+j.getMessage());
-            }
-            
-            
+
             //System.out.println ("Esto se ejecuta en otro hilo");
         }
-        catch(ClassNotFoundException ex)
-        {
-            Logger.getLogger(imprimiendo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-
-
-        //System.out.println ("Esto se ejecuta en otro hilo");
-    }
     }
 
-   
-public void descargando(){
+    public void descargando() {
 
-this.dispose();
-}
+        this.dispose();
+    }
+
     /**
      * Creates new form imprimiendo
      */
     public imprimiendo() {
         initComponents();
         hilos miRunnable = new hilos();
-Thread hilo = new Thread (miRunnable);
-hilo.start();
+        Thread hilo = new Thread(miRunnable);
+        hilo.start();
     }
 
     /**

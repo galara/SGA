@@ -4,13 +4,15 @@
  */
 package GUI;
 
-import BD.LeePropiedades;
+//import BD.LeePropiedades;
+import BD.BdConexion;
 import Modelos.AccesoUsuario;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -23,7 +25,8 @@ import reporte.*;
 public class MenuPrincipal extends javax.swing.JFrame {
 
     private String archivoRecurso = "controlador-bd";
-    Connection conn;//getConnection intentara establecer una conexión.
+    //Connection conn;//getConnection intentara establecer una conexión.
+    java.sql.Connection conn;//getConnection intentara establecer una conexión.
 
     /**
      * Creates new form principal
@@ -103,28 +106,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Sistema de Ventas AGROFATIMA");
+        setTitle("Sistema de Gestion de Almacenes");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
-        panel_south.setBackground(new java.awt.Color(153, 153, 153));
-        panel_south.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        panel_south.setBackground(new java.awt.Color(204, 219, 255));
+        panel_south.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         panel_south.setForeground(new java.awt.Color(255, 255, 255));
         panel_south.setPreferredSize(new java.awt.Dimension(649, 37));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Usuario :");
 
         //GUI.Login entrar = new GUI.Login();
         //      usuarioactual.setText(entrar.usuario());
         usuarioactual.setText(AccesoUsuario.getUsuario());
-        usuarioactual.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        usuarioactual.setForeground(new java.awt.Color(255, 255, 255));
+        usuarioactual.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         usuarioactual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout panel_southLayout = new javax.swing.GroupLayout(panel_south);
@@ -133,10 +134,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panel_southLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_southLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addComponent(usuarioactual, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usuarioactual, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(346, Short.MAX_VALUE))
         );
         panel_southLayout.setVerticalGroup(
             panel_southLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +182,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/transacciones.png"))); // NOI18N
         jMenu2.setMnemonic('O');
-        jMenu2.setText("Movimiento");
+        jMenu2.setText("Movimientos");
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salida.png"))); // NOI18N
         jMenu3.setText("Salidas");
@@ -302,6 +303,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu11.add(m10);
 
+        m11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/reportsalida.png"))); // NOI18N
         m11.setText("Venta Contado");
         m11.setEnabled(false);
         m11.addActionListener(new java.awt.event.ActionListener() {
@@ -311,6 +313,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu11.add(m11);
 
+        m12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/reportsalida.png"))); // NOI18N
         m12.setText("Venta Credito");
         m12.setEnabled(false);
         m12.addActionListener(new java.awt.event.ActionListener() {
@@ -394,6 +397,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu11.add(m18);
 
+        m19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/report.png"))); // NOI18N
         m19.setText("Corte");
         m19.setEnabled(false);
         m19.addActionListener(new java.awt.event.ActionListener() {
@@ -403,6 +407,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu11.add(m19);
 
+        m20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/comprometido.png"))); // NOI18N
         m20.setText("Creditos Vencidos(Ventas)");
         m20.setEnabled(false);
         m20.addActionListener(new java.awt.event.ActionListener() {
@@ -412,6 +417,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu11.add(m20);
 
+        m21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/comprometido.png"))); // NOI18N
         m21.setText("Creditos Vencidos(Compras)");
         m21.setEnabled(false);
         m21.addActionListener(new java.awt.event.ActionListener() {
@@ -421,6 +427,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu11.add(m21);
 
+        m22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/report.png"))); // NOI18N
         m22.setText("Corte Usuario");
         m22.setEnabled(false);
         m22.addActionListener(new java.awt.event.ActionListener() {
@@ -495,17 +502,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public void activar() {
         try {
 
-            DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
+            //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
 
             // Se obtiene una conexión con la base de datos. Hay que
             // cambiar el Login "root" y la clave "la_clave" por las
             // adecuadas a la base de datos que estemos usando.
-            LeePropiedades.archivoRecurso = archivoRecurso;
+            //LeePropiedades.archivoRecurso = archivoRecurso;
 //System.out.print(LeePropiedades.leeID("url")+""+LeePropiedades.leeID("Login")); 
-            Connection conexion = DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
-
+            //Connection conexion = DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
+            conn = BdConexion.getConexion();
             // Se crea un Statement, para realizar la consulta
-            com.mysql.jdbc.Statement s = (com.mysql.jdbc.Statement) conexion.createStatement();
+            com.mysql.jdbc.Statement s = (com.mysql.jdbc.Statement) conn.createStatement();
 
             //Login entrar = new Login();
 
@@ -593,9 +600,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
 
             // Se cierra la conexión con la base de datos.
-            conexion.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            //conexion.close();
+        } catch (NullPointerException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
     private void acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercadeActionPerformed

@@ -4,7 +4,7 @@
  */
 package reporte;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,50 +34,43 @@ public class comprasvencidasv2 extends javax.swing.JFrame {
         //private boolean terminar = false;
         public void run() {
 
-//            fecha = comprasvencidas2.fecha1();
-//            fecha2 = comprasvencidas2.fecha2();
-
+            conn = BdConexion.getConexion();
             try {
-                conn = Conectiondb.Enlace(conn);
+
+                String archivo = "creditosvencidosprov2.jasper";
+                if (archivo == null) {
+                    
+                    //System.out.println("no hAT ARCHIVO " + archivo);
+                    System.exit(2);
+                }
+                JasperReport masterReport = null;
                 try {
-
-                    String archivo = "creditosvencidosprov2.jasper";
-                    if (archivo == null) {
-
-                        //System.out.println("no hAT ARCHIVO " + archivo);
-                        System.exit(2);
-                    }
-                    JasperReport masterReport = null;
-                    try {
-                        //masterReport= (JasperReport) JRLoader.loadObject(matricula);
-                        masterReport = (JasperReport) JRLoader.loadObject(archivo);
-
-                    } catch (JRException e) {
-                        //System.out.println("error cargado el reporte maestro " + e.getMessage());
-                        System.exit(3);
-                    }
-                    //
-                    //JOptionPane.showMessageDialog(null, id);
-
-                    Map parametro = new HashMap();
+                    //masterReport= (JasperReport) JRLoader.loadObject(matricula);
+                    masterReport = (JasperReport) JRLoader.loadObject(archivo);
+                    
+                } catch (JRException e) {
+                    //System.out.println("error cargado el reporte maestro " + e.getMessage());
+                    System.exit(3);
+                }
+                //
+                //JOptionPane.showMessageDialog(null, id);
+                
+                Map parametro = new HashMap();
 //                    parametro.put("fecha1", fecha);
 //                    parametro.put("fecha2", fecha2);
-                    //parametro.put("fecha3", fecha3);
-                    //System.out.print(fecha + "--" + fecha2);
-                    JasperPrint impresor = JasperFillManager.fillReport(masterReport, null, conn);
-                    //JasperPrintManager.printReport(impresor, false);
-                    JasperViewer jviewer = new JasperViewer(impresor, false);
-                    jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
-                    jviewer.setTitle("Reporte de Compras");
-                    jviewer.setVisible(true);
-                    conn.close();
-                    dispose();
-
-                } catch (Exception j) {
-                    //System.out.println("Mensajer de error " + j.getMessage());
-                }
-
-            } catch (SQLException ex) {
+                //parametro.put("fecha3", fecha3);
+                //System.out.print(fecha + "--" + fecha2);
+                JasperPrint impresor = JasperFillManager.fillReport(masterReport, null, conn);
+                //JasperPrintManager.printReport(impresor, false);
+                JasperViewer jviewer = new JasperViewer(impresor, false);
+                jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
+                jviewer.setTitle("Reporte de Compras");
+                jviewer.setVisible(true);
+                //conn.close();
+                dispose();
+                
+            } catch (JRException ex) {
+                
                 Logger.getLogger(comprasvencidasv2.class.getName()).log(Level.SEVERE, null, ex);
             }
 

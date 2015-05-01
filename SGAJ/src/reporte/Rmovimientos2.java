@@ -1,5 +1,6 @@
 package reporte;
 
+import BD.BdConexion;
 import BD.Conectiondb;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -110,8 +111,6 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
 
         jcMousePanel2 = new jcMousePanel.jcMousePanel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TablaCliente = new javax.swing.JTable();
         btnCerrar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -124,6 +123,8 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
         fechaini = new org.freixas.jcalendar.JCalendarCombo();
         jLabel19 = new javax.swing.JLabel();
         fechafin = new org.freixas.jcalendar.JCalendarCombo();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaCliente = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(192, 219, 213));
         setTitle("REPORTE DE INGRESOS");
@@ -138,29 +139,6 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TablaCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        TablaCliente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Id", "Salida", "Fecha", "Total", "Cliente", "Usuario"
-            }
-        ));
-        TablaCliente.setGridColor(new java.awt.Color(204, 204, 204));
-        TablaCliente.setRowHeight(20);
-        TablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaClienteMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                TablaClienteMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(TablaCliente);
-
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 810, 160));
-
         btnCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/exit.png"))); // NOI18N
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +146,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 120, -1));
+        jPanel3.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 10, 120, 40));
 
         jPanel1.setBackground(new java.awt.Color(192, 219, 213));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -176,6 +154,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Detalle de Ingreso seleccionado:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 20));
 
@@ -233,13 +212,13 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
                 btnVerActionPerformed(evt);
             }
         });
-        jPanel1.add(fechaini, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 182, -1));
+        jPanel1.add(fechaini, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 200, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("Al:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
 
         fechafin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fechafin.setName(""); // NOI18N
@@ -248,9 +227,33 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
                 btnVerActionPerformed(evt);
             }
         });
-        jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 182, -1));
+        jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 200, -1));
 
-        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 850, 520));
+        TablaCliente.setAutoCreateRowSorter(true);
+        TablaCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TablaCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id", "Salida", "Fecha", "Total", "Cliente", "Usuario"
+            }
+        ));
+        TablaCliente.setGridColor(new java.awt.Color(204, 204, 204));
+        TablaCliente.setRowHeight(20);
+        TablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaClienteMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                TablaClienteMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TablaCliente);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 810, 160));
+
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 840, 520));
 
         javax.swing.GroupLayout jcMousePanel2Layout = new javax.swing.GroupLayout(jcMousePanel2);
         jcMousePanel2.setLayout(jcMousePanel2Layout);
@@ -259,21 +262,19 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
             .addGap(0, 880, Short.MAX_VALUE)
             .addGroup(jcMousePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jcMousePanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 880, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap()
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)))
         );
         jcMousePanel2Layout.setVerticalGroup(
             jcMousePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
             .addGroup(jcMousePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jcMousePanel2Layout.createSequentialGroup()
-                    .addGap(0, 5, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 5, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 20, Short.MAX_VALUE)))
         );
 
-        getContentPane().add(jcMousePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 590));
+        getContentPane().add(jcMousePanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 600));
 
         getAccessibleContext().setAccessibleName("Mantenimiento de cliente ===== Christian");
 
@@ -288,7 +289,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
             String fecha1, fecha2;
             fecha1 = getFecha();
             fecha2 = getFecha2();
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             rs = Conectiondb.EnlIngresos(rs, fecha1, fecha2);
             String datos[] = new String[5];
             f = dtm.getRowCount();
@@ -333,7 +334,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
                         System.exit(3);
                     }
 
-                    conn = Conectiondb.Enlace(conn);
+                    conn = BdConexion.getConexion();
                     Map parametro = new HashMap();
                     String id;
                     id = (dtm.getValueAt(TablaCliente.getSelectedRow(), 0).toString());
@@ -348,9 +349,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
                     jviewer.setVisible(true);
 
                     cargandor.setVisible(false);
-                    conn.close();
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error en BD" + e.toString());
+                    //conn.close();
                 } catch (JRException ex) {
                     Logger.getLogger(Rmovimientos2.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -374,7 +373,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
         try {
             //setSize(700,600);
             int f, i;
-            conn = Conectiondb.Enlace(conn);
+            conn = BdConexion.getConexion();
             rs2 = Conectiondb.EnlDIngresos(rs2, id);
 
             String datos[] = new String[6];

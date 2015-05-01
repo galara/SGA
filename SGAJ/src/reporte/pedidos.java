@@ -1,6 +1,6 @@
 package reporte;
 
-import BD.Conectiondb;
+import BD.BdConexion;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,48 +28,39 @@ public class pedidos extends javax.swing.JFrame {
 
         public void run() {
 
+            conn = BdConexion.getConexion();
             try {
-           //LeePropiedades.archivoRecurso = archivoRecurso;
-                //Class.forName(LeePropiedades.leeID("driver"));
-                //     conn = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"),LeePropiedades.leeID("usuario"),LeePropiedades.leeID("password"));
-                //isConected = true;
-                conn = Conectiondb.Enlace(conn);
-                try {
-
-                    String archivo = "Pedido.jasper";
-                    System.out.println("caragdo desdesss " + archivo);
-                    if (archivo == null) {
-
-                        System.out.println("no hAT ARCHIVO " + archivo);
-                        System.exit(2);
-                    }
-                    JasperReport masterReport = null;
-                    try {
-                        //masterReport= (JasperReport) JRLoader.loadObject(matricula);
-                        masterReport = (JasperReport) JRLoader.loadObject(archivo);
-
-                    } catch (JRException e) {
-                        System.out.println("error cargado el reporte maestro " + e.getMessage());
-                        System.exit(3);
-                    }
-        //
-                    //JOptionPane.showMessageDialog(null, id);
-
-                    JasperPrint impresor = JasperFillManager.fillReport(masterReport, null, conn);
-                    //JasperPrintManager.printReport(impresor, false);
-                    JasperViewer jviewer = new JasperViewer(impresor, false);
-                    jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
-                    jviewer.setTitle("Pedido");
-                    jviewer.setVisible(true);
-conn.close();
-                    dispose();
-
-                } catch (Exception j) {
-                    System.out.println("Mensajer de error " + j.getMessage());
+                
+                String archivo = "Pedido.jasper";
+                System.out.println("caragdo desdesss " + archivo);
+                if (archivo == null) {
+                    
+                    System.out.println("no hAT ARCHIVO " + archivo);
+                    System.exit(2);
                 }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(stock2.class.getName()).log(Level.SEVERE, null, ex);
+                JasperReport masterReport = null;
+                try {
+                    //masterReport= (JasperReport) JRLoader.loadObject(matricula);
+                    masterReport = (JasperReport) JRLoader.loadObject(archivo);
+                    
+                } catch (JRException e) {
+                    System.out.println("error cargado el reporte maestro " + e.getMessage());
+                    System.exit(3);
+                }
+                //
+                //JOptionPane.showMessageDialog(null, id);
+                
+                JasperPrint impresor = JasperFillManager.fillReport(masterReport, null, conn);
+                //JasperPrintManager.printReport(impresor, false);
+                JasperViewer jviewer = new JasperViewer(impresor, false);
+                jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
+                jviewer.setTitle("Pedido");
+                jviewer.setVisible(true);
+                //conn.close();
+                dispose();
+                
+            } catch (JRException ex) {
+                Logger.getLogger(pedidos.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             //System.out.println ("Esto se ejecuta en otro hilo");

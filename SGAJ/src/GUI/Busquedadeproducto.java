@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BD.BdConexion;
 import BD.Conectiondb;
 import BD.sqlprod;
 import java.awt.event.ActionEvent;
@@ -126,7 +127,8 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
     private void Llenar() {
         try {
             removejtable();
-            conn = Conectiondb.Enlace(conn);
+            //conn = BdConexion.getConexion();
+            conn = BdConexion.getConexion();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             ResultSet rs = sent.executeQuery(/*sql*/sqlprod.LLENAR + sqlprod.ORDER_BY);// especifica la consulta y la ejecuta
             String[] fila = new String[6];
@@ -150,7 +152,8 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
     private void MostrarTodo(String Dato) {
         try {
 
-            conn = Conectiondb.Enlace(conn);
+            //conn = BdConexion.getConexion();
+            conn = BdConexion.getConexion();
             String sql = "";
 
             if (rbcodigo.isSelected()) {
@@ -182,7 +185,7 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
                 }
                 tablaproductos.setModel(model);
                 formatotabla();
-                conn.close();
+                ////conn.close();
                 //JOptionPane.showInternalMessageDialog(this, "Se encontraron " + count + " registros");
 
             } else {
