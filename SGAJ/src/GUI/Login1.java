@@ -171,7 +171,7 @@ public class Login1 extends javax.swing.JFrame {
         panelImage2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 11, 107, -1));
 
         panelCurves1.add(panelImage2);
-        panelImage2.setBounds(10, 140, 272, 260);
+        panelImage2.setBounds(10, 140, 290, 260);
 
         panelImage1.add(panelCurves1);
         panelCurves1.setBounds(0, 40, 320, 450);
