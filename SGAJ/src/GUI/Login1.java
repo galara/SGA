@@ -19,7 +19,6 @@ public class Login1 extends javax.swing.JFrame {
 
     private boolean accesoConcedido = false;
     private JOptionPane op;
-
     /**
      * Creates new form Login
      */
