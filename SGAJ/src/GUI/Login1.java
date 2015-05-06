@@ -87,6 +87,7 @@ public class Login1 extends javax.swing.JFrame {
     private void initComponents() {
 
         panelImage1 = new elaprendiz.gui.panel.PanelImage();
+        jLabel2 = new javax.swing.JLabel();
         panelCurves1 = new elaprendiz.gui.panel.PanelCurves();
         jLabel5 = new javax.swing.JLabel();
         panelImage2 = new elaprendiz.gui.panel.PanelImage();
@@ -97,7 +98,6 @@ public class Login1 extends javax.swing.JFrame {
         iniciar = new elaprendiz.gui.button.ButtonAction();
         fechainicio = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         pnlPaginador2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -111,14 +111,19 @@ public class Login1 extends javax.swing.JFrame {
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/font.png"))); // NOI18N
         panelImage1.setLayout(null);
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/login_1.png"))); // NOI18N
+        panelImage1.add(jLabel2);
+        jLabel2.setBounds(-1, 45, 320, 130);
+
         panelCurves1.setToolTipText("");
         panelCurves1.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         panelCurves1.setLayout(null);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 38)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("\"SGA\"");
+        jLabel5.setText("\"POSJ\"");
         panelCurves1.add(jLabel5);
         jLabel5.setBounds(-3, 398, 320, 40);
 
@@ -175,13 +180,8 @@ public class Login1 extends javax.swing.JFrame {
         panelImage1.add(panelCurves1);
         panelCurves1.setBounds(0, 40, 320, 450);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/login_1.png"))); // NOI18N
-        panelImage1.add(jLabel2);
-        jLabel2.setBounds(-1, 45, 320, 130);
-
         pnlPaginador2.setBackground(new java.awt.Color(0, 0, 0));
-        pnlPaginador2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        pnlPaginador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         pnlPaginador2.setToolTipText("");
         pnlPaginador2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         pnlPaginador2.setPreferredSize(new java.awt.Dimension(786, 40));
@@ -198,7 +198,7 @@ public class Login1 extends javax.swing.JFrame {
         pnlPaginador2.add(jLabel6, new java.awt.GridBagConstraints());
 
         panelImage1.add(pnlPaginador2);
-        pnlPaginador2.setBounds(0, 0, 320, 40);
+        pnlPaginador2.setBounds(0, 0, 321, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

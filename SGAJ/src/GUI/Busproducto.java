@@ -232,6 +232,7 @@ public class Busproducto extends javax.swing.JInternalFrame {
         rbmarca = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
         setTitle("Busqueda de productos");
         setName("Busproducto"); // NOI18N
 
