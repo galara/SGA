@@ -741,6 +741,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Devolucion Clientes");
         setToolTipText("");
+        setName("Devolucionclientes"); // NOI18N
 
         jcMousePanelprincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
         jcMousePanelprincipal.setModo(4);
@@ -817,7 +818,7 @@ public class Devolucionclientes extends javax.swing.JInternalFrame {
         jcMousePanel6.add(jLabel13);
         jLabel13.setBounds(400, 20, 80, 20);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Condiciones de busqueda   -  Enter o F5 para buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Condiciones de busqueda   -  Enter o F5 para buscar", 0, 0, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel6.setOpaque(false);
         jPanel6.setLayout(null);
 

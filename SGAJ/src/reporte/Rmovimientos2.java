@@ -128,6 +128,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(192, 219, 213));
         setTitle("REPORTE DE INGRESOS");
+        setName("Rmovimientos2"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jcMousePanel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N

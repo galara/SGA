@@ -461,7 +461,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 .addComponent(jLabel10))
         );
 
-        jcMousePanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Agency FB", 0, 12), java.awt.Color.white)); // NOI18N
+        jcMousePanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busqueda", 0, 0, new java.awt.Font("Agency FB", 0, 12), java.awt.Color.white)); // NOI18N
         jcMousePanel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -495,7 +495,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jcMousePanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente Nuevo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jcMousePanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente Nuevo", 2, 0, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jcMousePanel17.setForeground(new java.awt.Color(102, 102, 255));
         jcMousePanel17.setColor1(new java.awt.Color(192, 219, 213));
         jcMousePanel17.setColor2(new java.awt.Color(192, 219, 213));
@@ -525,7 +525,7 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 204, 0));
         jButton2.setText("Crear");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -1144,16 +1144,18 @@ public class frmventas extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Ventas");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setName("frmventas"); // NOI18N
 
-        jcMousePanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jcMousePanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jcMousePanel4.setColor1(new java.awt.Color(153, 153, 153));
         jcMousePanel4.setColor2(new java.awt.Color(204, 204, 204));
         jcMousePanel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
         jcMousePanel4.setOpaque(false);
 
-        jcMousePanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), "Datos de Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), java.awt.Color.white)); // NOI18N
+        jcMousePanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), "Datos de Cliente", 0, 0, new java.awt.Font("Arial", 0, 14), java.awt.Color.white)); // NOI18N
         jcMousePanel3.setColor1(new java.awt.Color(153, 153, 153));
         jcMousePanel3.setModo(5);
+        jcMousePanel3.setName(""); // NOI18N
         jcMousePanel3.setOpaque(false);
 
         jLabel23.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
@@ -1262,7 +1264,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jcMousePanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2), "Busqueda de Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), java.awt.Color.white)); // NOI18N
+        jcMousePanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2), "Busqueda de Producto", 0, 0, new java.awt.Font("Arial", 0, 14), java.awt.Color.white)); // NOI18N
         jcMousePanel2.setColor1(new java.awt.Color(102, 102, 102));
         jcMousePanel2.setColor2(new java.awt.Color(204, 204, 204));
         jcMousePanel2.setModo(5);
@@ -1273,7 +1275,7 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         cantidadP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cantidadP.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        cantidadP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cantidadP.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         cantidadP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cantidadPActionPerformed(evt);
@@ -1287,7 +1289,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         nombreproducto.setEditable(false);
         nombreproducto.setEditable(false);
         nombreproducto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        nombreproducto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        nombreproducto.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         nombreproducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreproductoActionPerformed(evt);
@@ -1302,7 +1304,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         existencia.setEditable(false);
         existencia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         existencia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        existencia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        existencia.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         existencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 existenciaActionPerformed(evt);
@@ -1316,7 +1318,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         precios.setEditable(true);
         precios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         precios.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        precios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        precios.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         precios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 preciosActionPerformed(evt);
@@ -1354,7 +1356,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         nombreproducto.setEditable(false);
         unidadproducto.setEditable(false);
         unidadproducto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        unidadproducto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        unidadproducto.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         unidadproducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unidadproductoActionPerformed(evt);
@@ -1525,7 +1527,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
 
         jLabel13.setText("Total");
 
@@ -1567,7 +1569,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jcMousePanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), "Datos de Salida", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14), java.awt.Color.white)); // NOI18N
+        jcMousePanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true), "Datos de Salida", 0, 0, new java.awt.Font("Arial", 0, 14), java.awt.Color.white)); // NOI18N
         jcMousePanel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -1634,7 +1636,7 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         jcMousePanel11.setBackground(new java.awt.Color(255, 255, 255));
         jcMousePanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2), "..."));
-        jcMousePanel11.setModo(2);
+        jcMousePanel11.setModo(5);
 
         elart.setBackground(new java.awt.Color(51, 153, 255));
         elart.setMnemonic(KeyEvent.VK_E);

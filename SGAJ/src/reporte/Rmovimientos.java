@@ -177,6 +177,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(192, 219, 213));
         setTitle("REPORTE DE SALIDAS");
+        setName("Rmovimientos"); // NOI18N
         setOpaque(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

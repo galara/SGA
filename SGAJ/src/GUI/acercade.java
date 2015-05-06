@@ -56,6 +56,7 @@ public class acercade extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(192, 219, 213));
         setTitle("Desarrolladores");
+        setName("acercade"); // NOI18N
 
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
         panelImage1.setOpaque(false);

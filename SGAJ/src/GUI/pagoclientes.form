@@ -354,6 +354,7 @@
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Estado de cuenta Cliente"/>
     <Property name="toolTipText" type="java.lang.String" value=""/>
+    <Property name="name" type="java.lang.String" value="pagoclientes" noResource="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>

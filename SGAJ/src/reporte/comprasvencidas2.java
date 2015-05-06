@@ -48,6 +48,8 @@ public class comprasvencidas2 extends javax.swing.JInternalFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
 
+        setName("comprasvencidas2"); // NOI18N
+
         jcMousePanel1.setColor1(new java.awt.Color(204, 204, 204));
         jcMousePanel1.setColor2(new java.awt.Color(0, 153, 153));
         jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
@@ -62,7 +64,7 @@ public class comprasvencidas2 extends javax.swing.JInternalFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 204, 0));
         jButton1.setText("Generar");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

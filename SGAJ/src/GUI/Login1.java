@@ -156,7 +156,7 @@ public class Login1 extends javax.swing.JFrame {
         });
         panelImage2.add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 129, 240, -1));
 
-        fechainicio.setDateFormatString("dd/MM/yyyy");
+        fechainicio.setDateFormatString("dd-MM-yyyy");
         fechainicio.setFocusable(false);
         fechainicio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         fechainicio.setMaxSelectableDate(new java.util.Date(3093496470100000L));

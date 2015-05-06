@@ -7,27 +7,22 @@ package GUI;
 //import BD.LeePropiedades;
 import BD.BdConexion;
 import Modelos.AccesoUsuario;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import Modelos.AddForms;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import reporte.*;
 
 /**
  *
- * @author Otto
+ * @author Glara
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    private String archivoRecurso = "controlador-bd";
+    //private String archivoRecurso = "controlador-bd";
     //Connection conn;//getConnection intentara establecer una conexión.
     java.sql.Connection conn;//getConnection intentara establecer una conexión.
-
     /**
      * Creates new form principal
      */
@@ -47,13 +42,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             if (nu == JOptionPane.YES_OPTION || nu == 0) {
                 System.exit(0);
-            }else{
-                
+            } else {
             }
-
-        }
-        else if (count > 0) {
-            JOptionPane.showMessageDialog(null, "Para cerrar el Systema primero debe cerrar los formularios abiertos "+"( "+count+" )");
+        } else if (count > 0) {
+            JOptionPane.showMessageDialog(null, "Para cerrar el Systema primero debe cerrar los formularios abiertos " + "( " + count + " )");
         }
     }
 
@@ -462,12 +454,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m1ActionPerformed
         // TODO add your handling code here:
-        Usuarios newuser = new Usuarios();
-
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(newuser);
+        Usuarios newfrm = new Usuarios();
+        if (newfrm == null ) {
+            newfrm = new Usuarios();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -482,42 +473,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m17ActionPerformed
         // TODO add your handling code here:
-        Rentrada nuevaentrada = new Rentrada();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(nuevaentrada);
+        Rentrada newfrm = new Rentrada();
+        if (newfrm == null) {
+            newfrm = new Rentrada();
         }
-
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m17ActionPerformed
 
     private void m3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m3ActionPerformed
         // TODO add your handling code here:
-        compras nuevaentrada = new compras();
-
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(nuevaentrada);
+        compras newfrm = new compras();
+        if (newfrm == null) {
+            newfrm = new compras();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m3ActionPerformed
     public void activar() {
         try {
-
-            //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-
-            // Se obtiene una conexión con la base de datos. Hay que
-            // cambiar el Login "root" y la clave "la_clave" por las
-            // adecuadas a la base de datos que estemos usando.
-            //LeePropiedades.archivoRecurso = archivoRecurso;
-//System.out.print(LeePropiedades.leeID("url")+""+LeePropiedades.leeID("Login")); 
-            //Connection conexion = DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
             conn = BdConexion.getConexion();
             // Se crea un Statement, para realizar la consulta
             com.mysql.jdbc.Statement s = (com.mysql.jdbc.Statement) conn.createStatement();
-
-            //Login entrar = new Login();
-
             String sql = "select estado,menu from perfilusu where idusuario='" + AccesoUsuario.idusu() + "' ";
-
             // Se realiza la consulta. Los resultados se guardan en el 
             // ResultSet rs
             ResultSet rs = s.executeQuery(sql);
@@ -526,7 +502,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             while (rs.next()) {
                 if (rs.getString("menu").equals("0") && rs.getString("estado").equals("T")) {
                     m1.setEnabled(true);
-
                 }
                 if (rs.getString("menu").equals("1") && rs.getString("estado").equals("T")) {
                     m2.setEnabled(true);
@@ -595,10 +570,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 if (rs.getString("menu").equals("21") && rs.getString("estado").equals("T")) {
                     m22.setEnabled(true);
                 }
-                
-
             }
-
             // Se cierra la conexión con la base de datos.
             //conexion.close();
         } catch (NullPointerException | SQLException e) {
@@ -607,39 +579,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     private void acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercadeActionPerformed
         // TODO add your handling code here:
-        acercade acerca = new acercade();
-        if (panel_center.getComponentCount() <= 1) //solo uno en t
-        {
-            this.abrirInternalFrame(acerca);
+        acercade newfrm = new acercade();
+        if (newfrm == null) {
+            newfrm = new acercade();
         }
-
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_acercadeActionPerformed
 
     private void m10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m10ActionPerformed
         // TODO add your handling code here:
-        Rsalida nuevasalida = new Rsalida();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(nuevasalida);
+        Rsalida newfrm = new Rsalida();
+        if (newfrm == null) {
+            newfrm = new Rsalida();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m10ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
-        Rmovimientos newPro = new Rmovimientos();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(newPro);
+        Rmovimientos newfrm = new Rmovimientos();
+        if (newfrm == null) {
+            newfrm = new Rmovimientos();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         // TODO add your handling code here:
-        Rmovimientos2 newPro = new Rmovimientos2();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(newPro);
+        Rmovimientos2 newfrm = new Rmovimientos2();
+        if (newfrm == null) {
+            newfrm = new Rmovimientos2();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void m15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m15ActionPerformed
@@ -649,85 +620,74 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m2ActionPerformed
         // TODO add your handling code here:
-        frmventas frmve = new frmventas();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(frmve);
+        frmventas newfrm = new frmventas();
+        if (newfrm == null) {
+            newfrm = new frmventas();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m2ActionPerformed
 
     private void m5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m5ActionPerformed
         // TODO add your handling code here:
-        unidadmedprod newun = new unidadmedprod();
-
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(newun);
+        unidadmedprod newfrm = new unidadmedprod();
+        if (newfrm == null) {
+            newfrm = new unidadmedprod();
         }
-
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m5ActionPerformed
 
     private void m6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m6ActionPerformed
         // TODO add your handling code here:
-        marcaprod newun = new marcaprod();
-
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(newun);
+        marcaprod newfrm = new marcaprod();
+        if (newfrm == null) {
+            newfrm = new marcaprod();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m6ActionPerformed
 
     private void m9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m9ActionPerformed
         // TODO add your handling code here:
-        Cliente clie = new Cliente();
-        //nuevocliente clie = new nuevocliente();
-
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-
-            this.abrirInternalFrame(clie);
+        Cliente newfrm = new Cliente();
+        if (newfrm == null) {
+            newfrm = new Cliente();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m9ActionPerformed
 
     private void m7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m7ActionPerformed
         // TODO add your handling code here:
-        Proveedores newPro = new Proveedores();
-
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(newPro);
-
+        Proveedores newfrm = new Proveedores();
+        if (newfrm == null) {
+            newfrm = new Proveedores();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m7ActionPerformed
 
     private void m8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m8ActionPerformed
         // TODO add your handling code here:
-        Producto modi = new Producto();
-
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-
-            this.abrirInternalFrame(modi);
+        Producto newfrm = new Producto();
+        if (newfrm == null) {
+            newfrm = new Producto();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m8ActionPerformed
 
     private void m4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m4ActionPerformed
         // TODO add your handling code here:
-        Categoriaproducto newcat = new Categoriaproducto();
-
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(newcat);
+        Categoriaproducto newfrm = new Categoriaproducto();
+        if (newfrm == null) {
+            newfrm = new Categoriaproducto();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m4ActionPerformed
 
     private void m13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m13ActionPerformed
         // TODO add your handling code here:
-        GananciaVenta nuevasalida = new GananciaVenta();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(nuevasalida);
+        GananciaVenta newfrm = new GananciaVenta();
+        if (newfrm == null) {
+            newfrm = new GananciaVenta();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m13ActionPerformed
 
     private void m16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m16ActionPerformed
@@ -737,50 +697,47 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m12ActionPerformed
         // TODO add your handling code here:
-        ventacredito nuevasalida = new ventacredito();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(nuevasalida);
+        ventacredito newfrm = new ventacredito();
+        if (newfrm == null) {
+            newfrm = new ventacredito();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m12ActionPerformed
 
     private void m11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m11ActionPerformed
         // TODO add your handling code here:
-        ventacontado nuevasalida = new ventacontado();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(nuevasalida);
+        ventacontado newfrm = new ventacontado();
+        if (newfrm == null) {
+            newfrm = new ventacontado();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m11ActionPerformed
 
     private void m20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m20ActionPerformed
         // TODO add your handling code here:
-        CreditosVencidos2 nuevasalida = new CreditosVencidos2();
-        if (panel_center.getComponentCount() <= 1) //solo uno en t
-        {
-            this.abrirInternalFrame(nuevasalida);
+        CreditosVencidos2 newfrm = new CreditosVencidos2();
+        if (newfrm == null) {
+            newfrm = new CreditosVencidos2();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m20ActionPerformed
 
     private void m21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m21ActionPerformed
         // TODO add your handling code here:
-
-        comprasvencidas2 nuevasalida = new comprasvencidas2();
-        if (panel_center.getComponentCount() <= 1) //solo uno en t
-        {
-            this.abrirInternalFrame(nuevasalida);
+        comprasvencidas2 newfrm = new comprasvencidas2();
+        if (newfrm == null) {
+            newfrm = new comprasvencidas2();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m21ActionPerformed
 
     private void m19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m19ActionPerformed
         // TODO add your handling code here:
-        cortecaja1 corte = new cortecaja1();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(corte);
+        cortecaja1 newfrm = new cortecaja1();
+        if (newfrm == null) {
+            newfrm = new cortecaja1();
         }
-
-        //corte.setVisible(true);
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m19ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -790,11 +747,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m22ActionPerformed
         // TODO add your handling code here:
-        cortecajausuario corte = new cortecajausuario();
-        if (panel_center.getComponentCount() == 0) //solo uno en t
-        {
-            this.abrirInternalFrame(corte);
+        cortecajausuario newfrm = new cortecajausuario();
+        if (newfrm == null) {
+            newfrm = new cortecajausuario();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m22ActionPerformed
 
     /**
@@ -839,8 +796,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             }
         }
-        
-        
         );
         // new MenuPrincipal().setVisible(true);
     }
@@ -884,20 +839,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public static javax.swing.JPanel panel_south;
     private javax.swing.JLabel usuarioactual;
     // End of variables declaration//GEN-END:variables
-    public void abrirInternalFrame(JInternalFrame frminternas) {
-        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-//obtenemos el tamaño de la ventana
-        Dimension ventana = frminternas.getSize();
-//para centrar la ventana lo hacemos con el siguiente calculo
 
-        frminternas.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 5 /*10*/);
-//y para finalizar la hacemos visible
-//frmventas.setVisible(true);
-        panel_center.add(frminternas);
-        frminternas.show();// ver interno
-        frminternas.setClosable(true);// icono de cerrar
-        frminternas.toFront();//aparece al frente
-        frminternas.setMaximizable(true);//icono de maximizar
-
-    }
+//    public void abrirInternalFrame(JInternalFrame frminternas) {
+//        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+////obtenemos el tamaño de la ventana
+//        Dimension ventana = frminternas.getSize();
+////para centrar la ventana lo hacemos con el siguiente calculo
+//
+//        frminternas.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 5 /*10*/);
+////y para finalizar la hacemos visible
+////frmventas.setVisible(true);
+//        panel_center.add(frminternas);
+//        frminternas.show();// ver interno
+//        frminternas.setClosable(true);// icono de cerrar
+//        frminternas.toFront();//aparece al frente
+//        frminternas.setMaximizable(true);//icono de maximizar
+//
+//    }
 }

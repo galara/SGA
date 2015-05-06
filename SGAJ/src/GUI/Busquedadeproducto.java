@@ -221,6 +221,7 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setTitle("Busqueda de productos");
+        setName("Busquedadeproducto"); // NOI18N
 
         jcMousePanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jcMousePanel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N

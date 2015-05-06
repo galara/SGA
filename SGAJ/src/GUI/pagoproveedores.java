@@ -617,6 +617,7 @@ public class pagoproveedores extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Estado de cuenta Proveedor");
         setToolTipText("");
+        setName("pagoproveedores"); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }

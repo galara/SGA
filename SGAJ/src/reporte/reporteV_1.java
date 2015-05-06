@@ -110,6 +110,7 @@ public class reporteV_1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(200, 200, 0, 0));
+        setName("reporteV_1"); // NOI18N
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));

@@ -536,6 +536,7 @@ public class Producto extends javax.swing.JInternalFrame {
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusTraversalPolicyProvider(true);
+        setName("Producto"); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -553,6 +554,7 @@ public class Producto extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
         panelImage1.setLayout(null);
@@ -812,7 +814,7 @@ public class Producto extends javax.swing.JInternalFrame {
         jPanel1.add(stock);
         stock.setBounds(510, 80, 110, 23);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precios de Venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precios de Venta", 0, 0, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel2.setOpaque(false);
         jPanel2.setLayout(null);
 

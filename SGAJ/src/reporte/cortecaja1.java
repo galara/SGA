@@ -69,6 +69,7 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Corte de Efectivo");
+        setName("cortecaja1"); // NOI18N
 
         jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
         jcMousePanel1.setLayout(null);
@@ -85,7 +86,7 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
         jcMousePanel1.add(pnlPaginador);
         pnlPaginador.setBounds(0, 0, 490, 40);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Corte de día:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Corte de día:", 0, 0, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel1.setOpaque(false);
         jPanel1.setLayout(null);
 
@@ -151,7 +152,7 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Total Efectivo del día:  Q.");
-        jLabel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jLabel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", 0, 0, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jLabel13.setOpaque(true);
         jPanel1.add(jLabel13);
         jLabel13.setBounds(40, 270, 280, 30);
@@ -183,7 +184,7 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
         efectivocaja.setForeground(new java.awt.Color(255, 255, 255));
         efectivocaja.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         efectivocaja.setText("0.00");
-        efectivocaja.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        efectivocaja.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", 0, 0, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         efectivocaja.setOpaque(true);
         jPanel1.add(efectivocaja);
         efectivocaja.setBounds(320, 270, 80, 30);

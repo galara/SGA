@@ -147,6 +147,7 @@ public class detalleabonoproveedor extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
 
         setTitle("Detalle de Abonos a Proveedores");
+        setName("detalleabonoproveedor"); // NOI18N
 
         jcMousePanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jcMousePanel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N

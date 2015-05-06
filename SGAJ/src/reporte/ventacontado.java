@@ -40,6 +40,8 @@ public class ventacontado extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setName("ventacontado"); // NOI18N
+
         jcMousePanel1.setColor1(new java.awt.Color(204, 204, 204));
         jcMousePanel1.setColor2(new java.awt.Color(0, 153, 153));
         jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N

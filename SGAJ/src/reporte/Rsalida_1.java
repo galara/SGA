@@ -33,6 +33,8 @@ public static String idsal;
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setName("Rsalida_1"); // NOI18N
+
         jcMousePanel1.setColor1(new java.awt.Color(204, 204, 204));
         jcMousePanel1.setColor2(new java.awt.Color(0, 153, 153));
         jcMousePanel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
@@ -48,7 +50,7 @@ public static String idsal;
         jButton1.setBackground(new java.awt.Color(255, 204, 0));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/print_64.png"))); // NOI18N
         jButton1.setText("GENERAR COMPROBANTE DE SALIDA");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

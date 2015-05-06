@@ -758,7 +758,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         perfi.getContentPane().setLayout(perfiLayout);
         perfiLayout.setHorizontalGroup(
             perfiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
         );
         perfiLayout.setVerticalGroup(
             perfiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -771,6 +771,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         setTitle("Usuarios");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setFocusTraversalPolicyProvider(true);
+        setName("Usuarios"); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -788,6 +789,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
         panelImage1.setLayout(null);
