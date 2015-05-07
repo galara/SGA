@@ -22,7 +22,8 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
     DefaultTableModel dtm = new DefaultTableModel();
     DefaultTableModel salida = new DefaultTableModel();
     SimpleDateFormat formatof = new SimpleDateFormat("dd/MM/yyyy");
-    float saldototalc = 0, abonos = 0; String idcl="";
+    float saldototalc = 0, abonos = 0;
+    String idcl = "";
     /*creamos el codigo constructor para el formulario de clientes*/
 
     public Rmovimientos() {
@@ -78,7 +79,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
             return fecha;
         } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, "Verifique la fecha");
-            System.out.print(e.getMessage());
+            //System.out.print(e.getMessage());
         }
         return null;
 
@@ -95,7 +96,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
             return fecha;
         } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, "Verifique la fecha");
-            System.out.print(e.getMessage());
+            //System.out.print(e.getMessage());
         }
         return null;
 
@@ -115,7 +116,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                     nsaldototall = rss.getFloat("sum(saldo)");
 
                 }
-                saldototalc = Float.parseFloat(""+nsaldototall);
+                saldototalc = Float.parseFloat("" + nsaldototall);
                 //System.out.print(saldototalc);
             }
             //conn.close();
@@ -335,7 +336,7 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
                 datos[4] = (String) rs.getString(5);
                 datos[5] = (String) rs.getString(6);
                 datos[6] = (String) rs.getString(7);
-                idcl =  (String) rs.getString(8);
+                idcl = (String) rs.getString(8);
                 dtm.addRow(datos);
             }
             //conn.close();
@@ -352,23 +353,29 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
             if (TablaCliente.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "No se ha seleccionado un registro");
             } else {
+                String nombrereporte = "";
                 //cargandor.setVisible(true);
                 String ids = "";
                 ids = (dtm.getValueAt(TablaCliente.getSelectedRow(), 6).toString());
-                String nombrereporte = "credito.jasper";
-                //System.exit(3);
-                //conn = BdConexion.getConexion();
+                int tipo = Integer.parseInt(ids);
                 String id;
                 id = (dtm.getValueAt(TablaCliente.getSelectedRow(), 0).toString());
                 int y = Integer.parseInt(id);
-                Map parametro = new HashMap();
-                parametro.put("idsalida", y);
-                parametro.put("abono", abonos);
-                parametro.put("saldov",null);
-                parametro.put("saldot", saldototalc);
-                GeneraReportes.AbrirReporte(nombrereporte, parametro);
-                //System.out.print(saldototalc+"\n-");
-                //cargandor.setVisible(false);
+
+                if (tipo > 1) {
+                    nombrereporte = "credito.jasper";
+                    Map parametro = new HashMap();
+                    parametro.put("idsalida", y);
+                    parametro.put("abono", abonos);
+                    parametro.put("saldov", null);
+                    parametro.put("saldot", saldototalc);
+                    GeneraReportes.AbrirReporte(nombrereporte, parametro);
+                } else {
+                    nombrereporte = "reimpresionContado.jasper";
+                    Map parametro = new HashMap();
+                    parametro.put("idsalida", y);
+                    GeneraReportes.AbrirReporte(nombrereporte, parametro);
+                }
             }
         }
 
@@ -384,14 +391,14 @@ public class Rmovimientos extends javax.swing.JInternalFrame {
         id = (dtm.getValueAt(TablaCliente.getSelectedRow(), 0).toString());
         String cl;
         cl = (dtm.getValueAt(TablaCliente.getSelectedRow(), 4).toString());
-        
+
         try {
             //setSize(700,600);
             int f, i;
             conn = BdConexion.getConexion();
             rs2 = Conectiondb.EnlDSalidas(rs2, id);
             saldototal(idcl);
-            System.out.print(cl+"\n");
+            //System.out.print(cl + "\n");
             saldoabono(id);
 
             String datos[] = new String[5];

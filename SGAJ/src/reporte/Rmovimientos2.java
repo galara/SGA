@@ -336,7 +336,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
 
             String datos[] = new String[6];
             f = salida.getRowCount();
-            System.out.println(f);
+            //System.out.println(f);
             if (f > 0) {
                 for (i = 0; i < f; i++) {
                     salida.removeRow(0);
