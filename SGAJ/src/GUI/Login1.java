@@ -163,7 +163,7 @@ public class Login1 extends javax.swing.JFrame {
 
         fechainicio.setDateFormatString("dd-MM-yyyy");
         fechainicio.setFocusable(false);
-        fechainicio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        fechainicio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         fechainicio.setMaxSelectableDate(new java.util.Date(3093496470100000L));
         fechainicio.setMinSelectableDate(new java.util.Date(-62135744300000L));
         fechainicio.setPreferredSize(new java.awt.Dimension(120, 22));

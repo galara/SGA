@@ -101,7 +101,7 @@ public class ReporteGanancia extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Reporte de Salidas");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setName("ReporteSalidas"); // NOI18N
+        setName("ReporteGanancia"); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }

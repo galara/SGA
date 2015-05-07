@@ -495,13 +495,10 @@ public class Producto extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         codigo = new elaprendiz.gui.textField.TextField();
-        categoria = new elaprendiz.gui.comboBox.ComboBoxRectIcon();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         descripcion = new javax.swing.JTextArea();
-        unidad = new elaprendiz.gui.comboBox.ComboBoxRectIcon();
         jLabel13 = new javax.swing.JLabel();
-        marca = new elaprendiz.gui.comboBox.ComboBoxRectIcon();
         precioC = new javax.swing.JFormattedTextField();
         stockMin = new javax.swing.JFormattedTextField();
         stock = new javax.swing.JFormattedTextField();
@@ -514,6 +511,9 @@ public class Producto extends javax.swing.JInternalFrame {
         precioDist = new javax.swing.JFormattedTextField();
         precioEsp = new javax.swing.JFormattedTextField();
         jLabel16 = new javax.swing.JLabel();
+        categoria = new javax.swing.JComboBox();
+        unidad = new javax.swing.JComboBox();
+        marca = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tproductos = new javax.swing.JTable();
@@ -554,7 +554,6 @@ public class Producto extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
         panelImage1.setLayout(null);
@@ -678,7 +677,7 @@ public class Producto extends javax.swing.JInternalFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("Categoria:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(50, 50, 80, 20);
+        jLabel2.setBounds(50, 49, 80, 20);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -705,8 +704,8 @@ public class Producto extends javax.swing.JInternalFrame {
         nombre.setBounds(140, 20, 250, 21);
 
         dcFecha.setDate(Calendar.getInstance().getTime());
-        dcFecha.setDateFormatString("dd/MM/yyyy");
-        dcFecha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        dcFecha.setDateFormatString("dd/MM/yy");
+        dcFecha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         dcFecha.setMaxSelectableDate(new java.util.Date(3093496470100000L));
         dcFecha.setMinSelectableDate(new java.util.Date(-62135744300000L));
         dcFecha.setPreferredSize(new java.awt.Dimension(120, 22));
@@ -741,7 +740,7 @@ public class Producto extends javax.swing.JInternalFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel11.setText("Código:");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(30, 140, 100, 20);
+        jLabel11.setBounds(30, 141, 100, 20);
 
         codigo.setEditable(false);
         codigo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -752,11 +751,7 @@ public class Producto extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(codigo);
-        codigo.setBounds(140, 140, 250, 21);
-
-        categoria.setPreferredSize(new java.awt.Dimension(420, 22));
-        jPanel1.add(categoria);
-        categoria.setBounds(140, 50, 250, 22);
+        codigo.setBounds(140, 141, 250, 21);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -765,26 +760,20 @@ public class Producto extends javax.swing.JInternalFrame {
         jLabel12.setBounds(20, 80, 110, 20);
 
         descripcion.setColumns(20);
-        descripcion.setRows(5);
+        descripcion.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        descripcion.setLineWrap(true);
+        descripcion.setWrapStyleWord(true);
         descripcion.setAutoscrolls(false);
         jScrollPane2.setViewportView(descripcion);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(140, 170, 690, 30);
-
-        unidad.setPreferredSize(new java.awt.Dimension(420, 22));
-        jPanel1.add(unidad);
-        unidad.setBounds(140, 80, 250, 22);
+        jScrollPane2.setBounds(140, 170, 730, 36);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel13.setText("Marca:");
         jPanel1.add(jLabel13);
         jLabel13.setBounds(60, 110, 70, 17);
-
-        marca.setPreferredSize(new java.awt.Dimension(420, 22));
-        jPanel1.add(marca);
-        marca.setBounds(140, 110, 250, 22);
 
         precioC.setEditable(false);
         precioC.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new FormatoDecimal("#####0.00",true))));
@@ -814,7 +803,7 @@ public class Producto extends javax.swing.JInternalFrame {
         jPanel1.add(stock);
         stock.setBounds(510, 80, 110, 23);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precios de Venta", 0, 0, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Precios de Venta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel2.setOpaque(false);
         jPanel2.setLayout(null);
 
@@ -880,6 +869,18 @@ public class Producto extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(640, 5, 230, 160);
+
+        categoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(categoria);
+        categoria.setBounds(140, 49, 250, 25);
+
+        unidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(unidad);
+        unidad.setBounds(140, 80, 250, 25);
+
+        marca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(marca);
+        marca.setBounds(140, 110, 250, 25);
 
         panelImage1.add(jPanel1);
         jPanel1.setBounds(0, 40, 880, 211);
@@ -1397,7 +1398,7 @@ public class Producto extends javax.swing.JInternalFrame {
     private elaprendiz.gui.button.ButtonRect bntNuevo;
     private elaprendiz.gui.button.ButtonRect bntSalir;
     private elaprendiz.gui.button.ButtonRect buttonMostrar;
-    private elaprendiz.gui.comboBox.ComboBoxRectIcon categoria;
+    private javax.swing.JComboBox categoria;
     private elaprendiz.gui.textField.TextField codigo;
     private com.toedter.calendar.JDateChooser dcFecha;
     private javax.swing.JTextArea descripcion;
@@ -1424,7 +1425,7 @@ public class Producto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private elaprendiz.gui.comboBox.ComboBoxRectIcon marca;
+    private javax.swing.JComboBox marca;
     private elaprendiz.gui.textField.TextField nombre;
     private elaprendiz.gui.panel.PanelImage panelImage1;
     private javax.swing.JPanel pnlActionButtons;
@@ -1443,6 +1444,6 @@ public class Producto extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField stockMin;
     private javax.swing.JTable tproductos;
     private elaprendiz.gui.textField.TextField txtDato;
-    private elaprendiz.gui.comboBox.ComboBoxRectIcon unidad;
+    private javax.swing.JComboBox unidad;
     // End of variables declaration//GEN-END:variables
 }

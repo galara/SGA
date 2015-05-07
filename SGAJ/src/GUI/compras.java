@@ -546,7 +546,7 @@ public class compras extends javax.swing.JInternalFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 204, 0));
         jButton3.setText("Agregar");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -564,7 +564,7 @@ public class compras extends javax.swing.JInternalFrame {
 
         jButton10.setBackground(new java.awt.Color(255, 204, 0));
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/productos.png"))); // NOI18N
-        jButton10.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+        jButton10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -791,7 +791,7 @@ public class compras extends javax.swing.JInternalFrame {
             codigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             codigo.setEnabled(false);
             codigo.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-            codigo.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+            codigo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
             codigo.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     codigoActionPerformed(evt);
@@ -810,7 +810,7 @@ public class compras extends javax.swing.JInternalFrame {
             nombreproducto.setEditable(false);
             nombreproducto.setEditable(false);
             nombreproducto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-            nombreproducto.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+            nombreproducto.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
             jcMousePanel6.add(nombreproducto);
             nombreproducto.setBounds(115, 80, 420, 25);
 
@@ -868,7 +868,7 @@ public class compras extends javax.swing.JInternalFrame {
             preciocompra.setEditable(false);
             preciocompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             preciocompra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-            preciocompra.setBorder(javax.swing.BorderFactory.createBevelBorder(0));
+            preciocompra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
             jcMousePanel6.add(preciocompra);
             preciocompra.setBounds(410, 115, 125, 25);
 
@@ -882,7 +882,7 @@ public class compras extends javax.swing.JInternalFrame {
             jcMousePanel6.add(bntSalir);
             bntSalir.setBounds(320, 45, 15, 25);
 
-            fechaactual.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+            fechaactual.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
             fechaactual.setName(""); // NOI18N
             jcMousePanel6.add(fechaactual);
             fechaactual.setBounds(520, 10, 200, 25);
@@ -1021,6 +1021,7 @@ public class compras extends javax.swing.JInternalFrame {
                 });
                 tabladetallecompra.setComponentPopupMenu(PopupMenudetallecompra);
                 tabladetallecompra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+                tabladetallecompra.setGridColor(new java.awt.Color(51, 51, 255));
                 tabladetallecompra.setName(""); // NOI18N
                 tabladetallecompra.setRowHeight(24);
                 jScrollPanedetallecompra.setViewportView(tabladetallecompra);

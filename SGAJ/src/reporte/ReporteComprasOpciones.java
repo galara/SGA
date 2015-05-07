@@ -39,7 +39,7 @@ public class ReporteComprasOpciones extends javax.swing.JInternalFrame {
         buttonGenerarReporte = new elaprendiz.gui.button.ButtonAction();
 
         setClosable(true);
-        setName("CreditosVencidos2"); // NOI18N
+        setName("ReporteComprasOpciones"); // NOI18N
 
         jcMousePanel1.setColor1(new java.awt.Color(204, 204, 204));
         jcMousePanel1.setColor2(new java.awt.Color(0, 153, 153));
@@ -49,7 +49,7 @@ public class ReporteComprasOpciones extends javax.swing.JInternalFrame {
         jcMousePanel1.setOpaque(false);
 
         jLabel1.setBackground(new java.awt.Color(57, 104, 163));
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 35)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 2, 34)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Compras al Crédito");
@@ -106,7 +106,7 @@ public class ReporteComprasOpciones extends javax.swing.JInternalFrame {
                 .addComponent(todosvencidosdetalle)
                 .addGap(18, 18, 18)
                 .addComponent(buttonGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

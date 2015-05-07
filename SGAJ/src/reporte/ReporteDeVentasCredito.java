@@ -95,10 +95,8 @@ public class ReporteDeVentasCredito extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Reporte de Salidas");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setName("ReporteSalidas"); // NOI18N
+        setName("ReporteDeVentasCredito"); // NOI18N
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -111,6 +109,8 @@ public class ReporteDeVentasCredito extends javax.swing.JInternalFrame {
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -220,7 +220,7 @@ public class ReporteDeVentasCredito extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Script MT Bold", 1, 30)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ventasp.png"))); // NOI18N
-        jLabel8.setText("<--Reporte de Compras-->");
+        jLabel8.setText("<--Reporte de Ventas-->");
         pnlPaginador.add(jLabel8, new java.awt.GridBagConstraints());
 
         panelImage.add(pnlPaginador);
