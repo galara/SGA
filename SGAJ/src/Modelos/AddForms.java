@@ -39,7 +39,8 @@ public class AddForms {
                             cm1.setIcon(false);
                             cm1.toFront();
                         } catch (PropertyVetoException ex) {
-                            Logger.getLogger(AddForms.class.getName()).log(Level.SEVERE, null, ex);
+                            JOptionPane.showMessageDialog(null, ex.getMessage());
+                            //Logger.getLogger(AddForms.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
                     }
@@ -67,6 +68,7 @@ public class AddForms {
                     vnt.toFront();
                 } catch (IllegalArgumentException ex) {
                     dp.add(vnt, JLayeredPane.DEFAULT_LAYER);
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
             }
         }
