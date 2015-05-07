@@ -5,6 +5,7 @@
 package GUI;
 
 //import BD.LeePropiedades;
+//import eliminar.ventacredito;
 import BD.BdConexion;
 import Modelos.AccesoUsuario;
 import Modelos.AddForms;
@@ -468,14 +469,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m14ActionPerformed
         // TODO add your handling code here:
-        new stock2().setVisible(true);
+        String nombrereporte = "Inventario2.jasper";
+        GeneraReportes.AbrirReporte(nombrereporte, null);
+        //new stock2().setVisible(true);
     }//GEN-LAST:event_m14ActionPerformed
 
     private void m17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m17ActionPerformed
         // TODO add your handling code here:
-        Rentrada newfrm = new Rentrada();
+        ReporteDeCompras newfrm = new ReporteDeCompras();
         if (newfrm == null) {
-            newfrm = new Rentrada();
+            newfrm = new ReporteDeCompras();
         }
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m17ActionPerformed
@@ -588,9 +591,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m10ActionPerformed
         // TODO add your handling code here:
-        Rsalida newfrm = new Rsalida();
+        ReporteDeVentas newfrm = new ReporteDeVentas();
         if (newfrm == null) {
-            newfrm = new Rsalida();
+            newfrm = new ReporteDeVentas();
         }
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m10ActionPerformed
@@ -615,7 +618,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m15ActionPerformed
         // TODO add your handling code here:
-        new exist().setVisible(true);
+        String nombrereporte = "Inventario3.jasper";
+        GeneraReportes.AbrirReporte(nombrereporte, null);
+        //new exist().setVisible(true);
     }//GEN-LAST:event_m15ActionPerformed
 
     private void m2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m2ActionPerformed
@@ -683,50 +688,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void m13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m13ActionPerformed
         // TODO add your handling code here:
-        GananciaVenta newfrm = new GananciaVenta();
+        ReporteGanancia newfrm = new ReporteGanancia();
         if (newfrm == null) {
-            newfrm = new GananciaVenta();
+            newfrm = new ReporteGanancia();
         }
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m13ActionPerformed
 
     private void m16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m16ActionPerformed
         // TODO add your handling code here:
-        new pedidos().setVisible(true);
+        //new pedidos().setVisible(true);
+        String nombrereporte = "Pedido.jasper";
+        GeneraReportes.AbrirReporte(nombrereporte, null);
     }//GEN-LAST:event_m16ActionPerformed
 
     private void m12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m12ActionPerformed
         // TODO add your handling code here:
-        ventacredito newfrm = new ventacredito();
+        ReporteDeVentasCredito newfrm = new ReporteDeVentasCredito();
         if (newfrm == null) {
-            newfrm = new ventacredito();
+            newfrm = new ReporteDeVentasCredito();
         }
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m12ActionPerformed
 
     private void m11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m11ActionPerformed
         // TODO add your handling code here:
-        ventacontado newfrm = new ventacontado();
+        ReporteDeVentasContado newfrm = new ReporteDeVentasContado();
         if (newfrm == null) {
-            newfrm = new ventacontado();
+            newfrm = new ReporteDeVentasContado();
         }
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m11ActionPerformed
 
     private void m20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m20ActionPerformed
         // TODO add your handling code here:
-        CreditosVencidos2 newfrm = new CreditosVencidos2();
+        ReporteVentasOpciones newfrm = new ReporteVentasOpciones();
         if (newfrm == null) {
-            newfrm = new CreditosVencidos2();
+            newfrm = new ReporteVentasOpciones();
         }
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m20ActionPerformed
 
     private void m21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m21ActionPerformed
         // TODO add your handling code here:
-        comprasvencidas2 newfrm = new comprasvencidas2();
+        ReporteComprasOpciones newfrm = new ReporteComprasOpciones();
         if (newfrm == null) {
-            newfrm = new comprasvencidas2();
+            newfrm = new ReporteComprasOpciones();
         }
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m21ActionPerformed

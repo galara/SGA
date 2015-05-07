@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPORTE DE INGRESOS A  BODEGA" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="764" leftMargin="14" rightMargin="14" topMargin="20" bottomMargin="20" uuid="8ceac3de-ab50-4dcf-b2b6-aeec95e5e913">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="54"/>
+	<property name="ireport.x" value="11"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fecha1" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -124,14 +124,14 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(new SimpleDateFormat("yyyy-MM-dd")).parse($P{fecha1})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("yyyy/MM/dd")).parse($P{fecha1})]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement uuid="03aa6b4b-9bcd-45ca-805e-8c458868d520" x="679" y="42" width="71" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(new SimpleDateFormat("yyyy-MM-dd")).parse($P{fecha2})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("yyyy/MM/dd")).parse($P{fecha2})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement uuid="dfcc902d-a524-4350-8f54-c465c0f159a2" x="605" y="23" width="73" height="20"/>

@@ -4,8 +4,6 @@
  */
 package reporte;
 
-import static GUI.MenuPrincipal.panel_center;
-import Modelos.AddForms;
 import Modelos.FormatoFecha;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -16,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author Glara
  */
-public class CreditosVencidos2 extends javax.swing.JInternalFrame {
+public class ReporteVentasOpciones extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form reporteventa
      */
-    public CreditosVencidos2() {
+    public ReporteVentasOpciones() {
         initComponents();
     }
 
@@ -36,10 +34,10 @@ public class CreditosVencidos2 extends javax.swing.JInternalFrame {
 
         jcMousePanel1 = new jcMousePanel.jcMousePanel();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        buttonAction1 = new elaprendiz.gui.button.ButtonAction();
+        vencidosdetalle = new javax.swing.JRadioButton();
+        todosvencidosdetalle = new javax.swing.JRadioButton();
+        vencidosconsolidado = new javax.swing.JRadioButton();
+        buttonGenerarReporte = new elaprendiz.gui.button.ButtonAction();
 
         setClosable(true);
         setName("CreditosVencidos2"); // NOI18N
@@ -58,38 +56,38 @@ public class CreditosVencidos2 extends javax.swing.JInternalFrame {
         jLabel1.setText("Ventas al Crédito");
         jLabel1.setOpaque(true);
 
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton1.setText("Creditos Vencidos por Detalle");
-        jRadioButton1.setOpaque(false);
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        vencidosdetalle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        vencidosdetalle.setText("Creditos Vencidos por Detalle");
+        vencidosdetalle.setOpaque(false);
+        vencidosdetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                vencidosdetalleActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton2.setText("Todos los creditos por Detalle ");
-        jRadioButton2.setOpaque(false);
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        todosvencidosdetalle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        todosvencidosdetalle.setText("Todos los creditos por Detalle ");
+        todosvencidosdetalle.setOpaque(false);
+        todosvencidosdetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                todosvencidosdetalleActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("Creditos Vencidos Consolidado");
-        jRadioButton3.setOpaque(false);
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        vencidosconsolidado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        vencidosconsolidado.setSelected(true);
+        vencidosconsolidado.setText("Todos los Creditos Consolidado");
+        vencidosconsolidado.setOpaque(false);
+        vencidosconsolidado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                vencidosconsolidadoActionPerformed(evt);
             }
         });
 
-        buttonAction1.setText("Generar Reporte");
-        buttonAction1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        buttonAction1.setName("Pensum Principal"); // NOI18N
-        buttonAction1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGenerarReporte.setText("Generar Reporte");
+        buttonGenerarReporte.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        buttonGenerarReporte.setName("Pensum Principal"); // NOI18N
+        buttonGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
@@ -103,10 +101,10 @@ public class CreditosVencidos2 extends javax.swing.JInternalFrame {
             .addGroup(jcMousePanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jRadioButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonAction1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(vencidosconsolidado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(vencidosdetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(todosvencidosdetalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonGenerarReporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jcMousePanel1Layout.setVerticalGroup(
@@ -114,13 +112,13 @@ public class CreditosVencidos2 extends javax.swing.JInternalFrame {
             .addGroup(jcMousePanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(29, 29, 29)
-                .addComponent(jRadioButton3)
+                .addComponent(vencidosconsolidado)
                 .addGap(14, 14, 14)
-                .addComponent(jRadioButton1)
+                .addComponent(vencidosdetalle)
                 .addGap(14, 14, 14)
-                .addComponent(jRadioButton2)
+                .addComponent(todosvencidosdetalle)
                 .addGap(18, 18, 18)
-                .addComponent(buttonAction1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonGenerarReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -140,18 +138,18 @@ public class CreditosVencidos2 extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String nombrereporte = "";
-        if (jRadioButton1.isSelected() == true || jRadioButton2.isSelected() == true || jRadioButton3.isSelected() == true) {
-            if (jRadioButton1.isSelected() == true) {
+        if (vencidosdetalle.isSelected() == true || todosvencidosdetalle.isSelected() == true || vencidosconsolidado.isSelected() == true) {
+            if (vencidosdetalle.isSelected() == true) {
                 Calendar dcFech = Calendar.getInstance();
                 String fecha = FormatoFecha.getFormato(dcFech.getTime(), FormatoFecha.A_M_D);;
                 nombrereporte = "creditosvencidos.jasper";
                 Map parametro = new HashMap();
                 parametro.put("defecha", fecha);
                 GeneraReportes.AbrirReporte(nombrereporte, parametro);
-            } else if (jRadioButton2.isSelected() == true) {
+            } else if (todosvencidosdetalle.isSelected() == true) {
                 nombrereporte = "creditosvencidos2.jasper";
                 GeneraReportes.AbrirReporte(nombrereporte, null);
-            } else if (jRadioButton3.isSelected() == true) {
+            } else if (vencidosconsolidado.isSelected() == true) {
                 nombrereporte = "RepSaldoClientes.jasper";
                 GeneraReportes.AbrirReporte(nombrereporte, null);
             }
@@ -161,38 +159,38 @@ public class CreditosVencidos2 extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void vencidosdetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vencidosdetalleActionPerformed
         // TODO add your handling code here:
-        if (jRadioButton1.isSelected() == true) {
-            jRadioButton2.setSelected(false);
-            jRadioButton3.setSelected(false);
+        if (vencidosdetalle.isSelected() == true) {
+            todosvencidosdetalle.setSelected(false);
+            vencidosconsolidado.setSelected(false);
         }
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_vencidosdetalleActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void todosvencidosdetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_todosvencidosdetalleActionPerformed
         // TODO add your handling code here:
-        if (jRadioButton2.isSelected() == true) {
-            jRadioButton1.setSelected(false);
-            jRadioButton3.setSelected(false);
+        if (todosvencidosdetalle.isSelected() == true) {
+            vencidosdetalle.setSelected(false);
+            vencidosconsolidado.setSelected(false);
         } else {
         }
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_todosvencidosdetalleActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void vencidosconsolidadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vencidosconsolidadoActionPerformed
         // TODO add your handling code here:
-        if (jRadioButton3.isSelected() == true) {
-            jRadioButton1.setSelected(false);
-            jRadioButton2.setSelected(false);
+        if (vencidosconsolidado.isSelected() == true) {
+            vencidosdetalle.setSelected(false);
+            todosvencidosdetalle.setSelected(false);
         } else {
         }
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_vencidosconsolidadoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private elaprendiz.gui.button.ButtonAction buttonAction1;
+    private elaprendiz.gui.button.ButtonAction buttonGenerarReporte;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private jcMousePanel.jcMousePanel jcMousePanel1;
+    private javax.swing.JRadioButton todosvencidosdetalle;
+    private javax.swing.JRadioButton vencidosconsolidado;
+    private javax.swing.JRadioButton vencidosdetalle;
     // End of variables declaration//GEN-END:variables
 }

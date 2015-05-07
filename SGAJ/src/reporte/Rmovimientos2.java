@@ -35,7 +35,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
     public Rmovimientos2() {
         initComponents();
         addEscapeKey();
-        cargandor.setVisible(false);
+        //cargandor.setVisible(false);
         //activaBotones(true,false,false,false);
         String titulos[] = {"Id", "Factura", "Fecha", "Total", "Usuario"};
         dtm.setColumnIdentifiers(titulos);
@@ -82,7 +82,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
             return fecha;
         } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, "Verifique la fecha");
-            System.out.print(e.getMessage());
+            //System.out.print(e.getMessage());
         }
         return null;
 
@@ -99,7 +99,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
             return fecha;
         } catch (Exception e) {
             JOptionPane.showInternalMessageDialog(this, "Verifique la fecha");
-            System.out.print(e.getMessage());
+            //System.out.print(e.getMessage());
         }
         return null;
 
@@ -114,7 +114,6 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
         btnCerrar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        cargandor = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaDetalle = new javax.swing.JTable();
         btnGenerar = new javax.swing.JButton();
@@ -159,13 +158,6 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
         jLabel1.setText("Detalle de Ingreso seleccionado:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 20));
 
-        cargandor.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        cargandor.setForeground(new java.awt.Color(255, 255, 255));
-        cargandor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        cargandor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/cargando.gif"))); // NOI18N
-        cargandor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(cargandor, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
-
         TablaDetalle.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TablaDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -204,7 +196,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("Del:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, 28));
 
         fechaini.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fechaini.setName(""); // NOI18N
@@ -213,13 +205,13 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
                 btnVerActionPerformed(evt);
             }
         });
-        jPanel1.add(fechaini, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 200, -1));
+        jPanel1.add(fechaini, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 200, 28));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("Al:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 28));
 
         fechafin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fechafin.setName(""); // NOI18N
@@ -228,7 +220,7 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
                 btnVerActionPerformed(evt);
             }
         });
-        jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 200, -1));
+        jPanel1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 200, 28));
 
         TablaCliente.setAutoCreateRowSorter(true);
         TablaCliente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -320,40 +312,13 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
             if (TablaCliente.getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "No se ha seleccionado un registro");
             } else {
-                cargandor.setVisible(true);
-                try {
-                    String archivo = "compras_1.jasper";
-                    if (archivo == null) {
-                        System.out.println("No hay ARCHIVO " + archivo);
-                        System.exit(2);
-                    }
-                    JasperReport masterReport = null;
-                    try {
-                        masterReport = (JasperReport) JRLoader.loadObject(archivo);
-                    } catch (JRException e) {
-                        System.out.println("error cargado el reporte maestro " + e.getMessage());
-                        System.exit(3);
-                    }
-
-                    conn = BdConexion.getConexion();
-                    Map parametro = new HashMap();
-                    String id;
-                    id = (dtm.getValueAt(TablaCliente.getSelectedRow(), 0).toString());
-                    int y = Integer.parseInt(id);
-                    parametro.put("idsalida", y);
-                    System.out.print(y);
-                    JasperPrint impresor = JasperFillManager.fillReport(masterReport, parametro, conn);
-                    //JasperPrintManager.printReport(impresor, false);
-                    JasperViewer jviewer = new JasperViewer(impresor, false);
-                    jviewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
-                    jviewer.setTitle("Comprobante de Ingreso");
-                    jviewer.setVisible(true);
-
-                    cargandor.setVisible(false);
-                    //conn.close();
-                } catch (JRException ex) {
-                    Logger.getLogger(Rmovimientos2.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                String nombrereporte = "compras_1.jasper";
+                Map parametro = new HashMap();
+                String id;
+                id = (dtm.getValueAt(TablaCliente.getSelectedRow(), 0).toString());
+                int y = Integer.parseInt(id);
+                parametro.put("idsalida", y);
+                GeneraReportes.AbrirReporte(nombrereporte, parametro);
             }
         }
 
@@ -409,7 +374,6 @@ public class Rmovimientos2 extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnVer;
-    private javax.swing.JLabel cargandor;
     private org.freixas.jcalendar.JCalendarCombo fechafin;
     private org.freixas.jcalendar.JCalendarCombo fechaini;
     private javax.swing.JLabel jLabel1;

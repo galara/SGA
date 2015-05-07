@@ -7,12 +7,15 @@ package GUI;
 
 import BD.BdConexion;
 import BD.sqlprod;
+import Modelos.FormatoFecha;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JComponent;
@@ -22,7 +25,8 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import reporte.ESproducto;
+//import eliminar.ESproducto;
+import reporte.GeneraReportes;
 
 /**
  *
@@ -54,9 +58,14 @@ public class Busproducto extends javax.swing.JInternalFrame {
                     int p = tablaproductos.getSelectedRow();
 
                     reportefecha(Fincial.getDate(), Ffinal.getDate(), tablaproductos.getValueAt(p, 0).toString());
+                    String nombrereporte = "salidaproducto.jasper";
+                    Map parametros = new HashMap();
+                    parametros.put("fecha1", fechaR());
+                    parametros.put("fechaf", fechaRFin());
+                    parametros.put("id", id());
+                    //System.out.print(fechaR()+"\n"+fechaRFin()+"\n"+id()+"\n");
+                    GeneraReportes.AbrirReporte(nombrereporte, parametros);
 
-                    new ESproducto().setVisible(true);
-                    // JOptionPane.showMessageDialog(null,fecha);
                 }
             }
         });

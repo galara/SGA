@@ -62,7 +62,7 @@ public class imprimiendo extends javax.swing.JFrame {
                 abono = frmventas.montoabonado();
                 saldov = frmventas.saldoventa();
                 saldot = frmventas.saldototalc();
-            //
+                //
                 //JOptionPane.showMessageDialog(null, id);
                 Map parametro = new HashMap();
                 parametro.put("idsalida", Integer.parseInt(id));
@@ -78,7 +78,7 @@ public class imprimiendo extends javax.swing.JFrame {
                 jviewer.setVisible(true);
                 //conn.close();
                 dispose();
-            //new DistribucionRuano().setTerminar(1);
+                //new DistribucionRuano().setTerminar(1);
                 //new cargandoD().descargando();
                 //new DistribucionRuano().existenciatotal();
             } catch (Exception j) {
