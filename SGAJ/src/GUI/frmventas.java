@@ -22,6 +22,7 @@ import com.mysql.jdbc.Statement;
 import excepciones.FormatoDecimal;
 import java.applet.AudioClip;
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -35,8 +36,8 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.DefaultComboBoxModel;
@@ -45,6 +46,7 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import reporte.GeneraReportes;
 import reporte.imprimiendo;
 
 /**
@@ -142,8 +144,6 @@ public class frmventas extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent arg0) {
                 int key = arg0.getKeyCode();
                 if (key == java.awt.event.KeyEvent.VK_ENTER) {
-                    //float Actual, Resultado = 0,suma=0;
-
                     int p = busquedaproducto.getSelectedRow();
                     float C = 0;
                     DefaultTableModel temps = (DefaultTableModel) busquedaproducto.getModel();
@@ -154,7 +154,6 @@ public class frmventas extends javax.swing.JInternalFrame {
                     } else {
                         C = Float.parseFloat(Cant);
                         if (C <= Float.parseFloat(temps.getValueAt(p, 3).toString())) {
-                            //JOptionPane.showMessageDialog(null, "");
                             idproducto.setText("" + temps.getValueAt(p, 0));
                             cantidadP.setText(C + "");
                             existencia.setText("" + temps.getValueAt(p, 3));
@@ -208,7 +207,6 @@ public class frmventas extends javax.swing.JInternalFrame {
         value = new DefaultComboBoxModel();
         codigoproductos.setModel(value);
         try {
-            //conn = BdConexion.getConexion();
             conn = BdConexion.getConexion();
             Statement s = (Statement) conn.createStatement();
             ResultSet rs = s.executeQuery("select idproducto,codigo from producto");
@@ -217,28 +215,23 @@ public class frmventas extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 value.addElement(new codigoproductocombo(rs.getString("codigo"), "" + rs.getInt("idproducto")));
             }
-            ////conn.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ocurio un Error al cargar los datos\n" + ex.toString());
         }
     }
 
     public void seleccionnombreproducto() {
-        //System.out.print("ndadadadadada--" + codigoproductos.getSelectedIndex() + "\n");
         if (codigoproductos.getSelectedIndex() > 0) {
             try {
-                //conn = BdConexion.getConexion();
                 conn = BdConexion.getConexion();
                 Statement s = (Statement) conn.createStatement();
                 ResultSet rs = s.executeQuery("SELECT producto.nombre,unidad.Nombre FROM unidad INNER JOIN producto ON unidad.idunidad = producto.idunidad where codigo='" + codigoproductos.getSelectedItem() + "'");
 
                 while (rs.next()) {
-                    //value.addElement(new codigoproductocombo(rs.getString("codigo"), "" + rs.getInt("idproducto")));
                     nombreproducto.setText(rs.getString("producto.nombre"));
                     unidadproducto.setText(rs.getString("unidad.nombre"));
                 }
                 rs.close();
-                ////conn.close();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Ocurio un Error al cargar los datos\n" + ex.toString());
             }
@@ -1802,8 +1795,6 @@ public class frmventas extends javax.swing.JInternalFrame {
                 float cantP = 0, loteC = 0, C = 0, restalote = 0, restapro = 0, preV = 0, preC = 0;
 
                 float suma = 0, est = 0;
-                //String sqlfac = "", cancel = "C", sql3 = "", estado = "T", sql = "select producto.preciocompra,producto.idProducto,producto.Cantidad,producto.nombre,producto.precioventa,proveedor.nombre,proveedor.idproveedor from lote INNER JOIN producto ON  lote.producto_idProducto=producto.idproducto inner join proveedor on producto.proveedor_idproveedor=proveedor.idproveedor  where Codigo='" + busquedacompra.getText() + "'and lote.estado='" + estado + "' group by idproducto";
-                //String sqlfac = "", cancel = "C", sql3 = "", estado = "T", sql = "select producto.preciocompra,producto.idProducto,producto.Cantidad,producto.nombre,producto.precioventa,proveedor.nombre from lote INNER JOIN producto ON  lote.producto_idProducto=producto.idproducto where Codigo='" + busquedacompra.getText() + "'and lote.estado='" + estado + "' group by idproducto";
                 String precioventa = "";
                 if (comboprecio.getSelectedIndex() == 0) {
                     precioventa = "producto.precioventa";
@@ -1829,17 +1820,13 @@ public class frmventas extends javax.swing.JInternalFrame {
                 Calendar c1 = Calendar.getInstance();
 
                 fecha = "" + c1.get(calendarios.YEAR) + "-" + mes + "-" + fechas.getDate();// + " " + fechas.getHours() + ":" + fechas.getMinutes() + ":" + fechas.getSeconds();
-                //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-                //LeePropiedades.archivoRecurso = archivoRecurso;
-                //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
-                // Se crea un Statement, para realizar la consulta
                 conn = BdConexion.getConexion();
                 Statement s = (Statement) conn.createStatement();
-//s.executeUpdate("LOCK TABLES lote WRITE;");
+                //s.executeUpdate("LOCK TABLES lote WRITE;");
                 s.executeUpdate("LOCK TABLES producto WRITE, lote WRITE;");
                 ResultSet rs = s.executeQuery(sql);
 
-//s.executeUpdate("LOCK TABLES lote WRITE;");
+                //s.executeUpdate("LOCK TABLES lote WRITE;");
                 if (rs.next() == true) {
 
                     prod = rs.getString("producto.nombre");
@@ -1879,10 +1866,8 @@ public class frmventas extends javax.swing.JInternalFrame {
 
                 }
                 s.executeUpdate("UNLOCK TABLES;");
-                //conexion.close();
             } catch (Exception ex) {
-
-                Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
             }
 
         }
@@ -1912,10 +1897,6 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         try {
             if (Float.parseFloat(cantpago.getText().toString()) >= Float.parseFloat(TotalPagar.getText().toString())) {
-
-                //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-                //LeePropiedades.archivoRecurso = archivoRecurso;
-                //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
                 conn = BdConexion.getConexion();
                 // Se crea un Statement, para realizar la consulta
                 Statement s = (Statement) conn.createStatement();
@@ -1932,7 +1913,6 @@ public class frmventas extends javax.swing.JInternalFrame {
                 sqlfac = "UPDATE salida SET estado='" + sta + "',total='" + total + "',saldo='" + saldov + "' WHERE idsalida =" + idfac.getText();
                 s.executeUpdate(sqlfac);
 
-                //conexion.close();
                 resta = Float.parseFloat(cantpago.getText()) - Float.parseFloat(TotalPagar.getText());
                 Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
                 Dimension ventana = pago.getSize();
@@ -1941,13 +1921,26 @@ public class frmventas extends javax.swing.JInternalFrame {
 
                 JOptionPane.showMessageDialog(null, "<HTML><font color= blue size=+2></font> \n" + "<HTML><font color=blue size=+2> su cambio: " + resta + "</font> ");
 
-                limipiarventas();
+                int resp;
+                resp = JOptionPane.showOptionDialog(this, "¿Desea Inprimier el comprobante?", "Pregunta", JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, new Object[]{"No", "Si"}, "No");
+                if (resp == 1) {
+                    String nombrereporte = "reimpresionContado.jasper";
+                    Map parametro = new HashMap();
+                    parametro.put("idsalida", Integer.parseInt(idfac()));
+                    GeneraReportes.AbrirReporte(nombrereporte, parametro);
+                    limipiarventas();
+                }
+                if (resp == 0) {
+                    limipiarventas();
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Cantidad Menor a consumido");
             }
 
-        } catch (Exception ex) {
-            Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NumberFormatException | NullPointerException | SQLException | HeadlessException ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            //Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_cantpagoActionPerformed
 
@@ -2006,12 +1999,8 @@ public class frmventas extends javax.swing.JInternalFrame {
                 int mes2 = cal.get(Calendar.MONTH) + 1;
                 String fechacred = cal.get(Calendar.YEAR) + "-" + mes2 + "-" + cal.get(Calendar.DAY_OF_MONTH);// + " " + cal.getTime().getHours() + ":" + cal.getTime().getMinutes() + ":" + cal.getTime().getSeconds();
                 fechasalida = fechacred;
-                //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-                //LeePropiedades.archivoRecurso = archivoRecurso;
-
-                //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
                 conn = BdConexion.getConexion();
-// Se crea un Statement, para realizar la consulta
+                // Se crea un Statement, para realizar la consulta
                 Statement s = (Statement) conn.createStatement();
 
                 formadepago formadepago = (formadepago) formapago.getSelectedItem();
@@ -2022,15 +2011,12 @@ public class frmventas extends javax.swing.JInternalFrame {
                 sta = 'T';
                 saldov = (TotalPagar.getText());
                 total = (TotalPagar.getText());
-                System.out.print(total + "  total a pagar \n");
                 sqlfac = "UPDATE salida SET fechapago='" + fechacred + "',estado='" + sta + "',total='" + total + "',saldo='" + saldov + "' WHERE idsalida =" + idfac.getText();
                 s.executeUpdate(sqlfac);
 
-                //conexion.close();
                 diascredito.setVisible(false);
 
                 int resp;
-                //resp = JOptionPane.showInternalConfirmDialog(this, "¿Desea realizar un Abono?", "Pregunta", JOptionPane.NO_OPTION,JOptionPane.YES_OPTION  );
                 resp = JOptionPane.showOptionDialog(this, "¿Desea realizar un Abono?", "Pregunta", JOptionPane.YES_NO_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, new Object[]{"No", "Si"}, "No");
                 if (resp == 1) {
@@ -2059,7 +2045,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Error dias no puede ser menor a 1");
             }
         } catch (Exception ex) {
-            Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
     }//GEN-LAST:event_cantdiasActionPerformed
 
@@ -2098,15 +2084,8 @@ public class frmventas extends javax.swing.JInternalFrame {
                     if (comboprecio.getSelectedIndex() == 3) {
                         precioventa = "producto.precioespecial";
                     }
-//                    float numetero;
-//                    numetero=Float.parseFloat(cantidadP.getText().toString());
-//                    
-
-                    //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-                    //LeePropiedades.archivoRecurso = archivoRecurso;
-                    //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
                     conn = BdConexion.getConexion();
-// Se crea un Statement, para realizar la consulta
+                    // Se crea un Statement, para realizar la consulta
                     Statement s = (Statement) conn.createStatement();
                     C2 = Float.parseFloat(cantidadP.getText().toString());
 
@@ -2163,8 +2142,6 @@ public class frmventas extends javax.swing.JInternalFrame {
                                         preV = (float) (Math.round(preV * 100.0) / 100.0);
                                     }
 
-                                    //                   precios.setText(preV);
-                                    // JOptionPane.showMessageDialog(null,C+" . "+cantP+" . "+idPrv);
                                     if (cantP >= C) {
                                         if (tablaventas.getRowCount() == 0) {
 
@@ -2189,7 +2166,6 @@ public class frmventas extends javax.swing.JInternalFrame {
 
                                                 }
                                                 fechainicial.setEnabled(false);
-                                                //Login entrar = new Login();
 
                                                 sqlfac = "insert into salida" + "(fecha,fechapago,usuario_idusuario,tipopago_idtipopago,clientes_idClientes) values" + "('" + fecha + "','" + fechapago + "','" + AccesoUsuario.idusu() + "','" + idTP + "','" + idcliente.getText() + "')";
                                                 s.executeUpdate(sqlfac, Statement.RETURN_GENERATED_KEYS);
@@ -2211,7 +2187,6 @@ public class frmventas extends javax.swing.JInternalFrame {
                                             suma = C * preV;
                                             suma = (float) (Math.round(suma * 100.0) / 100.0);
                                             DefaultTableModel tempe = (DefaultTableModel) tablaventas.getModel();
-                                            //idproveedorfac.setText(""+temps.getValueAt(p, 8));
 
                                             restalote = loteC - C;
                                             if (restalote == 0) {
@@ -2262,7 +2237,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                                             suma = (loteC * preV);
                                             suma = (float) (Math.round(suma * 100.0) / 100.0);
                                             DefaultTableModel tempe = (DefaultTableModel) tablaventas.getModel();
-//idproveedorfac.setText(""+temps.getValueAt(p, 8));
+                                            //idproveedorfac.setText(""+temps.getValueAt(p, 8));
                                             String cancellote = "T";
                                             if (diff > 0) {
                                                 cancellote = "T";
@@ -2349,7 +2324,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                     }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Ocurrio un error en el Proceso " + ex);
-                    Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -2424,11 +2399,8 @@ public class frmventas extends javax.swing.JInternalFrame {
 
             }
             try {
-                //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-                //LeePropiedades.archivoRecurso = archivoRecurso;
-                //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
                 conn = BdConexion.getConexion();
-// Se crea un Statement, para realizar la consulta
+                // Se crea un Statement, para realizar la consulta
                 Statement s = (Statement) conn.createStatement();
                 s.executeUpdate(sql);
                 //conexion.close();
@@ -2440,10 +2412,8 @@ public class frmventas extends javax.swing.JInternalFrame {
 
             } catch (Exception ex) {
 
-                JOptionPane.showMessageDialog(this,
-                        "ERROR" + ex, "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Error : " + ex, "Error", JOptionPane.ERROR_MESSAGE);
+                //Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -2461,11 +2431,8 @@ public class frmventas extends javax.swing.JInternalFrame {
     private void busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaActionPerformed
         // TODO add your handling code here:
         try {
-            //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-            //LeePropiedades.archivoRecurso = archivoRecurso;
-            //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
             conn = BdConexion.getConexion();
-// Se crea un Statement, para realizar la consulta
+            // Se crea un Statement, para realizar la consulta
             Statement s = (Statement) conn.createStatement();
             float suma = 0, cantPrestamo = 0, cantidad = 0;
             MiModelo modelo = new MiModelo();
@@ -2491,12 +2458,10 @@ public class frmventas extends javax.swing.JInternalFrame {
                 precioventa = "producto.precioespecial";
             }
 
-            //String sql = "select producto.precioventa,producto.cantidad,producto.idProducto,producto.Codigo,producto.nombre,proveedor.nombre from producto INNER JOIN proveedor ON proveedor_idProveedor=idProveedor where nombre like '%" + busqueda.getText() + "%'and idproducto!='1'";
             String sql = "select " + precioventa + ",producto.cantidad,producto.idProducto,producto.Codigo,producto.nombre,producto.descripcion,unidad.nombre from producto INNER JOIN unidad on producto.idunidad=unidad.idunidad where producto.nombre like '%" + busqueda.getText() + "%' and producto.estado='T'";
             ResultSet rs = s.executeQuery(sql);
 
             while (rs.next()) {
-                //JOptionPane.showMessageDialog(null, ""+rs.getString("nombreusuario"));
                 Object[] fila = new Object[7]; // Hay tres columnas en la tabla
                 // Se rellena cada posición del array con una de las columnas de la tabla en base de datos.
                 fila[0] = rs.getInt("producto.idproducto");
@@ -2510,27 +2475,6 @@ public class frmventas extends javax.swing.JInternalFrame {
 
                 modelo.addRow(fila);
             }
-            //conexion.close();
-//            TableColumn desaparece = busquedaproducto.getColumnModel().getColumn(0);
-//            desaparece.setMaxWidth(50);
-//            desaparece.setMinWidth(50);
-//            desaparece.setPreferredWidth(50);
-//            busquedaproducto.doLayout();
-//            TableColumn desaparece1 = busquedaproducto.getColumnModel().getColumn(1);
-//            desaparece1.setMaxWidth(100);
-//            desaparece1.setMinWidth(1000);
-//            desaparece1.setPreferredWidth(100);
-//            busquedaproducto.doLayout();
-//            TableColumn desaparece2 = busquedaproducto.getColumnModel().getColumn(4);
-//            desaparece2.setMaxWidth(80);
-//            desaparece2.setMinWidth(80);
-//            desaparece2.setPreferredWidth(80);
-//            busquedaproducto.doLayout();
-//            TableColumn desaparece3 = busquedaproducto.getColumnModel().getColumn(3);
-//            desaparece3.setMaxWidth(80);
-//            desaparece3.setMinWidth(80);
-//            desaparece3.setPreferredWidth(80);
-//            busquedaproducto.doLayout();
             Utilidades.ajustarAnchoColumnas(busquedaproducto);
             TableColumn desaparece4 = busquedaproducto.getColumnModel().getColumn(5);
             desaparece4.setMaxWidth(0);
@@ -2539,8 +2483,7 @@ public class frmventas extends javax.swing.JInternalFrame {
             busquedaproducto.doLayout();
             //Utilidades.ajustarAnchoColumnas(busquedaproducto);
         } catch (Exception ex) {
-
-            Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
     }//GEN-LAST:event_busquedaActionPerformed
 
@@ -2551,11 +2494,8 @@ public class frmventas extends javax.swing.JInternalFrame {
     public void cancelararticulo() {
         try {
 
-            //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-            //LeePropiedades.archivoRecurso = archivoRecurso;
-            //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
             conn = BdConexion.getConexion();
-// Se crea un Statement, para realizar la consulta
+            // Se crea un Statement, para realizar la consulta
             Statement s = (Statement) conn.createStatement();
             int p = 0;
             int resp;
@@ -2606,21 +2546,16 @@ public class frmventas extends javax.swing.JInternalFrame {
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
-            //conexion.close();
-            //buscaventa();
         } catch (SQLException ex) {
-            Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
     }
 
     public void eliminaarticulo() {
         try {
 
-            //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-            //LeePropiedades.archivoRecurso = archivoRecurso;
-            //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
             conn = BdConexion.getConexion();
-// Se crea un Statement, para realizar la consulta
+            // Se crea un Statement, para realizar la consulta
             Statement s = (Statement) conn.createStatement();
             int p = -1;
             int resp;
@@ -2670,10 +2605,8 @@ public class frmventas extends javax.swing.JInternalFrame {
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
-            //conexion.close();
-            //buscaventa();
         } catch (SQLException ex) {
-            Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
 
     }
@@ -2692,7 +2625,7 @@ public class frmventas extends javax.swing.JInternalFrame {
     public void saldototal() {
         try {
             conn = BdConexion.getConexion();
-//conn = BdConexion.getConexion();
+            //conn = BdConexion.getConexion();
             String sqls = "select sum(saldo) from salida where clientes_idclientes='" + idcliente.getText() + "' and salida.estado='T'";
             Statement ss = (Statement) conn.createStatement();
             float nsaldototall = 0;
@@ -2813,10 +2746,8 @@ public class frmventas extends javax.swing.JInternalFrame {
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
-            //conexion.close();
-            //buscaventa();
         } catch (SQLException ex) {
-            Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
     }
     private void buscaclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaclienteActionPerformed
@@ -2831,11 +2762,8 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         String sql = "select idclientes,nombre,nit,direccion,telefono from clientes where nombre like '%" + buscacliente.getText() + "%' and estado='T'";
         try {
-            //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-            //LeePropiedades.archivoRecurso = archivoRecurso;
-            //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
             conn = BdConexion.getConexion();
-// Se crea un Statement, para realizar la consulta
+            // Se crea un Statement, para realizar la consulta
             Statement s = (Statement) conn.createStatement();
 
             ResultSet rs = s.executeQuery(sql);
@@ -2859,23 +2787,12 @@ public class frmventas extends javax.swing.JInternalFrame {
                 desaparece.setPreferredWidth(333);
                 busquedacliente.doLayout();
 
-//                TableColumn desaparece1 = busquedacliente.getColumnModel().getColumn(1);
-//                desaparece1.setMaxWidth(80);
-//                desaparece1.setMinWidth(80);
-//                desaparece1.setPreferredWidth(80);
-//                busquedacliente.doLayout();
-//                TableColumn desaparece2 = busquedacliente.getColumnModel().getColumn(4);
-//                desaparece2.setMaxWidth(80);
-//                desaparece2.setMinWidth(80);
-//                desaparece2.setPreferredWidth(80);
-//                busquedacliente.doLayout();
             } else {
 
             }
 
-            //conexion.close();
         } catch (SQLException ex) {
-            Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
 
     }//GEN-LAST:event_buscaclienteActionPerformed
@@ -2890,12 +2807,8 @@ public class frmventas extends javax.swing.JInternalFrame {
 
         if (Float.parseFloat(Cprecio.getText()) > Float.parseFloat(costo.getText())) {
             try {
-                //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-                //LeePropiedades.archivoRecurso = archivoRecurso;
-
-                //Connection conexion = (Connection) DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
                 conn = BdConexion.getConexion();
-// Se crea un Statement, para realizar la consulta
+                // Se crea un Statement, para realizar la consulta
                 Statement s = (Statement) conn.createStatement();
 
                 String sqlfac = "UPDATE detallesalida SET precio='" + Cprecio.getText() + "' WHERE iddetallesalida =" + iddcambio.getText();
@@ -2909,7 +2822,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 cuentaprecio();
                 precio.setVisible(false);
             } catch (SQLException ex) {
-                Logger.getLogger(frmventas.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
             }
 
         } else {
@@ -2952,9 +2865,6 @@ public class frmventas extends javax.swing.JInternalFrame {
             int años = fechainicial.getCalendar().get(Calendar.YEAR);
             int dias = fechainicial.getCalendar().get(Calendar.DAY_OF_MONTH);
             int mess = fechainicial.getCalendar().get(Calendar.MONTH) + 1;
-//            int hours = fechainicial.getCalendar().get(Calendar.HOUR_OF_DAY);
-//            int minutes = fechainicial.getCalendar().get(Calendar.MINUTE);
-//            int seconds = fechainicial.getCalendar().get(Calendar.SECOND);
 
             fecha = "" + años + "-" + mess + "-" + dias;// + " " + hours + ":" + minutes + ":" + seconds;
             return fecha;

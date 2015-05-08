@@ -65,7 +65,7 @@ public class imprimiendo extends javax.swing.JFrame {
                 parametro.put("saldov", saldov);
                 parametro.put("saldot", saldot);
 
-                System.out.println("" + id);
+                //System.out.println("" + id);
                 JasperPrint impresor = JasperFillManager.fillReport(masterReport, parametro, conn);
                 //JasperPrintManager.printReport(impresor, false);
                 JasperViewer jviewer = new JasperViewer(impresor, false);
