@@ -19,6 +19,9 @@
 	<parameter name="fechafin" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="idcliente" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      s.idsalida,
@@ -27,15 +30,14 @@
      s.total,
      s.fechapago,
      max(x.fecha) as fechacancelacion,
-     DATEDIFF(max(x.fecha),s.fechapago) AS Dias
+     DATEDIFF(s.fechapago,max(x.fecha)) AS Dias
  FROM
       xcobrarclientes AS x , salida AS s  , clientes AS c
 where s.idsalida = x.salida_idsalida and s.clientes_idclientes = c.idClientes
-and   s.fechapago < x.fecha
 and   s.estado='F'
 and   s.tipopago_idtipopago > 1
-and   s.fecha BETWEEN $P{fechaini} and $P{fechafin}
-GROUP BY c.nombre ,s.idsalida]]>
+and   s.fecha BETWEEN $P{fechaini} and $P{fechafin} and c.idclientes=$P{idcliente}
+GROUP BY s.idsalida]]>
 	</queryString>
 	<field name="idsalida" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -60,44 +62,44 @@ GROUP BY c.nombre ,s.idsalida]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="104" splitType="Stretch">
+		<band height="90" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="292" y="31" width="185" height="12"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="292" y="24" width="185" height="12"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Aldea Bracitos, Mazatenango Such]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="291" y="10" width="186" height="21"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="291" y="3" width="186" height="21"/>
 				<textElement textAlignment="Center">
 					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Agropecuaria Fatima]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="292" y="44" width="185" height="12"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="292" y="37" width="185" height="12"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tel: 51595111 - 46694124]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="292" y="55" width="185" height="12"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="292" y="48" width="185" height="12"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Email: agrofatimaguatemala@hotmail.com]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="0" y="67" width="750" height="16"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="0" y="60" width="750" height="16"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[CANTIDAD DE DIAS DE ATRASO EN PAGO DE CREDITOS]]></text>
 			</staticText>
 			<image>
-				<reportElement uuid="ce430acb-3ba7-4dce-82fa-51b11b9f480e" x="10" y="10" width="160" height="62"/>
+				<reportElement uuid="ce430acb-3ba7-4dce-82fa-51b11b9f480e" x="10" y="3" width="160" height="62"/>
 				<imageExpression><![CDATA["agrofatima.png"]]></imageExpression>
 			</image>
 		</band>
@@ -116,7 +118,7 @@ GROUP BY c.nombre ,s.idsalida]]>
 			<staticText>
 				<reportElement uuid="f72343f4-faed-45c1-b518-8c5d138eecfb" style="Column header" x="0" y="0" width="67" height="15" forecolor="#000000"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[IdSalida]]></text>
+				<text><![CDATA[No. Crédito]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="5c8cbcf6-cb06-41e4-bd4d-8d20dad1191f" style="Column header" x="67" y="0" width="210" height="15" forecolor="#000000"/>
@@ -135,8 +137,10 @@ GROUP BY c.nombre ,s.idsalida]]>
 			</staticText>
 			<staticText>
 				<reportElement uuid="c63a43f1-cc4b-463f-b899-8e2f0572ea3d" style="Column header" x="453" y="0" width="98" height="15" forecolor="#000000"/>
-				<textElement textAlignment="Center"/>
-				<text><![CDATA[Fecha max pago]]></text>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Fecha de pago]]></text>
 			</staticText>
 			<staticText>
 				<reportElement uuid="c27fe63e-e53f-4926-a29d-14b17bd93af4" style="Column header" x="551" y="0" width="119" height="15" forecolor="#000000"/>
@@ -161,7 +165,7 @@ GROUP BY c.nombre ,s.idsalida]]>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement uuid="57673692-f04b-48c6-955c-fa560b45c09b" style="Detail" x="67" y="0" width="210" height="12" forecolor="#000000"/>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
@@ -175,7 +179,7 @@ GROUP BY c.nombre ,s.idsalida]]>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0.00">
 				<reportElement uuid="a0933fd4-eac6-4a11-aab9-107de20126b7" style="Detail" x="365" y="0" width="88" height="12" forecolor="#000000"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
@@ -202,7 +206,7 @@ GROUP BY c.nombre ,s.idsalida]]>
 			</line>
 			<textField isStretchWithOverflow="true">
 				<reportElement uuid="ede912d4-66be-4ddb-aae3-0fd0ddbf1821" style="Detail" x="670" y="0" width="70" height="12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Dias}]]></textFieldExpression>
@@ -220,28 +224,33 @@ GROUP BY c.nombre ,s.idsalida]]>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="16" splitType="Stretch">
+		<band height="32" splitType="Stretch">
 			<textField evaluationTime="Report">
-				<reportElement uuid="40c91bc8-9ad5-43d8-b300-fabea4b0872d" style="Column header" x="725" y="1" width="40" height="15" forecolor="#736343"/>
+				<reportElement uuid="40c91bc8-9ad5-43d8-b300-fabea4b0872d" style="Column header" x="710" y="17" width="40" height="15" forecolor="#736343"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="c37124dd-fa53-4ceb-b1b4-f587c6f526e1" style="Column header" x="645" y="1" width="80" height="15" forecolor="#736343"/>
+				<reportElement uuid="c37124dd-fa53-4ceb-b1b4-f587c6f526e1" style="Column header" x="630" y="17" width="80" height="15" forecolor="#736343"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement uuid="cbed010f-0b46-4bea-a941-752820dfba52" style="Column header" x="22" y="1" width="197" height="15" forecolor="#736343"/>
+				<reportElement uuid="cbed010f-0b46-4bea-a941-752820dfba52" style="Column header" x="7" y="17" width="197" height="15" forecolor="#736343"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement uuid="94bc1471-e2d7-4164-bad4-83797b2f507e" x="10" y="3" width="620" height="14"/>
+				<textElement/>
+				<text><![CDATA[*Nota: Dias en negativo = Días de atraso en el pago ,  Dias positivos = Días anticipados de pago.]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>

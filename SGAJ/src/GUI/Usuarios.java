@@ -76,17 +76,16 @@ public class Usuarios extends javax.swing.JInternalFrame {
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escape, "ESCAPE");
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
     }
-    
-    private void cerrarVentana() {
-            int nu = JOptionPane.showConfirmDialog(this, "¿Desea Cerrar esta ventana?", "Cerrar ventana", JOptionPane.YES_NO_OPTION);
 
-            if (nu == JOptionPane.YES_OPTION || nu == 0) {
-                this.dispose();
+    private void cerrarVentana() {
+        int nu = JOptionPane.showConfirmDialog(this, "¿Desea Cerrar esta ventana?", "Cerrar ventana", JOptionPane.YES_NO_OPTION);
+
+        if (nu == JOptionPane.YES_OPTION || nu == 0) {
+            this.dispose();
+        } else {
         }
-        else {
-             }
     }
-    
+
     public void removejtable() {
         while (usuarios.getRowCount() != 0) {
             model.removeRow(0);
@@ -356,12 +355,13 @@ public class Usuarios extends javax.swing.JInternalFrame {
         corte = new javax.swing.JCheckBox();
         ccredito = new javax.swing.JCheckBox();
         pcredito = new javax.swing.JCheckBox();
+        corteusuario = new javax.swing.JCheckBox();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         pnlPaginador1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         buttonMostrar2 = new elaprendiz.gui.button.ButtonRect();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        corteusuario = new javax.swing.JCheckBox();
+        AtrasoPagos = new javax.swing.JCheckBox();
         panelImage1 = new elaprendiz.gui.panel.PanelImage();
         pnlActionButtons = new javax.swing.JPanel();
         bntNuevo = new elaprendiz.gui.button.ButtonRect();
@@ -620,6 +620,11 @@ public class Usuarios extends javax.swing.JInternalFrame {
             }
         });
 
+        corteusuario.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        corteusuario.setForeground(new java.awt.Color(255, 255, 255));
+        corteusuario.setText("Corte Usuario");
+        corteusuario.setOpaque(false);
+
         pnlPaginador1.setBackground(new java.awt.Color(0, 153, 204));
         pnlPaginador1.setPreferredSize(new java.awt.Dimension(786, 40));
         pnlPaginador1.setLayout(new java.awt.GridBagLayout());
@@ -637,10 +642,10 @@ public class Usuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        corteusuario.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        corteusuario.setForeground(new java.awt.Color(255, 255, 255));
-        corteusuario.setText("Corte Usuario");
-        corteusuario.setOpaque(false);
+        AtrasoPagos.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        AtrasoPagos.setForeground(new java.awt.Color(255, 255, 255));
+        AtrasoPagos.setText("Dias de atraso");
+        AtrasoPagos.setOpaque(false);
 
         javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
         jcMousePanel1.setLayout(jcMousePanel1Layout);
@@ -651,8 +656,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnlPaginador1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
                     .addComponent(nameusuario))
-                .addGap(395, 395, 395)
-                .addComponent(idusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(459, 459, 459))
             .addGroup(jcMousePanel1Layout.createSequentialGroup()
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -660,48 +664,55 @@ public class Usuarios extends javax.swing.JInternalFrame {
                             .addGap(149, 149, 149)
                             .addComponent(buttonMostrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                            .addGap(43, 43, 43)
-                            .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(crearusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(compras, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(medida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(productos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ventaR, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ventacontado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(67, 67, 67)
-                            .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(pcredito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(corte, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(reimpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Rcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pedidocompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(inventariolote, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Ganancia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ventacredito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ccredito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(corteusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGap(26, 26, 26)
+                            .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                                    .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(crearusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(compras, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(medida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(productos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ventaR, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ventacontado, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(AtrasoPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(67, 67, 67)
+                                    .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(pcredito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(corte, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(reimpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Rcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(pedidocompra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inventariolote, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Ganancia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ventacredito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ccredito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(corteusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(idusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jcMousePanel1Layout.setVerticalGroup(
             jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jcMousePanel1Layout.createSequentialGroup()
-                .addComponent(pnlPaginador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(idusuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameusuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                        .addComponent(pnlPaginador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(nameusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jcMousePanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(idusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jcMousePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jcMousePanel1Layout.createSequentialGroup()
                         .addComponent(crearusuario)
@@ -748,6 +759,8 @@ public class Usuarios extends javax.swing.JInternalFrame {
                     .addComponent(ventacontado)
                     .addComponent(corteusuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AtrasoPagos)
+                .addGap(9, 9, 9)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(buttonMostrar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -758,11 +771,13 @@ public class Usuarios extends javax.swing.JInternalFrame {
         perfi.getContentPane().setLayout(perfiLayout);
         perfiLayout.setHorizontalGroup(
             perfiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         perfiLayout.setVerticalGroup(
             perfiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jcMousePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(perfiLayout.createSequentialGroup()
+                .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setBackground(new java.awt.Color(0, 0, 0));
@@ -789,7 +804,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fondo/índice.jpg"))); // NOI18N
         panelImage1.setLayout(null);
@@ -1149,9 +1163,10 @@ public class Usuarios extends javax.swing.JInternalFrame {
                     }
 
                     PreparedStatement ps1 = conn.prepareStatement(sqlus.NUEVOPER);
-                    for (int i = 0; i <= 20; i++) {
+                    for (int i = 0; i <= 22; i++) {
                         ps1.setString(1, "" + i);
-                        ps1.setString(2, "" + id);
+                        ps1.setString(2, "F");
+                        ps1.setString(3, "" + id);
                         int n2 = ps1.executeUpdate();
                     }
 
@@ -1353,15 +1368,11 @@ public class Usuarios extends javax.swing.JInternalFrame {
     public void abrir() {
         try {
             sinchek();
-            //DriverManager.registerDriver(new org.gjt.mm.mysql.Driver());
-
             // Se obtiene una conexión con la base de datos. Hay que
             // cambiar el Login "root" y la clave "la_clave" por las
             // adecuadas a la base de datos que estemos usando.
-            //LeePropiedades.archivoRecurso = archivoRecurso;
-//System.out.print(LeePropiedades.leeID("url")+""+LeePropiedades.leeID("Login")); 
             //Connection conexion = DriverManager.getConnection(LeePropiedades.leeID("url"), LeePropiedades.leeID("usuario"), LeePropiedades.leeID("password"));
-               conn = BdConexion.getConexion();
+            conn = BdConexion.getConexion();
             // Se crea un Statement, para realizar la consulta
             com.mysql.jdbc.Statement s = (com.mysql.jdbc.Statement) conn.createStatement();
             int fila = usuarios.getSelectedRow();
@@ -1390,11 +1401,9 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 if (rs.getString("menu").equals("3") && rs.getString("estado").equals("T")) {
                     categoria.setSelected(true);
                 }
-
                 if (rs.getString("menu").equals("4") && rs.getString("estado").equals("T")) {
                     medida.setSelected(true);
                 }
-
                 if (rs.getString("menu").equals("5") && rs.getString("estado").equals("T")) {
                     marca.setSelected(true);
                 }
@@ -1410,7 +1419,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 if (rs.getString("menu").equals("9") && rs.getString("estado").equals("T")) {
                     ventaR.setSelected(true);
                 }
-
                 if (rs.getString("menu").equals("10") && rs.getString("estado").equals("T")) {
                     ventacontado.setSelected(true);
                 }
@@ -1447,7 +1455,9 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 if (rs.getString("menu").equals("21") && rs.getString("estado").equals("T")) {
                     corteusuario.setSelected(true);
                 }
-
+                if (rs.getString("menu").equals("22") && rs.getString("estado").equals("T")) {
+                    AtrasoPagos.setSelected(true);
+                }
             }
 
             // Se cierra la conexión con la base de datos.
@@ -1545,23 +1555,18 @@ public class Usuarios extends javax.swing.JInternalFrame {
         crearusuario.setSelected(false);
         ventas.setSelected(false);
         compras.setSelected(false);
-
         categoria.setSelected(false);
-
         medida.setSelected(false);
-
         marca.setSelected(false);
         proveedores.setSelected(false);
         productos.setSelected(false);
         Clientes.setSelected(false);
         ventaR.setSelected(false);
-
         ventacontado.setSelected(false);
         ventacredito.setSelected(false);
         Ganancia.setSelected(false);
         inventariolote.setSelected(false);
         inventario.setSelected(false);
-
         pedidocompra.setSelected(false);
         Rcompra.setSelected(false);
         reimpresion.setSelected(false);
@@ -1569,11 +1574,12 @@ public class Usuarios extends javax.swing.JInternalFrame {
         ccredito.setSelected(false);
         pcredito.setSelected(false);
         corteusuario.setSelected(false);
+        AtrasoPagos.setSelected(false);
+
     }
 
     public void llenado() {
-
-        String[] estados = new String[22];
+        String[] estados = new String[24];
         estados[0] = "F";
         estados[1] = "F";
         estados[2] = "F";
@@ -1596,7 +1602,8 @@ public class Usuarios extends javax.swing.JInternalFrame {
         estados[19] = "F";
         estados[20] = "F";
         estados[21] = "F";
-               
+        estados[22] = "F";
+
         if (crearusuario.isSelected() == true) {
             estados[0] = "T";
         }
@@ -1610,11 +1617,9 @@ public class Usuarios extends javax.swing.JInternalFrame {
         if (categoria.isSelected() == true) {
             estados[3] = "T";
         }
-
         if (medida.isSelected() == true) {
             estados[4] = "T";
         }
-
         if (marca.isSelected() == true) {
             estados[5] = "T";
         }
@@ -1630,7 +1635,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
         if (ventaR.isSelected() == true) {
             estados[9] = "T";
         }
-
         if (ventacontado.isSelected() == true) {
             estados[10] = "T";
         }
@@ -1667,16 +1671,19 @@ public class Usuarios extends javax.swing.JInternalFrame {
         if (corteusuario.isSelected() == true) {
             estados[21] = "T";
         }
+        if (AtrasoPagos.isSelected() == true) {
+            estados[22] = "T";
+        }
+
         try {
             conn = BdConexion.getConexion();
             int fila = usuarios.getSelectedRow();
             String dao = idusuario.getText();
-
             //PreparedStatement nos permite crear instrucciones SQL compiladas, que se ejecutan con más efi ciencia que los objetos Statement
             //también pueden especifi car parámetros,lo cual las hace más fl exibles que las instrucciones Statement
             PreparedStatement ps = conn.prepareCall(sqlus.UPDATPERFIL);
             int n = 0;
-            for (int i = 0; i < 22; i++) {
+            for (int i = 0; i <= 22; i++) {
 
                 ps.setString(1, estados[i]);
                 ps.setString(2, dao);
@@ -1685,7 +1692,6 @@ public class Usuarios extends javax.swing.JInternalFrame {
                 n = ps.executeUpdate();
             }
             if (n > 0) {
-
                 JOptionPane.showInternalMessageDialog(this, "Datos modificados correctamente");
                 abrir();
             }
@@ -1693,7 +1699,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         } catch (SQLException e) {
             JOptionPane.showInternalMessageDialog(this,
                     "Error al modificar \n Verifique los datos e intente nuevamente", "Error ", JOptionPane.ERROR_MESSAGE);
-            System.out.print(e.getMessage());
+            //System.out.print(e.getMessage());
         }
 
     }
@@ -1716,6 +1722,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox AtrasoPagos;
     private javax.swing.JCheckBox Clientes;
     private javax.swing.JCheckBox Ganancia;
     private javax.swing.JCheckBox Rcompra;

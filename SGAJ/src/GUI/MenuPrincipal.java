@@ -95,6 +95,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         m20 = new javax.swing.JMenuItem();
         m21 = new javax.swing.JMenuItem();
         m22 = new javax.swing.JMenuItem();
+        m23 = new javax.swing.JMenuItem();
         jMenu12 = new javax.swing.JMenu();
         acercade = new javax.swing.JMenuItem();
 
@@ -215,7 +216,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu6.setMnemonic('M');
         jMenu6.setText("Mantenimiento");
 
-        m4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, 0));
+        m4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         m4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/categoria.png"))); // NOI18N
         m4.setText("Categoria de Productos");
         m4.setEnabled(false);
@@ -226,7 +227,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(m4);
 
-        m5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, 0));
+        m5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         m5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/producto.png"))); // NOI18N
         m5.setText("Unidad de Medida de Productos");
         m5.setEnabled(false);
@@ -237,7 +238,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(m5);
 
-        m6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, 0));
+        m6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         m6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/newproducto.png"))); // NOI18N
         m6.setText("Marca de Producto");
         m6.setEnabled(false);
@@ -259,7 +260,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu6.add(m7);
 
-        m8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, 0));
+        m8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         m8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/productos.png"))); // NOI18N
         m8.setText("Productos");
         m8.setEnabled(false);
@@ -430,6 +431,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu11.add(m22);
 
+        m23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/inventario3.png"))); // NOI18N
+        m23.setText("Dias de atraso");
+        m23.setEnabled(false);
+        m23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m23ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(m23);
+
         jMenuBar1.add(jMenu11);
 
         jMenu12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ayuda.png"))); // NOI18N
@@ -491,6 +502,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m3ActionPerformed
+    
     public void activar() {
         try {
             conn = BdConexion.getConexion();
@@ -518,11 +530,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 if (rs.getString("menu").equals("4") && rs.getString("estado").equals("T")) {
                     m5.setEnabled(true);
                 }
-
                 if (rs.getString("menu").equals("5") && rs.getString("estado").equals("T")) {
                     m6.setEnabled(true);
                 }
-
                 if (rs.getString("menu").equals("6") && rs.getString("estado").equals("T")) {
                     m7.setEnabled(true);
                 }
@@ -532,11 +542,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 if (rs.getString("menu").equals("8") && rs.getString("estado").equals("T")) {
                     m9.setEnabled(true);
                 }
-
                 if (rs.getString("menu").equals("9") && rs.getString("estado").equals("T")) {
                     m10.setEnabled(true);
                 }
-
                 if (rs.getString("menu").equals("10") && rs.getString("estado").equals("T")) {
                     m11.setEnabled(true);
                 }
@@ -573,6 +581,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 if (rs.getString("menu").equals("21") && rs.getString("estado").equals("T")) {
                     m22.setEnabled(true);
                 }
+                if (rs.getString("menu").equals("22") && rs.getString("estado").equals("T")) {
+                    m23.setEnabled(true);
+                }
             }
             // Se cierra la conexión con la base de datos.
             //conexion.close();
@@ -580,6 +591,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
     private void acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercadeActionPerformed
         // TODO add your handling code here:
         acercade newfrm = new acercade();
@@ -761,6 +773,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         AddForms.adminInternalFrame(panel_center, newfrm);
     }//GEN-LAST:event_m22ActionPerformed
 
+    private void m23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m23ActionPerformed
+        // TODO add your handling code here:
+        ReporteDias_atraso newfrm = new ReporteDias_atraso();
+        if (newfrm == null) {
+            newfrm = new ReporteDias_atraso();
+        }
+        AddForms.adminInternalFrame(panel_center, newfrm);
+    }//GEN-LAST:event_m23ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -835,6 +856,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem m20;
     private javax.swing.JMenuItem m21;
     private javax.swing.JMenuItem m22;
+    private javax.swing.JMenuItem m23;
     private javax.swing.JMenuItem m3;
     private javax.swing.JMenuItem m4;
     private javax.swing.JMenuItem m5;

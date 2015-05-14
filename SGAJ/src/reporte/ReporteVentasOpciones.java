@@ -181,6 +181,7 @@ public class ReporteVentasOpciones extends javax.swing.JInternalFrame {
         if (vencidosconsolidado.isSelected() == true) {
             vencidosdetalle.setSelected(false);
             todosvencidosdetalle.setSelected(false);
+            
         } else {
         }
     }//GEN-LAST:event_vencidosconsolidadoActionPerformed

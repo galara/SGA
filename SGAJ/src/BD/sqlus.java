@@ -13,7 +13,7 @@ public class sqlus {
     public static final String BUSCANIT = "select * from usuario where nombreusuario=";
     public static final String BUSCANOMBRE = "select * from usuario where nombre like '%";
     public static final String NUEVOC = "insert into usuario (nombre,apellido,nombreusuario,contrasenia,puesto,fecha) values (?,?,?,?,?,?)";
-    public static final String NUEVOPER = "insert into perfilusu (menu,idusuario) values (?,?)";
+    public static final String NUEVOPER = "insert into perfilusu (menu,estado,idusuario) values (?,?,?)";
     
     public static final String DELETEC = "delete from usuario";
     public static final String UPDATEC = "update usuario set  nombre=?, apellido=?, nombreusuario=?, contrasenia=?,puesto=?,estado=?,fecha=? where idusuario=?";
