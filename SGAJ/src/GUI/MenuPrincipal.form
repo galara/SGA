@@ -122,7 +122,7 @@
                   <KeyStroke key="Ctrl+C"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/recursos/categoria.png"/>
+                  <Image iconType="3" name="/recursos/ventas2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Categoria de Productos"/>
                 <Property name="enabled" type="boolean" value="false"/>
@@ -420,7 +420,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/recursos/acercade2.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Acerca de"/>
+                <Property name="text" type="java.lang.String" value="Acerca del Sistema"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acercadeActionPerformed"/>

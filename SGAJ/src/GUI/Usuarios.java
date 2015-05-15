@@ -413,7 +413,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         crearusuario.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         crearusuario.setForeground(new java.awt.Color(255, 255, 255));
         crearusuario.setText("Crear usuario");
-        crearusuario.setOpaque(false);
+        crearusuario.setContentAreaFilled(false);
         crearusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crearusuarioActionPerformed(evt);
@@ -523,7 +523,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         ventacredito.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         ventacredito.setForeground(new java.awt.Color(255, 255, 255));
         ventacredito.setText("Ventas credito");
-        ventacredito.setOpaque(false);
+        ventacredito.setContentAreaFilled(false);
         ventacredito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ventacreditoActionPerformed(evt);
@@ -707,7 +707,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
                         .addComponent(pnlPaginador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(nameusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jcMousePanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -775,9 +775,7 @@ public class Usuarios extends javax.swing.JInternalFrame {
         );
         perfiLayout.setVerticalGroup(
             perfiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(perfiLayout.createSequentialGroup()
-                .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jcMousePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, Short.MAX_VALUE)
         );
 
         setBackground(new java.awt.Color(0, 0, 0));

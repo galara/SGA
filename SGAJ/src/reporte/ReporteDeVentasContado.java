@@ -217,10 +217,10 @@ public class ReporteDeVentasContado extends javax.swing.JInternalFrame {
         pnlPaginador.setPreferredSize(new java.awt.Dimension(786, 40));
         pnlPaginador.setLayout(new java.awt.GridBagLayout());
 
-        jLabel8.setFont(new java.awt.Font("Script MT Bold", 1, 30)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Script MT Bold", 1, 25)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ventasp.png"))); // NOI18N
-        jLabel8.setText("<--Reporte de Ventas-->");
+        jLabel8.setText("<--Reporte de Ventas Contado-->");
         pnlPaginador.add(jLabel8, new java.awt.GridBagConstraints());
 
         panelImage.add(pnlPaginador);

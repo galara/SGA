@@ -217,7 +217,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu6.setText("Mantenimiento");
 
         m4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        m4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/categoria.png"))); // NOI18N
+        m4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/ventas2.png"))); // NOI18N
         m4.setText("Categoria de Productos");
         m4.setEnabled(false);
         m4.addActionListener(new java.awt.event.ActionListener() {
@@ -447,7 +447,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu12.setText("Ayuda");
 
         acercade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/acercade2.png"))); // NOI18N
-        acercade.setText("Acerca de");
+        acercade.setText("Acerca del Sistema");
         acercade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 acercadeActionPerformed(evt);
