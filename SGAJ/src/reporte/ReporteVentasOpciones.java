@@ -40,6 +40,7 @@ public class ReporteVentasOpciones extends javax.swing.JInternalFrame {
         buttonGenerarReporte = new elaprendiz.gui.button.ButtonAction();
 
         setClosable(true);
+        setTitle("Reporte de Salidas al Crédito");
         setName("ReporteVentasOpciones"); // NOI18N
 
         jcMousePanel1.setColor1(new java.awt.Color(204, 204, 204));

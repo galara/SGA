@@ -58,7 +58,7 @@ public class AddForms {
                 Dimension ventana = vnt.getSize();
                 //para centrar la ventana lo hacemos con el siguiente calculo
 
-                vnt.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2 /*10*/);
+                vnt.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 5 /*10*/);
 
                 vnt.show();
                 dp.remove(vnt);

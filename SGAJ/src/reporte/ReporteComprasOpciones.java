@@ -39,6 +39,7 @@ public class ReporteComprasOpciones extends javax.swing.JInternalFrame {
         buttonGenerarReporte = new elaprendiz.gui.button.ButtonAction();
 
         setClosable(true);
+        setTitle("Compras");
         setName("ReporteComprasOpciones"); // NOI18N
 
         jcMousePanel1.setColor1(new java.awt.Color(204, 204, 204));

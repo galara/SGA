@@ -5,9 +5,14 @@
  */
 package GUI;
 
+import BD.BdConexion;
 import BackupMySQL.BackupDiario;
 import Modelos.AccesoUsuario;
+import Modelos.CreditosVencidos;
 import Modelos.FormatoFecha;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -19,6 +24,9 @@ public class Login1 extends javax.swing.JFrame {
 
     private boolean accesoConcedido = false;
     private JOptionPane op;
+    java.sql.Connection conn;//getConnection intentara establecer una conexión.
+    java.sql.Statement sent;
+
     /**
      * Creates new form Login
      */
@@ -55,22 +63,76 @@ public class Login1 extends javax.swing.JFrame {
 
                     MenuPrincipal j = new MenuPrincipal();
                     j.setVisible(true);
-
                     this.dispose();
                     //CalcularMoras.moras();//Si el usuario tiene acceso calcula moras si las hay
                     BackupDiario.GenerarBackupDiarioMySQL();
                     accesoConcedido = true;
+                    actualizarfecha();
                     return;
                 }
                 JOptionPane.showMessageDialog(this, msg, "Error: no se pudo conectar.", JOptionPane.ERROR_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Ingrese un nombre de usuario y su contraseña", "Error: Datos vacios.", JOptionPane.ERROR_MESSAGE);
             }
-
         } else {
             JOptionPane.showMessageDialog(this, "Verifique la fecha de la PC no Conicide con la fecha Actual");
             return;
         }
+    }
+
+    public void actualizarfecha() {
+        try {
+            Calendar dcFech = Calendar.getInstance();
+            String fecha;
+            int años = dcFech.get(Calendar.YEAR);
+            int dias = dcFech.get(Calendar.DAY_OF_MONTH);
+            int mess = dcFech.get(Calendar.MONTH) + 1;
+            fecha = "" + años + "-" + mess + "-" + dias;
+
+            if (existefecaha(fecha) == false) {
+                conn = BdConexion.getConexion();
+                String abono = "update fechaint set  fecha=? where id=?";
+                PreparedStatement ps2 = conn.prepareStatement(abono);
+                ps2.setString(1, fecha);
+                ps2.setInt(2, 1);
+                int n2 = ps2.executeUpdate();
+
+                if (n2 > 0) {
+                    CreditosVencidos c = new CreditosVencidos();
+                    c.vencidos();
+                }
+                System.out.print("Se Calcularon Intereses");
+            } else {
+                System.out.print("No se calcularon Intereses");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error :" + ex);
+            //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private boolean existefecaha(String Dato) {
+        try {
+            //int fila = tablacomprasporpagar.getSelectedRow();
+            //String Dato = (String) tablacomprasporpagar.getValueAt(fila, 1).toString();
+            conn = BdConexion.getConexion();
+            String sql = "select fecha from fechaint where fechaint.fecha='" + Dato + "'";
+            sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
+            ResultSet rs = sent.executeQuery(sql);// especifica la consulta y la ejecuta
+
+            if (rs.next()) {//verifica si esta vacio, pero desplaza el puntero al siguiente elemento
+                rs.beforeFirst();//regresa el puntero al primer registro
+                //conn.close();
+                return true;
+            } else {
+                //conn.close();
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrio un error al cargar los datos" + e);
+            //System.out.print(e.getMessage());
+        }
+        return false;
     }
 
     public boolean isAccesoConcedido() {
