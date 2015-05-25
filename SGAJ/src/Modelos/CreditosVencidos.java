@@ -143,7 +143,7 @@ public class CreditosVencidos {
                     calcularinteres(fila);
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "No se encontraron datos ");
+                JOptionPane.showMessageDialog(null, "No se encontraron Intereses");
             }
             JOptionPane.showMessageDialog(null, "Se han calculado intereses");
         } catch (SQLException e) {
