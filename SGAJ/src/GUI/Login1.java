@@ -101,9 +101,10 @@ public class Login1 extends javax.swing.JFrame {
                     CreditosVencidos c = new CreditosVencidos();
                     c.vencidos();
                 }
-                System.out.print("Se Calcularon Intereses");
+                JOptionPane.showMessageDialog(null, "Se Calcularon Intereses");
+                //System.out.print("Se Calcularon Intereses");
             } else {
-                System.out.print("No se calcularon Intereses");
+                //System.out.print("No se calcularon Intereses");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error :" + ex);
