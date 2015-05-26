@@ -100,7 +100,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         acercade = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Sistema de Gestion de Almacenes");
+        setTitle("Sistema AGROFATIMA");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);

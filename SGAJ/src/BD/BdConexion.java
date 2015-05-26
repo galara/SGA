@@ -18,7 +18,7 @@ public class BdConexion {
     private static ResultSet rs = null;
     private static Statement st = null;
     private static PreparedStatement ps = null;
-    private static String host = "localhost";
+    private static String host = "192.168.0.10:3306";
     public static String dataBase = "agrofatima"; //nombre base de datos
     public static String user = "agropecuaria"; // usuario de la base de datos
     public static String pass = "rdwLWVx9cWcyyPFe"; // contraseña de la base de datos
