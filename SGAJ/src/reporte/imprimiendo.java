@@ -27,58 +27,60 @@ public class imprimiendo extends javax.swing.JFrame {
         String id;
 
         //private Connection conn;
-        java.sql.Connection conn;//getConnection intentara establecer una conexión.
+        //java.sql.Connection conn;//getConnection intentara establecer una conexión.
         //private String archivoRecurso="controlador-bd";
         private boolean terminar = false;
 
         public void run() {
             id = frmventas.idfac();
-            conn = BdConexion.getConexion();
-            try {
+            //conn = BdConexion.getConexion();
+            //try {
 
-                String archivo = "credito.jasper";
-                System.out.println(".... " + archivo);
-                //System.out.println("caragdo desdesss "+archivo);
-                if (archivo == null) {
+            String archivo = "credito.jasper";
+                //System.out.println(".... " + archivo);
+            //System.out.println("caragdo desdesss "+archivo);
+//                if (archivo == null) {
+//
+//                    System.out.println("no hAT ARCHIVO " + archivo);
+//                    System.exit(2);
+//                }
+            //JasperReport masterReport = null;
+            //try {
+            //masterReport= (JasperReport) JRLoader.loadObject(matricula);
+            //    masterReport = (JasperReport) JRLoader.loadObject(archivo);
 
-                    System.out.println("no hAT ARCHIVO " + archivo);
-                    System.exit(2);
-                }
-                JasperReport masterReport = null;
-                try {
-                    //masterReport= (JasperReport) JRLoader.loadObject(matricula);
-                    masterReport = (JasperReport) JRLoader.loadObject(archivo);
-
-                } catch (JRException e) {
-                    System.out.println("error cargado el reporte maestro " + e.getMessage());
-                    System.exit(3);
-                }
-                float abono, saldov, saldot;
-                abono = frmventas.montoabonado();
-                saldov = frmventas.saldoventa();
-                saldot = frmventas.saldototalc();
+                //} catch (JRException e) {
+            //    System.out.println("error cargado el reporte maestro " + e.getMessage());
+            //    System.exit(3);
+            // }
+            float abono, saldov, saldot;
+            abono = frmventas.montoabonado();
+            saldov = frmventas.saldoventa();
+            saldot = frmventas.saldototalc();
                 //
-                //JOptionPane.showMessageDialog(null, id);
-                Map parametro = new HashMap();
-                parametro.put("idsalida", Integer.parseInt(id));
-                parametro.put("abono", abono);
-                parametro.put("saldov", saldov);
-                parametro.put("saldot", saldot);
+            //JOptionPane.showMessageDialog(null, id);
+            Map parametro = new HashMap();
+            parametro.put("idsalida", Integer.parseInt(id));
+            parametro.put("abono", abono);
+            parametro.put("saldov", saldov);
+            parametro.put("saldot", saldot);
+
+            GeneraReportes.AbrirReporte(archivo, parametro);
 
                 //System.out.println("" + id);
-                JasperPrint impresor = JasperFillManager.fillReport(masterReport, parametro, conn);
-                //JasperPrintManager.printReport(impresor, false);
-                JasperViewer jviewer = new JasperViewer(impresor, false);
-                jviewer.setTitle("Comprovante de Salida");
-                jviewer.setVisible(true);
-                //conn.close();
-                dispose();
+//                JasperPrint impresor = JasperFillManager.fillReport(masterReport, parametro, conn);
+            //JasperPrintManager.printReport(impresor, false);
+//                JasperViewer jviewer = new JasperViewer(impresor, false);
+//                jviewer.setTitle("Comprovante de Salida");
+//                jviewer.setVisible(true);
+            //conn.close();
+            dispose();
                 //new DistribucionRuano().setTerminar(1);
-                //new cargandoD().descargando();
-                //new DistribucionRuano().existenciatotal();
-            } catch (Exception j) {
-                System.out.println("Mensajer de error " + j.getMessage());
-            }
+            //new cargandoD().descargando();
+            //new DistribucionRuano().existenciatotal();
+            // } catch (Exception j) {
+            //    System.out.println("Mensajer de error " + j.getMessage());
+            // }
 
             //System.out.println ("Esto se ejecuta en otro hilo");
         }

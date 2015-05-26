@@ -557,10 +557,10 @@ public class frmventas extends javax.swing.JInternalFrame {
                             .addComponent(telefonon, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nitn, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nombren, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addGap(18, 18, 18)
-                .addGroup(jcMousePanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addGroup(jcMousePanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jcMousePanel17Layout.setVerticalGroup(
@@ -574,27 +574,28 @@ public class frmventas extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jcMousePanel17Layout.createSequentialGroup()
-                        .addComponent(nitn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombren, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jcMousePanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jcMousePanel17Layout.createSequentialGroup()
+                                .addComponent(nitn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nombren, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(telefonon, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jcMousePanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jcMousePanel17Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(jcMousePanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(direccionn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jcMousePanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jcMousePanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jcMousePanel17Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(direccionn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Mensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jcMousePanel17Layout.createSequentialGroup()
-                        .addComponent(Mensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jcMousePanel17Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jcMousePanel1Layout = new javax.swing.GroupLayout(jcMousePanel1);
@@ -620,7 +621,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcMousePanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout clienteLayout = new javax.swing.GroupLayout(cliente.getContentPane());
@@ -1135,7 +1136,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Ventas");
+        setTitle("Ventas AGROFATIMA");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("frmventas"); // NOI18N
 
@@ -1907,11 +1908,13 @@ public class frmventas extends javax.swing.JInternalFrame {
                 sta = 'F';
                 saldov = "0";
                 total = (TotalPagar.getText());
-                System.out.print(total + "  total a pagar \n");
+                //System.out.print(total + "  total a pagar \n");
                 sqlfac = "UPDATE salida SET estado='" + sta + "',total='" + total + "',saldo='" + saldov + "' WHERE idsalida =" + idfac.getText();
                 s.executeUpdate(sqlfac);
 
                 resta = Float.parseFloat(cantpago.getText()) - Float.parseFloat(TotalPagar.getText());
+                resta = (float) (Math.round(resta * 100.0) / 100.0);
+
                 Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
                 Dimension ventana = pago.getSize();
                 pago.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 2);
@@ -2062,6 +2065,7 @@ public class frmventas extends javax.swing.JInternalFrame {
         } else {
             String fecha = "";
             fecha = getFecha();
+            //char sta='T';
 
             if ((idproducto.getText() != "") && (cantidadP.getText() != "")) {
                 try {
@@ -2087,7 +2091,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                     Statement s = (Statement) conn.createStatement();
                     C2 = Float.parseFloat(cantidadP.getText().toString());
 
-                    String sqlfac = "", cancel = "C", sql3 = "", estado = "T", sql = null;
+                    String sqlfac = "", sqlupdate = "", cancel = "C", sql3 = "", estado = "T", sql = null;
                     if (esentero(C2) == true) {
                         sql = "select lote.idlote,lote.precio,lote.stock,producto.idProducto,producto.Cantidad,producto.nombre," + precioventa + " from lote INNER JOIN producto ON  lote.producto_idProducto=producto.idproducto where producto.idproducto='" + idproducto.getText() + "'and lote.estado='" + estado + "' and lote.stock > 0.99 order by lote.idlote asc ";
                     }
@@ -2148,13 +2152,15 @@ public class frmventas extends javax.swing.JInternalFrame {
                                                 formadepago formadepago = (formadepago) formapago.getSelectedItem();
                                                 String idTP = formadepago.getID();
                                                 int dias = formadepago.todia();
-//                                            char sta = 'T';
+                                                char sta = 'T';
 //                                            String saldov = "";
                                                 String fechapago = "";
                                                 if (formapago.getSelectedItem().toString().equals("CONTADO")) {
                                                     fechapago = fecha;
+                                                    sta = 'F';
                                                 }
                                                 if (!formapago.getSelectedItem().toString().equals("CONTADO")) {
+                                                    sta = 'T';
                                                     Calendar cal = new GregorianCalendar(año(), mes(), dia());
 
                                                     cal.add(Calendar.DATE, dias);
@@ -2165,7 +2171,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                                                 }
                                                 fechainicial.setEnabled(false);
 
-                                                sqlfac = "insert into salida" + "(fecha,fechapago,usuario_idusuario,tipopago_idtipopago,clientes_idClientes) values" + "('" + fecha + "','" + fechapago + "','" + AccesoUsuario.idusu() + "','" + idTP + "','" + idcliente.getText() + "')";
+                                                sqlfac = "insert into salida" + "(fecha,fechapago,usuario_idusuario,tipopago_idtipopago,estado,clientes_idClientes) values" + "('" + fecha + "','" + fechapago + "','" + AccesoUsuario.idusu() + "','" + idTP + "','" + sta + "','" + idcliente.getText() + "')";
                                                 s.executeUpdate(sqlfac, Statement.RETURN_GENERATED_KEYS);
                                                 ResultSet rs4 = s.getGeneratedKeys();
                                                 if (rs4 != null && rs4.next()) {
@@ -2219,6 +2225,18 @@ public class frmventas extends javax.swing.JInternalFrame {
                                                 cuentaprecio();
                                             }
                                             est = 1;
+                                            //Prueba para que actualice el total cada vez que se agrega un producto
+                                            String saldoventa = "", totalventa = "";
+                                            if (formapago.getSelectedItem().toString().equals("CONTADO")) {
+                                                saldoventa = "0";
+                                            } else {
+                                                saldoventa = (TotalPagar.getText());
+                                            }
+                                            totalventa = (TotalPagar.getText());
+                                            sqlupdate = "UPDATE salida SET total='" + totalventa + "',saldo='" + saldoventa + "' WHERE idsalida =" + idfac.getText();
+                                            s.executeUpdate(sqlupdate);
+                                            //***************************************************
+
                                         }//fin del if lote
                                         else {
                                             float numetero = (C);
@@ -2242,7 +2260,7 @@ public class frmventas extends javax.swing.JInternalFrame {
                                             } else {
                                                 cancellote = "C";
                                             }
-                                            System.out.print("diff " + diff + " - cancelalote " + cancellote);
+                                            //System.out.print("diff " + diff + " - cancelalote " + cancellote);
                                             est = 0;
                                             sql3 = "UPDATE lote SET stock='" + diff + "', estado='" + cancellote + "' WHERE idlote =" + idPrv;
                                             s.executeUpdate(sql3);
@@ -2258,9 +2276,19 @@ public class frmventas extends javax.swing.JInternalFrame {
                                             Object nuevo[] = {idP, prod, loteC, preC, preV, suma, idPrv, iddetalle};
                                             tempe.addRow(nuevo);
                                             cuentaprecio();
-
                                             C = C - loteC;
 
+                                            //Prueba para que actualice el total cada vez que se agrega un producto
+                                            String saldoventa = "", totalventa = "";
+                                            if (formapago.getSelectedItem().toString().equals("CONTADO")) {
+                                                saldoventa = "0";
+                                            } else {
+                                                saldoventa = (TotalPagar.getText());
+                                            }
+                                            totalventa = (TotalPagar.getText());
+                                            sqlupdate = "UPDATE salida SET total='" + totalventa + "',saldo='" + saldoventa + "' WHERE idsalida =" + idfac.getText();
+                                            s.executeUpdate(sqlupdate);
+                                            //***************************************************
                                         }
                                     }//fin el if contador 
                                     else {
@@ -2379,23 +2407,32 @@ public class frmventas extends javax.swing.JInternalFrame {
             Mensaje.setText("*Faltan datos por ingresar ");
 
         } else {
-            if ((telefonon.getText().equals("") || telefonon.getText().equals(" ") || telefonon.getText().equals("  ")) || (nitn.getText().equals("") || nitn.getText().equals(" ") || nitn.getText().equals("  "))) {
-                String tel = telefonon.getText(), nits = nitn.getText();
-                sql = "insert into clientes" + "(Nombre,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
 
-                if ((telefonon.getText().equals("") || telefonon.getText().equals(" ")) && (!nitn.equals(""))) {
-                    sql = "insert into clientes" + "(Nombre,nit,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + nits + "','" + direccionn.getText() + "','" + fecha + "')";
-
-                }
-                if ((nitn.getText().equals("") || nitn.getText().equals(" ") || nitn.getText().equals("  ")) && (!telefonon.equals(""))) {
-
-                    sql = "insert into clientes" + "(Nombre,telefono,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + telefonon.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
-                }
-
-            } else {
-                sql = "insert into clientes" + "(Nombre,Nit,telefono,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + nitn.getText() + "','" + telefonon.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
-
+//            if ((telefonon.getText().equals("") || telefonon.getText().equals(" ") || telefonon.getText().equals("  ")) || (nitn.getText().equals("") || nitn.getText().equals(" ") || nitn.getText().equals("  "))) {
+//                String tel = telefonon.getText(), nits = nitn.getText();
+//                sql = "insert into clientes" + "(Nombre,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
+//
+//                if (/*(telefonon.getText().equals("") || telefonon.getText().equals(" ")) || */telefonon.getText().isEmpty() && !nitn.getText().isEmpty()/*(!nitn.equals(""))*/ ) {
+//                    sql = "insert into clientes" + "(Nombre,nit,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + nits + "','" + direccionn.getText() + "','" + fecha + "')";
+//
+//                }
+//                if ((nitn.getText().equals("") || nitn.getText().equals(" ") || nitn.getText().equals("  ")) && (!telefonon.equals(""))) {
+//
+//                    sql = "insert into clientes" + "(Nombre,telefono,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + telefonon.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
+//                }
+//
+//            } else {
+//                sql = "insert into clientes" + "(Nombre,Nit,telefono,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + nitn.getText() + "','" + telefonon.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
+//
+//            }
+            if (nitn.getText().isEmpty()) {
+                   sql = "insert into clientes" + "(Nombre,telefono,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + telefonon.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
+            } else if (!nitn.getText().isEmpty()) {
+                   sql = "insert into clientes" + "(Nombre,Nit,telefono,Direccion,Fec_reg)values" + "('" + nombren.getText() + "','" + nitn.getText() + "','" + telefonon.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
             }
+
+            //sql = "insert into clientes" + "(Nombre,Nit,telefono,Direccion,Fec_reg) values" + "('" + nombren.getText() + "','" + nitn.getText() + "','" + telefonon.getText() + "','" + direccionn.getText() + "','" + fecha + "')";
+
             try {
                 conn = BdConexion.getConexion();
                 // Se crea un Statement, para realizar la consulta

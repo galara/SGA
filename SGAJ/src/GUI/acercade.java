@@ -58,6 +58,8 @@ public class acercade extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -130,21 +132,32 @@ public class acercade extends javax.swing.JInternalFrame {
         jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 140, -1));
 
         jLabel12.setBackground(new java.awt.Color(0, 153, 204));
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel12.setText("galaraa@gmail.com");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 160, -1));
+        jLabel12.setText("ovaldez502@gmail.com");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 150, -1));
 
         jLabel6.setBackground(new java.awt.Color(0, 153, 204));
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("Gustavo Lara :");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 100, -1));
+        jLabel6.setText("Otto Valdez :");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 100, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
         jLabel3.setText("Desarrolladores:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 270, 20));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 270, 20));
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 420, -1));
+
+        jLabel13.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel13.setText("galaraa@gmail.com");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 160, -1));
+
+        jLabel8.setBackground(new java.awt.Color(0, 153, 204));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel8.setText("Gustavo Lara :");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 100, -1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/java.jpg"))); // NOI18N
@@ -211,10 +224,12 @@ public class acercade extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;

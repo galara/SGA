@@ -1384,7 +1384,7 @@ public class compras extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         //GregorianCalendar calendario = new GregorianCalendar();
         if (tabladetallecompra.getRowCount() == 0 && tabladetallecompra.getSelectedRow() == -1) {
-            JOptionPane.showInternalMessageDialog(null, "La tabla no contiene productos que guardar");
+            JOptionPane.showMessageDialog(null, "La tabla no contiene productos que guardar");
         } else {
 
             String fecha;

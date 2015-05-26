@@ -44,7 +44,7 @@ public class GeneraReportes {
             frame.pack();
             frame.setVisible(true);
 
-            frame.setSize(1150, 664);
+            frame.setSize(1050, 664);
             frame.setName(nombrereporte);
             AddForms.adminInternalFrame(panel_center, frame);
             frame.setClosable(true);// icono de cerrar

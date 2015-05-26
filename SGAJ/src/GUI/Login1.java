@@ -65,7 +65,7 @@ public class Login1 extends javax.swing.JFrame {
                     j.setVisible(true);
                     this.dispose();
                     //CalcularMoras.moras();//Si el usuario tiene acceso calcula moras si las hay
-                    BackupDiario.GenerarBackupDiarioMySQL();
+                    //BackupDiario.GenerarBackupDiarioMySQL();
                     accesoConcedido = true;
                     actualizarfecha();
                     return;
@@ -186,7 +186,7 @@ public class Login1 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 38)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("\"POSJ\"");
+        jLabel5.setText("\"AGROFATIMA\"");
         panelCurves1.add(jLabel5);
         jLabel5.setBounds(-3, 398, 320, 40);
 

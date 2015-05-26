@@ -33,7 +33,7 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
      * Creates new form busquedaproducto
      */
     DefaultTableModel model;
-    String[] titulos = {"Id", "Codigo", "Descripción", "Precio", "Stock", "Marca"};
+    String[] titulos = {"Id", "Codigo", "Descripción", "Precio", "Stock", "Marca","Unidad"};
     int estado = 0;
     java.sql.Connection conn;//getConnection intentara establecer una conexión.
     Statement sent;
@@ -104,7 +104,7 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
         //TableColumn representa todos los atributos de una columna en un JTable , como el ancho, resizibility, mínimo y máximo ancho
         //en este caso defien el ancho de cada columna las cuales pueden ser de distinto ancho.
         TableColumn column;// = null;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             column = tablaproductos.getColumnModel().getColumn(i);
 
             if (i == 0) {
@@ -113,12 +113,12 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
                 column.setMaxWidth(0);
                 column.setMinWidth(0);
             } else if (i == 2) {
-                column.setPreferredWidth(185); //Difine el ancho de la columna
+                column.setPreferredWidth(180); //Difine el ancho de la columna
             } else if (i == 1 || i == 3 || i == 4) {
-                column.setPreferredWidth(45);//Difine el ancho de la columna
+                column.setPreferredWidth(40);//Difine el ancho de la columna
                 tablaproductos.getColumnModel().getColumn(i).setCellRenderer(modelocentrar);
-            } else if (i == 5) {
-                column.setPreferredWidth(85);//Difine el ancho de la columna
+            } else if (i == 5 ||i == 6 ) {
+                column.setPreferredWidth(80);//Difine el ancho de la columna
                 tablaproductos.getColumnModel().getColumn(i).setCellRenderer(modelocentrar);
             }
         }
@@ -131,7 +131,7 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
             conn = BdConexion.getConexion();
             sent = conn.createStatement();// crea objeto Statement para consultar la base de datos
             ResultSet rs = sent.executeQuery(/*sql*/sqlprod.LLENAR + sqlprod.ORDER_BY);// especifica la consulta y la ejecuta
-            String[] fila = new String[6];
+            String[] fila = new String[7];
             while (rs.next()) {
                 fila[0] = rs.getString("producto.idproducto");
                 fila[1] = rs.getString("producto.Codigo");
@@ -139,6 +139,8 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
                 fila[3] = rs.getString("producto.preciocompra");
                 fila[4] = rs.getString("producto.cantidad");
                 fila[5] = rs.getString("marca.nombre");
+                fila[6] = rs.getString("unidad.nombre");
+                
                 model.addRow(fila);
             }
             tablaproductos.setModel(model);
@@ -172,7 +174,7 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
             if (rs.next()) {//verifica si esta vacio, pero desplaza el puntero al siguiente elemento
                 int count = 0;
                 rs.beforeFirst();//regresa el puntero al primer registro
-                String[] fila = new String[6];
+                String[] fila = new String[7];
                 while (rs.next()) {
                     fila[0] = rs.getString("producto.idproducto");
                     fila[1] = rs.getString("producto.Codigo");
@@ -180,6 +182,7 @@ public class Busquedadeproducto extends javax.swing.JInternalFrame {
                     fila[3] = rs.getString("producto.preciocompra");
                     fila[4] = rs.getString("producto.cantidad");
                     fila[5] = rs.getString("marca.nombre");
+                    fila[6] = rs.getString("unidad.nombre");
                     model.addRow(fila);
                     count = count + 1;
                 }
