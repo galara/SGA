@@ -277,10 +277,10 @@ public class cortecaja1 extends javax.swing.JInternalFrame {
             int años = Fincial.getCalendar().get(Calendar.YEAR);
             int dias = Fincial.getCalendar().get(Calendar.DAY_OF_MONTH);
 
-//            int mess = Fincial.getCalendar().get(Calendar.MONTH) + 1;
-//
-//            fechai = "" + años + "-" + mess + "-" + dias;
-//            fechaf = "" + años + "-" + mess + "-" + dias;
+            int mess = Fincial.getCalendar().get(Calendar.MONTH) + 1;
+
+            fechai = "" + años + "-" + mess + "-" + dias;
+            fechaf = "" + años + "-" + mess + "-" + dias;
 //            
 //            Calendar cal = new GregorianCalendar();
 //            cal.add(Calendar.DAY_OF_MONTH, 1);

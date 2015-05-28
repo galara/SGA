@@ -31,7 +31,7 @@ public class GeneraReportes {
                 masterReport = (JasperReport) JRLoader.loadObject(archivo);
             } catch (JRException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
-                System.exit(3);
+                //System.exit(3);
             }
             conn = BdConexion.getConexion();
             JasperPrint impresor = JasperFillManager.fillReport(masterReport, parametros, conn);

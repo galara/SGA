@@ -8,6 +8,7 @@ import BD.BdConexion;
 import BD.sqlprod;
 import static GUI.MenuPrincipal.panel_center;
 import Modelos.AccesoUsuario;
+import Modelos.AddForms;
 import Modelos.formadepago;
 import Modelos.proveedor;
 import com.mysql.jdbc.Statement;
@@ -150,7 +151,7 @@ public class compras extends javax.swing.JInternalFrame {
 
     public void removejtable2() {
         while (tablapreciosnuevos.getRowCount() != 0) {
-            model.removeRow(0);
+            modelprecios.removeRow(0);
         }
     }
 
@@ -1370,14 +1371,22 @@ public class compras extends javax.swing.JInternalFrame {
         if ((ProveedorN.getSelectedIndex() <= 0) || factura.getText().equals("") || formapago.getSelectedIndex() <= 0) {
             JOptionPane.showInternalMessageDialog(this, "Seleccione Proveedor, Forma de pago y No.Documento", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            Busquedadeproducto nuevasol = new Busquedadeproducto();
-            if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 2) //solo uno en t
-            {
-                panel_center.add(nuevasol);
-                nuevasol.show();// ver interno
-                nuevasol.setClosable(true);// icono de cerrar
-                nuevasol.toFront();//aparece al frente
+
+            //Cliente newfrm = new Cliente();
+            Busquedadeproducto newfrm = new Busquedadeproducto();
+            if (newfrm == null) {
+                newfrm = new Busquedadeproducto();
             }
+            AddForms.adminInternalFrame(panel_center, newfrm);
+
+//            Busquedadeproducto nuevasol = new Busquedadeproducto();
+//            if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 2) //solo uno en t
+//            {
+//                panel_center.add(nuevasol);
+//                nuevasol.show();// ver interno
+//                nuevasol.setClosable(true);// icono de cerrar
+//                nuevasol.toFront();//aparece al frente
+//            }
         }
     }
     private void btngrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btngrabarActionPerformed
@@ -1491,7 +1500,7 @@ public class compras extends javax.swing.JInternalFrame {
                                         fila[1] = model.getValueAt(i, 2).toString();
                                         fila[2] = preciovent;
                                         fila[3] = precc;
-                                        fila[4] = (precc + (precc * 0.10));
+                                        fila[4] = (float) (Math.round((precc + (precc * 0.10)) * 100.0) / 100.0); 
                                     }
 
                                     sql = "insert into lote" + "(cantidad,precio,fecha,producto_idProducto,compra_idcompra,stock,tipoentrada)values" + "('" + model.getValueAt(i, 3).toString() + "','" + model.getValueAt(i, 4).toString() + "','" + fecha + "','" + model.getValueAt(i, 0).toString() + "','" + ultimoid + "','" + model.getValueAt(i, 3).toString() + "','" + "COMPRA" + "')";
@@ -1571,18 +1580,25 @@ public class compras extends javax.swing.JInternalFrame {
         if ((ProveedorN.getSelectedIndex() <= 0) || factura.getText().equals("") || formapago.getSelectedIndex() <= 0) {
             JOptionPane.showInternalMessageDialog(this, "Seleccione Proveedor, Forma de pago y No.Documento", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            Busquedadeproducto nuevasol = new Busquedadeproducto();
-            if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 2) //solo uno en t
-            {
-
-                Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-                Dimension ventana = nuevasol.getSize();
-                nuevasol.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 10);
-                panel_center.add(nuevasol);
-                nuevasol.show();// ver interno
-                nuevasol.setClosable(true);// icono de cerrar
-                nuevasol.toFront();//aparece al frente
+            
+            Busquedadeproducto newfrm = new Busquedadeproducto();
+            if (newfrm == null) {
+                newfrm = new Busquedadeproducto();
             }
+            AddForms.adminInternalFrame(panel_center, newfrm);
+            
+//            Busquedadeproducto nuevasol = new Busquedadeproducto();
+//            if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 2) //solo uno en t
+//            {
+//
+//                Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+//                Dimension ventana = nuevasol.getSize();
+//                nuevasol.setLocation((pantalla.width - ventana.width) / 2, (pantalla.height - ventana.height) / 10);
+//                panel_center.add(nuevasol);
+//                nuevasol.show();// ver interno
+//                nuevasol.setClosable(true);// icono de cerrar
+//                nuevasol.toFront();//aparece al frente
+//            }
         }
     }//GEN-LAST:event_btnbuscarproductoActionPerformed
 
@@ -1632,14 +1648,22 @@ public class compras extends javax.swing.JInternalFrame {
 
     private void btncrearproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearproductoActionPerformed
         // TODO add your handling code here:
-        Producto nuevasol = new Producto();
-        if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 3) //solo uno en t
-        {
-            panel_center.add(nuevasol);
-            nuevasol.show();// ver interno
-            nuevasol.setClosable(true);// icono de cerrar
-            nuevasol.toFront();//aparece al frente
+        
+        Producto newfrm = new Producto();
+        if (newfrm == null) {
+            newfrm = new Producto();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
+        
+//        Producto nuevasol = new Producto();
+//        
+//        if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 3) //solo uno en t
+//        {
+//            panel_center.add(nuevasol);
+//            nuevasol.show();// ver interno
+//            nuevasol.setClosable(true);// icono de cerrar
+//            nuevasol.toFront();//aparece al frente
+//        }
     }//GEN-LAST:event_btncrearproductoActionPerformed
 
     private void bntsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntsalirActionPerformed

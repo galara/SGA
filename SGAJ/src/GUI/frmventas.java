@@ -14,6 +14,7 @@ import BD.BdConexion;
 import BD.sqlprod;
 import static GUI.MenuPrincipal.panel_center;
 import Modelos.AccesoUsuario;
+import Modelos.AddForms;
 import Modelos.MiModelo;
 import Modelos.Utilidades;
 import Modelos.codigoproductocombo;
@@ -3106,14 +3107,19 @@ public class frmventas extends javax.swing.JInternalFrame {
 
     private void btncrearproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearproductoActionPerformed
         // TODO add your handling code here:
-        Producto nuevasol = new Producto();
-        if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 2) //solo uno en t
-        {
-            panel_center.add(nuevasol);
-            nuevasol.show();// ver interno
-            nuevasol.setClosable(true);// icono de cerrar
-            nuevasol.toFront();//aparece al frente
+        Producto newfrm = new Producto();
+        if (newfrm == null) {
+            newfrm = new Producto();
         }
+        AddForms.adminInternalFrame(panel_center, newfrm);
+//        Producto nuevasol = new Producto();
+//        if (panel_center.getComponentCount() > 0 & panel_center.getComponentCount() < 2) //solo uno en t
+//        {
+//            panel_center.add(nuevasol);
+//            nuevasol.show();// ver interno
+//            nuevasol.setClosable(true);// icono de cerrar
+//            nuevasol.toFront();//aparece al frente
+//        }
     }//GEN-LAST:event_btncrearproductoActionPerformed
 
     private void codigoproductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoproductosActionPerformed
