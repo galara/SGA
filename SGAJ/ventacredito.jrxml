@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPORTE DE SALIDAS" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c831ede-df18-47bd-9d3a-ff937bce1b8f">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="11"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
@@ -59,34 +59,6 @@ WHERE
 	</background>
 	<title>
 		<band height="84" splitType="Stretch">
-			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="258" y="10" width="232" height="21"/>
-				<textElement textAlignment="Center">
-					<font size="16" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Agropecuaria Fatima]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="255" y="45" width="252" height="12"/>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Tel: 51595111 - 46694124]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="255" y="31" width="252" height="12"/>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Aldea Bracitos, Mazatenango Such]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="254" y="56" width="252" height="12"/>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Email: agrofatimaguatemala@hotmail.com]]></text>
-			</staticText>
 			<image>
 				<reportElement uuid="ce430acb-3ba7-4dce-82fa-51b11b9f480e" x="0" y="0" width="109" height="39"/>
 				<imageExpression><![CDATA["agrofatima.png"]]></imageExpression>
@@ -134,6 +106,36 @@ WHERE
 					<font fontName="Calisto MT" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Reporte Ventas Credito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="228" y="37" width="250" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tel: _____________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="226" y="2" width="254" height="21"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agrícolas San Miguel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="226" y="48" width="254" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email: agrofatimaguatemala@hotmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="227" y="23" width="252" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1ra Avenida, terminal de buses Patulul Suchitepéquez
+
+]]></text>
 			</staticText>
 		</band>
 	</title>

@@ -18,10 +18,24 @@ public class BdConexion {
     private static ResultSet rs = null;
     private static Statement st = null;
     private static PreparedStatement ps = null;
-    private static String host = "192.168.0.10";
-    public static String dataBase = "agrofatima"; //nombre base de datos
-    public static String user = "agropecuaria"; // usuario de la base de datos
-    public static String pass = "rdwLWVx9cWcyyPFe"; // contraseña de la base de datos
+    //***********AGROFATIMA************************************************
+    //private static String host = "192.168.0.10";
+    //public static String dataBase = "agrofatima"; //nombre base de datos
+    //public static String user = "agropecuaria"; // usuario de la base de datos
+    //public static String pass = "rdwLWVx9cWcyyPFe"; // contraseña de la base de datos
+    
+    //***********SAN MIGUEL************************************************
+    private static String host = "localhost";//"192.168.0.20";
+    public static String dataBase = "agrofatima2";//"agrofatima2"; //nombre base de datos
+    public static String user = "root";//"agrofatima2"; // usuario de la base de datos
+    public static String pass = "agrofatima2";//"rdwLWVx9cWcyyPFe"; 
+    
+    //***********LOCAL  ************************************************
+    //private static String host = "localhost";//"192.168.0.20";
+    //public static String dataBase = "agrofatima";//"agrofatima2"; //nombre base de datos
+    //public static String user = "root";//"agrofatima2"; // usuario de la base de datos
+    //public static String pass = "adolfo123";//"rdwLWVx9cWcyyPFe"; 
+    
     public static int TODO = 1;
     public static int SOLO_STATEMENT = 2;
     public static int SOLO_RESULTSET = 3;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPORTE DE VENTAS" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="764" leftMargin="14" rightMargin="14" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="8ceac3de-ab50-4dcf-b2b6-aeec95e5e913">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="9"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="fecha1" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -88,28 +88,30 @@ WHERE
 	<title>
 		<band height="70">
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="250" y="0" width="232" height="21"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="248" y="3" width="254" height="21"/>
 				<textElement textAlignment="Center">
 					<font size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Agropecuaria Fatima]]></text>
+				<text><![CDATA[Agrícolas San Miguel]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="247" y="35" width="252" height="12"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="250" y="37" width="250" height="12"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tel: 51595111 - 46694124]]></text>
+				<text><![CDATA[Tel: _____________________]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="247" y="21" width="252" height="12"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="249" y="23" width="252" height="12"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Aldea Bracitos, Mazatenango Such]]></text>
+				<text><![CDATA[1ra Avenida, terminal de buses Patulul Suchitepéquez
+
+]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="246" y="46" width="252" height="12"/>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="248" y="49" width="254" height="12"/>
 				<textElement textAlignment="Center">
 					<font size="8" isBold="true"/>
 				</textElement>

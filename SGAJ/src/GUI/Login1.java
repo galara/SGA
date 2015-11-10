@@ -183,10 +183,10 @@ public class Login1 extends javax.swing.JFrame {
         panelCurves1.setFont(new java.awt.Font("Arial", 1, 35)); // NOI18N
         panelCurves1.setLayout(null);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 38)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("\"AGROFATIMA\"");
+        jLabel5.setText("\"Agrícolas San Miguel\"");
         panelCurves1.add(jLabel5);
         jLabel5.setBounds(-3, 398, 320, 40);
 

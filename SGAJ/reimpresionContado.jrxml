@@ -102,13 +102,6 @@ WHERE
 				<text><![CDATA[No.Documento:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="118" y="21" width="252" height="12"/>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Aldea Bracitos, Mazatenango Such]]></text>
-			</staticText>
-			<staticText>
 				<reportElement uuid="f1b60987-0157-40bd-9335-f932a88854cc" x="377" y="77" width="77" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="12" isBold="true" isUnderline="false"/>
@@ -152,20 +145,6 @@ WHERE
 			<line>
 				<reportElement uuid="d3f41e45-cecf-413a-a637-27e6651c0665" x="121" y="92" width="220" height="1"/>
 			</line>
-			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="118" y="35" width="252" height="12"/>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Tel: 51595111 - 46694124]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="117" y="46" width="252" height="12"/>
-				<textElement textAlignment="Center">
-					<font size="8" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Email: agrofatimaguatemala@hotmail.com]]></text>
-			</staticText>
 			<line>
 				<reportElement uuid="d3f41e45-cecf-413a-a637-27e6651c0665" x="121" y="108" width="220" height="1"/>
 			</line>
@@ -182,13 +161,6 @@ WHERE
 					<font size="8" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Teléfono]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="121" y="0" width="232" height="21"/>
-				<textElement textAlignment="Center">
-					<font size="16" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Agropecuaria Fatima]]></text>
 			</staticText>
 			<rectangle radius="10">
 				<reportElement uuid="2160759b-f1aa-4a28-9032-8ade9e014fe6" mode="Transparent" x="370" y="5" width="145" height="16"/>
@@ -214,6 +186,36 @@ WHERE
 				<reportElement uuid="ce430acb-3ba7-4dce-82fa-51b11b9f480e" x="2" y="4" width="109" height="39"/>
 				<imageExpression><![CDATA["agrofatima.png"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="122" y="36" width="250" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tel: _____________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" x="120" y="2" width="254" height="21"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agrícolas San Miguel]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="120" y="47" width="254" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email: agrofatimaguatemala@hotmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b915b60e-0036-4faa-ae53-05307357df96" mode="Opaque" x="121" y="22" width="252" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1ra Avenida, terminal de buses Patulul Suchitepéquez
+
+]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
